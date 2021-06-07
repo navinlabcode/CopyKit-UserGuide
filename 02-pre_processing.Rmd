@@ -1,0 +1,80 @@
+# Pre-processing 
+
+Copykit pre-processing module contains 3 main functions: 1) `runVarbin()`, 2) `runVst()` and, 3) `runSegmentation()`
+
+## runVarbin()
+
+We can load CopyKit with the `library()` function
+```{r}
+library(copykit)
+```
+
+**NOTE:** CopyKit functions will automatically run in parallel if the BiocParallel framework was registered. For more information check section \@ref(parallelization).
+
+`runVarbin()` accepts duplicates marked `.bam` files as input and performs the binning of reads into bins according to the variable binning pipeline [@RN2; @RN4]. To help users obtain these processed files from *.fastq* files a [snakemake](https://snakemake.readthedocs.io/en/stable/)
+ pipeline is available [here]() that uses [bowtie2](https://snakemake.readthedocs.io/en/stable/) for the alignment of reads and [sambamba](https://lomereiter.github.io/sambamba/) for the removal of pcr duplicates. This pipeline can be adapted as per users needs and the only requirement for CopyKit is the use of `.bam` files as the input. `runVarbin()` first argument should be the path to the `.bam` files location.
+ 
+```{r run_varbin, eval=FALSE}
+tumor <- runVarbin("~/path/to/bam/files/", 
+                   remove_Y = TRUE)
+``` 
+ 
+```{r run_varbin_hidden, eval=TRUE, echo=FALSE}
+tumor <- runVarbin("~/projects/copy_number_pipeline_hg38/test_tumor_data/TN28/marked/", 
+                   remove_Y = TRUE)
+```
+ 
+`runVarbin()` by default uses a varbin pipeline scaffold for the genome *hg38* with a resolution of bins that on average contain *200kb*. Both options can be changed with the arguments *genome* or *resolution*. For samples that are XX, `runVarbin()` can be set to ignore any read that may have aligned to chrY with the argument *remove_Y = TRUE*.
+
+The resulting object is the CopyKit object of class scCNA that can be inspected.
+```{r copykit_object}
+tumor
+```
+
+CopyKit objects expands on the [SingleCellExperiment](https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class where each column represents a single-cell and each row represents a bin. 
+
+The information of the bincounts resulting from `runVarbin()` are stored withing the bin_counts slot that can be acessed with the `bin_counts()` accessor. (Here displaying the first five columns).
+```{r}
+head(bin_counts(tumor)[,1:5])
+```
+
+## runVst()
+
+A consequence of the count nature of copy-number sequencing data is a negative binomial distribution with overdispersion at higher counts. To account for that CopyKit offers a variance stabilization transformation procedure with the function `runVst()`. By default, CopyKit will apply the freeman-tukey transformation to the bin count dataset.
+
+```{r run_vst}
+tumor <- runVst(tumor)
+```
+
+Classically copy number data has been transformed with a logarithm transformation, the log transformation can be set within CopyKit with the argument `runVst(copykit_object, transformation = 'log)`. *Warning* The segmentation step (see next secton) can be very slow when transformation = 'log' is selected. Even though the process is fast for most cells it can hang in a few cells with large breakpoint numbers and take ~ 1hr to complete.
+
+The resulting transformation is stored within the CopyKit object in the *ft* slot and can be accessed with the `assay()` function:
+```{r}
+head(assay(tumor, 'ft')[,1:5])
+```
+
+## runSegmentation
+The last step of the pre-processing pipeline consists in the segmentation of the bin counts for each cell, which can be performed with the function `runSegmentation()`. Segmentation fits piece-wise constant functions to every profile generating segment means that can be used to infer copy-number states across every cell.
+
+By default CopyKit uses Circular Binary Segmentation (CBS) from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation.
+
+```{r run_segmentation}
+tumor <- runSegmentation(tumor)
+```
+
+The resulting information from `runSegmentation()` is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*, which can be accessed with the helper function `ratios()` and `segment_ratios()`
+```{r r_sr_accessors}
+head(ratios(tumor)[,1:5])
+head(segment_ratios(tumor)[,1:5])
+```
+
+From now on, the derived segment ratios will be the main type of data where the copy number analysis will be performed.
+
+
+
+
+
+
+
+ 
+ 

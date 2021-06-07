@@ -1,0 +1,8 @@
+book_filename: "CopyKit-UserGuide"
+delete_merged_file: true
+output_dir: 'docs'
+output:
+  bookdown::gitbook:
+language:
+  ui:
+    chapter_name: ""

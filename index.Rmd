@@ -1,0 +1,28 @@
+--- 
+title: "CopyKit User Guide"
+author: "Darlan Conterno Minussi"
+date: "Last revised: `r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: no
+description: "This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis."
+---
+
+# Introduction
+
+<center>
+![CopyKit logo](images/copykit_hexsticker_v2.png){height=30% width=30%}
+</center>
+
+This is the user guide for the **CopyKit** package.
+
+*CopyKit* is a toolkit for single-cell analysis of copy number datasets. Copykit expands from the existing robust scaffold for single-cell analysis provided by the Bioconductor packages SingleCellExperiment and SummarizedExperiment and, provides the tools to perform binning of sequencing reads, segmentation as well as quality control and downstream analysis of scDNA-Seq datasets.
+
+*CopyKit* uses the *Variable Binning* [@RN2; @RN4] pipeline to process datasets.
+
+All the information from a scDNA-Seq dataset is stored within the *scCNA object* for downstream analysis. *CopyKit* functions can be split into 4 modules: *1) Pre-processing, 2) Quality Control, 3) Analysis and, 4) Visualization module.*
+
+The next chapters of this user guide will cover each module in detail.
+

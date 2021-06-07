@@ -1,0 +1,25 @@
+# Parallelization
+
+For all parallel calculations, *CopyKit* adopts the [BiocParallel](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) framework. 
+
+Make sure to read the BiocParallel vignette to choose the best parameters for your machine. An example workflow can be done as follows:
+
+We use `BiocParallel::register()` function to register the number of workers desired.
+
+```{r registering}
+library(BiocParallel)
+register(MulticoreParam(workers = 40, progressbar = T), default = T)
+```
+
+BiocParallel registered 40 processes for parallelization of copykit functions. The default parameter can be confirmed with:
+```{r default}
+BiocParallel::bpparam()
+```
+
+The argument *progressbar* allows for a helpful progression bar while the process is being run.
+
+After this setup *CopyKit* parallelized functions will automatically recognize these parameters and run in parallel.
+It is highly recommended to run CopyKit using parallelization since some functions can take a long time to run otherwise.
+
+
+
