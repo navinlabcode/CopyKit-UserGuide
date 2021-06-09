@@ -19,7 +19,7 @@ tumor <- runVarbin("~/path/to/bam/files/",
                    remove_Y = TRUE)
 ``` 
  
-```{r run_varbin_hidden, eval=TRUE, echo=FALSE}
+```{r run_varbin_hidden, eval=TRUE, echo=FALSE, results='hide'}
 tumor <- runVarbin("~/projects/copy_number_pipeline_hg38/test_tumor_data/TN28/marked/", 
                    remove_Y = TRUE)
 ```
@@ -58,7 +58,7 @@ The last step of the pre-processing pipeline consists of the segmentation of the
 
 By default, CopyKit uses Circular Binary Segmentation (CBS) from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation.
 
-```{r run_segmentation}
+```{r run_segmentation, results='hide'}
 tumor <- runSegmentation(tumor)
 ```
 

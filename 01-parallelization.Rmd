@@ -8,7 +8,7 @@ We use `BiocParallel::register()` function to register the number of workers des
 
 ```{r registering}
 library(BiocParallel)
-register(MulticoreParam(workers = 40, progressbar = T), default = T)
+register(MulticoreParam(workers = 50, progressbar = T), default = T)
 ```
 
 BiocParallel registered 40 processes for parallelization of copykit functions. The default parameter can be confirmed with:

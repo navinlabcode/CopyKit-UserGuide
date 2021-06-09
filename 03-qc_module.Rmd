@@ -6,7 +6,7 @@ CopyKit QC Module consists of 3 main functions: 1) `runMetrics()`, 2) `filterCel
 
 `runMetrics()` is used to add basic quality control information to the metadata of the CopyKit object. It will return information on the overdispersion on the datasets and the number of breakpoints for each single-cell.
 
-```{r run_metrics}
+```{r run_metrics, results='hide'}
 tumor <- runMetrics(tumor)
 ```
 
@@ -25,10 +25,10 @@ tumor <- filterCells(tumor)
 
 The default resolution threshold is 0.9 and it can be adjusted accordingly to user needs.
 `filterCells()` adds a column to the metadata called 'filtered' marking cells that should be removed or kept.
-After filtering the function `plotHeatmap()` from the visualization module can be used to visualize the results from `filterCells()` with the argument label set to 'filtered'.
+After filtering the function `plotHeatmap()` from the visualization module can be used to visualize the results from `filterCells()` with the argument label set to 'filtered'. To make visualization easier, rows can also be split according to elements of the metadata with the argument row_split.
 
-```{r filter_cells_heat}
-plotHeatmap(tumor, label = 'filtered')
+```{r filter_cells_heat, fig.height=800px}
+plotHeatmap(tumor, label = 'filtered', row_split = 'filtered')
 ```
 
 If satisfied with the filtering results, the CopyKit object can be subset as any other R object.
@@ -43,6 +43,11 @@ It is common for datasets to contain normal cells with flat profiles mixed in wi
 
 ```{r find_normal_cells}
 tumor <- findNormalCells(tumor)
+```
+
+`plotHeatmap()` can again be used to visualize the results from `findNormalCells()`
+```{r find_normal_heat, fig.height=800px}
+plotHeatmap(tumor, label = 'is_normal')
 ```
 
 The object can be subsetted in the same way as with `filterCells()`
