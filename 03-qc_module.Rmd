@@ -1,0 +1,53 @@
+# QC module
+
+CopyKit QC Module consists of 3 main functions: 1) `runMetrics()`, 2) `filterCells()` and 3) `findNormalCells()`.
+
+## runMetrics()
+
+`runMetrics()` is used to add basic quality control information to the metadata of the CopyKit object. It will return information on the overdispersion on the datasets and the number of breakpoints for each single-cell.
+
+```{r run_metrics}
+tumor <- runMetrics(tumor)
+```
+
+The resulting information can be seen at the metadata with:
+```{r rm_metadata}
+colData(tumor)
+```
+
+## filterCells()
+
+`filterCells()` removes low-quality cells according to a defined resolution threshold. Cells with correlation smaller than the mean of its k-nearest neighbors are defined as noisy samples and this information, as well as the correlation value, is added to the scCNA object metadata. 
+
+```{r filter_cells}
+tumor <- filterCells(tumor)
+```
+
+The default resolution threshold is 0.9 and it can be adjusted accordingly to user needs.
+`filterCells()` adds a column to the metadata called 'filtered' marking cells that should be removed or kept.
+After filtering the function `plotHeatmap()` from the visualization module can be used to visualize the results from `filterCells()` with the argument label set to 'filtered'.
+
+```{r filter_cells_heat}
+plotHeatmap(tumor, label = 'filtered')
+```
+
+If satisfied with the filtering results, the CopyKit object can be subset as any other R object.
+
+```{r filter_subset}
+tumor <- tumor[,colData(tumor)$filtered == 'kept']
+```
+
+## findNormalCells()
+
+It is common for datasets to contain normal cells with flat profiles mixed in with the aneuploidy cells from a tumor that is being profiled. `findNormalCells()` performs a sample-wise calculation of the segment ratios coefficient of variation. By default `findNormalCells()` tries to automatically identify the resolution threshold by fitting a normal mixture model to the distribution of coefficient of variation from all samples. To increase the sensitivity of the model, findNormalCells also simulate the expected coefficient of variation. Lastly, `findNormalCells()` add the resulting information to the metadata of the CopyKit object in a column named 'is_normal'. 
+
+```{r find_normal_cells}
+tumor <- findNormalCells(tumor)
+```
+
+The object can be subsetted in the same way as with `filterCells()`
+```{r find_normal_subset}
+tumor <- tumor[,colData(tumor)$is_normal == FALSE]
+```
+
+Your dataset should be ready to proceed with the analysis.
