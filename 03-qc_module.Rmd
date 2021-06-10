@@ -6,7 +6,7 @@ CopyKit QC Module consists of 3 main functions: 1) `runMetrics()`, 2) `filterCel
 
 `runMetrics()` is used to add basic quality control information to the metadata of the CopyKit object. It will return information on the overdispersion on the datasets and the number of breakpoints for each single-cell.
 
-```{r run_metrics, results='hide'}
+```{r run_metrics}
 tumor <- runMetrics(tumor)
 ```
 

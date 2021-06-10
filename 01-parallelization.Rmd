@@ -6,10 +6,16 @@ Make sure to read the BiocParallel vignette to choose the best parameters for yo
 
 We use `BiocParallel::register()` function to register the number of workers desired.
 
-```{r registering}
+```{r registering_fake, eval=FALSE}
 library(BiocParallel)
 register(MulticoreParam(workers = 50, progressbar = T), default = T)
 ```
+
+```{r registering_true, echo=FALSE}
+library(BiocParallel)
+register(MulticoreParam(workers = 50, progressbar = F), default = T)
+```
+
 
 BiocParallel registered 40 processes for parallelization of copykit functions. The default parameter can be confirmed with:
 ```{r default}
