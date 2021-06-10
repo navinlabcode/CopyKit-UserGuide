@@ -1,0 +1,72 @@
+# Analysis and Visualization module
+
+The analysis and visualization module from CopyKit work in synergy to help you analyze and assess the results from your day.
+
+The analysis module provides the following functions: `runUmap()`, `calcInteger()`, `findSuggestedK()`, `findClusters()`, `calcConsensus()` and `runPhylo()`.
+
+The visualization module functions are: `plotMetrics()`, `plotRatio()`, `plotUmap()`, `plotHeatmap()`, `plotConsensusLine()` and `plotGeneCopy()`.
+
+## runUmap()
+
+runUmap uses generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) reduced dimensions embedding, the resulting embedding is stored within the scCNA reducedDim slot and is an important pre-processing step to the findClusters feature.
+
+```{r run_umap}
+tumor <- runUmap(tumor)
+```
+
+Additional arguments to control umap parameters can be passed on to`runUmap()` with the '...' argument.
+
+```{r}
+tumor <- runUmap(tumor, n_neighbors = 30, min_dist = 0)
+```
+
+## plotUmap()
+
+`plotUmap()` can be used to plot the reduced dimensional embedding. plotUmap can be colored by any element of the metadata with the argument 'label', this will be shown in a later section.
+
+```{r}
+plotUmap(tumor)
+```
+
+## Clustering
+
+The `findClusters()` function will use the reduced dimensional embedding resulting from runUmap to perform clustering of superclones and subclones.
+
+When clustering for superclones `findClusters()` creates a graph representation of the dataset reduced dimension embedding using a shared nearest neighbor algorithm (SNN), from this graph the connected components are extracted and generally represent high-level structures that share large, lineage defining copy number events.
+
+CopyKit can also be used to detect subclones, i. e. groups of cells containing a unique copy number event per cluster, to do so the umap embedding is again used as the pre-processing step, this time to perform a density-based clustering with [hdbscan](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) as seen in the work from Laks *et al.* [@RN6].
+
+### findSugestedK()
+
+Density-based clustering requires input of the k neighbors, frequently chosen ad hoc. To help with parametrization, CopyKit provides the helper findSuggestedK function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity. While findSuggestedK does not guarantee that the suggested value will result in optimal clustering but provides a guide that maximizes cluster stability.
+
+```{r find_suggested_k}
+tumor <- findSuggestedK(tumor)
+```
+
+The suggested value is stored into the metadata and can be access at:
+```{r find_sug_meta}
+S4Vectors::metadata(tumor)$suggestedK
+```
+
+### findClusters()
+
+To run `findClusters()` simply use the function in the CopyKit object and provide the k value with the arguments 'k_superclones' and 'k_subclones'.
+*NOTE:* k_superclones and k_subclones can be used concurrently. Only k_subclones is a mandatory field.
+
+
+```{r findCl_withparam}
+tumor <- findClusters(tumor,
+                      k_superclones = 30,
+                      k_subclones = 15)
+```
+
+If `findSuggestedK()` was used and the argument 'k_subclones' is not provided, `findClusters()` will automatically use the value resulting from `findSuggestedK()` that was stored into the metadata:
+
+```{r findCL_findSuggested}
+tumor <- findClusters(tumor)
+```
+
+
+
+
