@@ -6,6 +6,10 @@ The analysis module provides the following functions: `runUmap()`, `calcInteger(
 
 The visualization module functions are: `plotMetrics()`, `plotRatio()`, `plotUmap()`, `plotHeatmap()`, `plotConsensusLine()` and `plotGeneCopy()`.
 
+## plotRatio()
+
+It is often important to visualize that the segmentation behaved as expected and closely follows the ratios. Not missing important events. Ratio plots are a great tool for this. You can plot ratio plots with the `plotRatio()` function. `plotRatio()` has two different modes. If given 
+
 ## runUmap()
 
 runUmap uses generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) reduced dimensions embedding, the resulting embedding is stored within the scCNA reducedDim slot and is an important pre-processing step to the findClusters feature.
@@ -66,6 +70,42 @@ If `findSuggestedK()` was used and the argument 'k_subclones' is not provided, `
 ```{r findCL_findSuggested}
 tumor <- findClusters(tumor)
 ```
+
+The results from the clustering can be visualized with different plotting functions. For example `plotUmap()` can be used with the argument 'label':
+
+```{r plot_umap_subclones}
+plotUmap(tumor, label = 'subclones')
+```
+
+## plotHeatmap()
+
+A heatmap can be used to visualize the copy number profiles of the dataset annotated with the subclonal information:
+
+```{r plot_heatmap_subclones, fig.height=8}
+plotHeatmap(tumor, label = 'subclones')
+```
+
+Importantly, new information can be added to the metadata and used in conjuction with the plotting functions. The dataset in this example has some spatial information obtained from macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add as an extra column to the metadata:
+
+```{r add_spatial_info}
+colData(tumor)$spatial_info <- str_extract(colData(tumor)$sample, "S[0-9]{1}")
+```
+
+Once the information has been added, we can use it to color the heatmap points by their spatial information:
+
+```{r umap_spatial}
+plotUmap(tumor, label = 'spatial_info')
+```
+
+It is also possible to annotate the heatmap with that information:
+```{r heat_spatial, fig.height=8}
+plotHeatmap(tumor, label = c("spatial_info", "subclones"))
+```
+
+The 'label' argument for `plotHeatmap()` can add as many annotations as specified by the user as long as they are elements in `colData()` of the CopyKit object.
+
+
+
 
 
 

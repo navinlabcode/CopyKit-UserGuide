@@ -23,11 +23,11 @@ colData(tumor)
 tumor <- filterCells(tumor)
 ```
 
-The default resolution threshold is 0.9 and it can be adjusted accordingly to user needs.
+The default resolution threshold is 0.9 and it can be adjusted accordingly to user needs with the argument 'resolution'.
 `filterCells()` adds a column to the metadata called 'filtered' marking cells that should be removed or kept.
 After filtering the function `plotHeatmap()` from the visualization module can be used to visualize the results from `filterCells()` with the argument label set to 'filtered'. To make visualization easier, rows can also be split according to elements of the metadata with the argument row_split.
 
-```{r filter_cells_heat, fig.height=800px}
+```{r filter_cells_heat, fig.height=8}
 plotHeatmap(tumor, label = 'filtered', row_split = 'filtered')
 ```
 
@@ -46,7 +46,7 @@ tumor <- findNormalCells(tumor)
 ```
 
 `plotHeatmap()` can again be used to visualize the results from `findNormalCells()`
-```{r find_normal_heat, fig.height=800px}
+```{r find_normal_heat, fig.height=8}
 plotHeatmap(tumor, label = 'is_normal')
 ```
 
