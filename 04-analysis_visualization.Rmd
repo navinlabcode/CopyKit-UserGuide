@@ -8,7 +8,19 @@ The visualization module functions are: `plotMetrics()`, `plotRatio()`, `plotUma
 
 ## plotRatio()
 
-It is often important to visualize that the segmentation behaved as expected and closely follows the ratios. Not missing important events. Ratio plots are a great tool for this. You can plot ratio plots with the `plotRatio()` function. `plotRatio()` has two different modes. If given 
+It is often important to visualize that the segmentation behaved as expected and closely follows the ratios. Not missing important events. Ratio plots are a great tool for this. You can plot ratio plots with the `plotRatio()` function. `plotRatio()` has two different modes. When the input is the CopyKit object an interactive app will run and you can select which cell will be visualized.
+```{r plot_ratio_app, eval = FALSE}
+plotRatio(tumor)
+```
+<center>
+![Ratio Plot App](images/plot_ratio_shiny.png)
+</center>
+
+If `plotRatio()` is given a sample name only the plot for that cell will be shown.
+```{r plot_ratio_sample}
+plotRatio(tumor, "TN28_2_S1_C10_S1930_L006_R1_001")
+```
+
 
 ## runUmap()
 
@@ -98,15 +110,98 @@ plotUmap(tumor, label = 'spatial_info')
 ```
 
 It is also possible to annotate the heatmap with that information:
+The 'label' argument for `plotHeatmap()` can add as many annotations as specified by the user as long as they are elements in `colData()` of the CopyKit object.
 ```{r heat_spatial, fig.height=8}
 plotHeatmap(tumor, label = c("spatial_info", "subclones"))
 ```
 
-The 'label' argument for `plotHeatmap()` can add as many annotations as specified by the user as long as they are elements in `colData()` of the CopyKit object.
+## calcConsensus()
 
+Consensus sequences can help visualize the different segments across the groups of cells. A consensus sequence can be calculated in CopyKit with the function `calcConsensus()`
+```{r calc_consensus}
+tumor <- calcConsensus(tumor)
+```
 
+`plotHeatmap()` can also plot consensus heatmap of the CopyKit object:
+```{r plot_heat_consensus}
+plotHeatmap(tumor, consensus = TRUE)
+```
 
+By default `calcConsensus()` uses the subclones information to calculate a consensus for each subclone. Importantly, any element of the `colData()` can be used to calculate the consensus.
+```{r calc_consensus_spatial}
+tumor <- calcConsensus(tumor, consensus_by = "spatial_info")
+```
 
+```{r consensus_spatial_head}
+plotHeatmap(tumor, consensus = TRUE)
+```
 
+## plotConsensusLine()
 
+To make it easier to compare the differences among the differences subclones, `plotConsensusLine()` opens an app where the consensus sequences are plotted as lines and a checkbox can be used to add overlays of the sequences. Making it easier to determine the differences between regions.
+
+```{r calc_consensus_again, echo = FALSE}
+tumor <- calcConsensus(tumor)
+```
+
+```{r plot_cons_line, eval=FALSE}
+plotConsensusLine(tumor)
+```
+
+<center>
+![Plot Consensus Line](images/plot_consensus_shiny.png)
+</center>
+
+## calcInteger
+
+Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with `calcInteger()`. CopyKit supports using fixed value of ploidy that will scale all the cells (generally determined using Flow Cytometry). Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()` as long as it contains the same length and sample order as `colData()`
+
+```{r calc_integer}
+tumor <- calcInteger(tumor, ploidy_value = 3.45)
+```
+
+The integerized segment mean ratios are stored in the slot `integer` that can be accessed with the function `assay()`
+
+If a value of ploidy exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
+```{r plot_ratio_integer}
+plotRatio(tumor, "TN28_2_S1_C10_S1930_L006_R1_001")
+```
+
+## plotGeneCopy
+
+It might be of interest to check for the copy number states across all the samples for different genes. That can be done with `plotGeneCopy()` in two different geoms: “swarm” (default) or “violin”.
+```{r}
+tumor <- plotGeneCopy(tumor, genes = c("CDKN2A",
+                                       "FGFR1",
+                                       "TP53",
+                                       "PTEN",
+                                       "MYC",
+                                       "EGFR",
+                                       "ERBB2",
+                                       "CDKN1A",
+                                       "MDM2",
+                                       "AURKA",
+                                       "PIK3CA",
+                                       "CCND1",
+                                       "KRAS"))
+```
+
+It is also possible to visualize the integer data as a frequency barplot for each gene:
+```{r plot_gene_copy_integer}
+tumor <- plotGeneCopy(tumor, genes = c("CDKN2A",
+                                       "FGFR1",
+                                       "TP53",
+                                       "PTEN",
+                                       "MYC",
+                                       "EGFR",
+                                       "ERBB2",
+                                       "CDKN1A",
+                                       "MDM2",
+                                       "AURKA",
+                                       "PIK3CA",
+                                       "CCND1",
+                                       "KRAS"),
+                      geom = "barplot",
+                      assay = "integer")
+```
 

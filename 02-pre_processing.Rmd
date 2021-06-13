@@ -24,7 +24,7 @@ tumor <- runVarbin("~/path/to/bam/files/",
 ``` 
  
 ```{r run_varbin_hidden, eval=TRUE, echo=FALSE}
-tumor <- runVarbin("~/projects/copy_number_pipeline_hg38/test_tumor_data/PANL11/marked/", 
+tumor <- runVarbin("~/projects/copy_number_pipeline_hg38/test_tumor_data/TN28/marked/", 
                    remove_Y = TRUE)
 ```
  
