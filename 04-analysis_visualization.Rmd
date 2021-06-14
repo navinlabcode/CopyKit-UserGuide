@@ -54,13 +54,13 @@ CopyKit can also be used to detect subclones, i. e. groups of cells containing a
 
 ### findSugestedK()
 
-Density-based clustering requires input of the k neighbors, frequently chosen ad hoc. To help with parametrization, CopyKit provides the helper findSuggestedK function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity. While findSuggestedK does not guarantee that the suggested value will result in optimal clustering but provides a guide that maximizes cluster stability.
+Density-based clustering requires the input of the k neighbors, frequently chosen ad hoc. To help with parametrization, CopyKit provides the helper findSuggestedK function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity. While findSuggestedK does not guarantee that the suggested value will result in optimal clustering but provides a guide that maximizes cluster stability.
 
 ```{r find_suggested_k}
 tumor <- findSuggestedK(tumor)
 ```
 
-The suggested value is stored into the metadata and can be access at:
+The suggested value is stored into the metadata and can be accessed at:
 ```{r find_sug_meta}
 S4Vectors::metadata(tumor)$suggestedK
 ```
@@ -97,7 +97,7 @@ A heatmap can be used to visualize the copy number profiles of the dataset annot
 plotHeatmap(tumor, label = 'subclones')
 ```
 
-Importantly, new information can be added to the metadata and used in conjuction with the plotting functions. The dataset in this example has some spatial information obtained from macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add as an extra column to the metadata:
+Importantly, new information can be added to the metadata and used in conjunction with the plotting functions. The dataset in this example has some spatial information obtained from the macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:
 
 ```{r add_spatial_info}
 colData(tumor)$spatial_info <- str_extract(colData(tumor)$sample, "S[0-9]{1}")
@@ -124,7 +124,7 @@ tumor <- calcConsensus(tumor)
 
 `plotHeatmap()` can also plot consensus heatmap of the CopyKit object:
 ```{r plot_heat_consensus}
-plotHeatmap(tumor, consensus = TRUE)
+plotHeatmap(tumor, consensus = TRUE, label = 'subclones')
 ```
 
 By default `calcConsensus()` uses the subclones information to calculate a consensus for each subclone. Importantly, any element of the `colData()` can be used to calculate the consensus.
@@ -133,12 +133,12 @@ tumor <- calcConsensus(tumor, consensus_by = "spatial_info")
 ```
 
 ```{r consensus_spatial_head}
-plotHeatmap(tumor, consensus = TRUE)
+plotHeatmap(tumor, consensus = TRUE, label = 'spatial_info')
 ```
 
 ## plotConsensusLine()
 
-To make it easier to compare the differences among the differences subclones, `plotConsensusLine()` opens an app where the consensus sequences are plotted as lines and a checkbox can be used to add overlays of the sequences. Making it easier to determine the differences between regions.
+To make it easier to compare the differences among subclones, `plotConsensusLine()` opens an app where the consensus sequences are plotted as lines and a checkbox can be used to add overlays of the sequences. Making it easier to determine the differences between regions.
 
 ```{r calc_consensus_again, echo = FALSE}
 tumor <- calcConsensus(tumor)
@@ -152,56 +152,54 @@ plotConsensusLine(tumor)
 ![Plot Consensus Line](images/plot_consensus_shiny.png)
 </center>
 
-## calcInteger
+## calcInteger()
 
-Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with `calcInteger()`. CopyKit supports using fixed value of ploidy that will scale all the cells (generally determined using Flow Cytometry). Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()` as long as it contains the same length and sample order as `colData()`
+Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with `calcInteger()`. CopyKit supports using a fixed value of ploidy that will scale all the cells (generally determined using Flow Cytometry). Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()` as long as it contains the same length and sample order as `colData()`
 
 ```{r calc_integer}
 tumor <- calcInteger(tumor, ploidy_value = 3.45)
 ```
 
-The integerized segment mean ratios are stored in the slot `integer` that can be accessed with the function `assay()`
+The integer segment mean ratios are stored in the slot `integer` that can be accessed with the function `assay()`
 
 If a value of ploidy exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
 ```{r plot_ratio_integer}
 plotRatio(tumor, "TN28_2_S1_C10_S1930_L006_R1_001")
 ```
 
-## plotGeneCopy
+## plotGeneCopy()
 
-It might be of interest to check for the copy number states across all the samples for different genes. That can be done with `plotGeneCopy()` in two different geoms: “swarm” (default) or “violin”.
+It might be of interest to check for the copy number states across all the samples for different genes. That can be done with `plotGeneCopy()` in two different geoms: “swarm” (default) or “violin”. As with other plot functions, points can be colored with the argument 'label'.
+
 ```{r}
-tumor <- plotGeneCopy(tumor, genes = c("CDKN2A",
-                                       "FGFR1",
-                                       "TP53",
-                                       "PTEN",
-                                       "MYC",
-                                       "EGFR",
-                                       "ERBB2",
-                                       "CDKN1A",
-                                       "MDM2",
-                                       "AURKA",
-                                       "PIK3CA",
-                                       "CCND1",
-                                       "KRAS"))
+plotGeneCopy(tumor, genes = c("CDKN2A",
+                              "FGFR1",
+                              "TP53",
+                              "PTEN",
+                              "MYC",
+                              "CDKN1A",
+                              "MDM2",
+                              "AURKA",
+                              "PIK3CA",
+                              "CCND1",
+                              "KRAS"),
+                      label = 'spatial_info')
 ```
 
 It is also possible to visualize the integer data as a frequency barplot for each gene:
 ```{r plot_gene_copy_integer}
-tumor <- plotGeneCopy(tumor, genes = c("CDKN2A",
-                                       "FGFR1",
-                                       "TP53",
-                                       "PTEN",
-                                       "MYC",
-                                       "EGFR",
-                                       "ERBB2",
-                                       "CDKN1A",
-                                       "MDM2",
-                                       "AURKA",
-                                       "PIK3CA",
-                                       "CCND1",
-                                       "KRAS"),
-                      geom = "barplot",
-                      assay = "integer")
+plotGeneCopy(tumor, genes = c("CDKN2A",
+                              "FGFR1",
+                              "TP53",
+                              "PTEN",
+                              "MYC",
+                              "CDKN1A",
+                              "MDM2",
+                              "AURKA",
+                              "PIK3CA",
+                              "CCND1",
+                              "KRAS"),
+             geom = 'barplot',
+             assay = 'integer')
 ```
 

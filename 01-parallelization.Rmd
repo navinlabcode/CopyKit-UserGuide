@@ -8,12 +8,12 @@ We use `BiocParallel::register()` function to register the number of workers des
 
 ```{r registering_fake, eval=FALSE}
 library(BiocParallel)
-register(MulticoreParam(workers = 50, progressbar = T), default = T)
+register(MulticoreParam(workers = 40, progressbar = T), default = T)
 ```
 
 ```{r registering_true, echo=FALSE}
 library(BiocParallel)
-register(MulticoreParam(workers = 50, progressbar = F), default = T)
+register(MulticoreParam(workers = 40, progressbar = F), default = T)
 ```
 
 
