@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Parallelization | CopyKit User Guide</title>
+  <title>2 Parallelization | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Parallelization | CopyKit User Guide" />
+  <meta property="og:title" content="2 Parallelization | CopyKit User Guide" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Parallelization | CopyKit User Guide" />
+  <meta name="twitter:title" content="2 Parallelization | CopyKit User Guide" />
   
   <meta name="twitter:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="pre-processing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,8 +134,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>3</b> Parallelization</a></li>
+<li class="chapter" data-level="2" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>2</b> Parallelization</a></li>
+<li class="chapter" data-level="3" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>3</b> Pre-processing</a><ul>
+<li class="chapter" data-level="3.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>3.1</b> runVarbin()</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>4</b> QC module</a><ul>
+<li class="chapter" data-level="4.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>4.1</b> runMetrics()</a></li>
+<li class="chapter" data-level="4.2" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>4.2</b> filterCells()</a></li>
+<li class="chapter" data-level="4.3" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>4.3</b> findNormalCells()</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>5</b> Analysis and Visualization module</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>5.1</b> plotRatio()</a></li>
+<li class="chapter" data-level="5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>5.2</b> runUmap()</a></li>
+<li class="chapter" data-level="5.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>5.3</b> plotUmap()</a></li>
+<li class="chapter" data-level="5.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>5.4</b> Clustering</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>5.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="5.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>5.4.2</b> findClusters()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>5.5</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="5.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>5.6</b> calcConsensus()</a></li>
+<li class="chapter" data-level="5.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>5.7</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="5.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>5.8</b> calcInteger()</a></li>
+<li class="chapter" data-level="5.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>5.9</b> plotGeneCopy()</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -157,18 +178,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="parallelization" class="section level1">
-<h1><span class="header-section-number">3</span> Parallelization</h1>
+<h1><span class="header-section-number">2</span> Parallelization</h1>
 <p>For all parallel calculations, <em>CopyKit</em> adopts the <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf">BiocParallel</a> framework.</p>
 <p>Make sure to read the BiocParallel vignette to choose the best parameters for your machine. An example workflow can be done as follows:</p>
 <p>We use <code>BiocParallel::register()</code> function to register the number of workers desired.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="parallelization.html#cb1-1"></a><span class="kw">library</span>(BiocParallel)</span>
 <span id="cb1-2"><a href="parallelization.html#cb1-2"></a><span class="kw">register</span>(<span class="kw">MulticoreParam</span>(<span class="dt">workers =</span> <span class="dv">40</span>, <span class="dt">progressbar =</span> T), <span class="dt">default =</span> T)</span></code></pre></div>
-<p>BiocParallel registered 40 process for parallelization of copykit functions. The default parameter can be confirmed with:</p>
+<p>BiocParallel registered 40 processes for parallelization of copykit functions. The default parameter can be confirmed with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="parallelization.html#cb2-1"></a>BiocParallel<span class="op">::</span><span class="kw">bpparam</span>()</span></code></pre></div>
 <pre><code>## class: MulticoreParam
 ##   bpisup: FALSE; bpnworkers: 40; bptasks: 0; bpjobname: BPJOB
 ##   bplog: FALSE; bpthreshold: INFO; bpstopOnError: TRUE
-##   bpRNGseed: ; bptimeout: 2592000; bpprogressbar: TRUE
+##   bpRNGseed: ; bptimeout: 2592000; bpprogressbar: FALSE
 ##   bpexportglobals: TRUE
 ##   bplogdir: NA
 ##   bpresultdir: NA
@@ -177,22 +198,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>After this setup <em>CopyKit</em> parallelized functions will automatically recognize these parameters and run in parallel.
 It is highly recommended to run CopyKit using parallelization since some functions can take a long time to run otherwise.</p>
 
-<div id="refs" class="references">
-<div>
-<p>Baslan, T., J. Kendall, L. Rodgers, H. Cox, M. Riggs, A. Stepansky, J. Troge, et al. 2012. “Genome-Wide Copy Number Analysis of Single Cells.” Journal Article. <em>Nat Protoc</em> 7 (6): 1024–41. <a href="https://doi.org/10.1038/nprot.2012.039">https://doi.org/10.1038/nprot.2012.039</a>.</p>
-</div>
-<div>
-<p>Gao, R., A. Davis, T. O. McDonald, E. Sei, X. Shi, Y. Wang, P. C. Tsai, et al. 2016. “Punctuated Copy Number Evolution and Clonal Stasis in Triple-Negative Breast Cancer.” Journal Article. <em>Nat Genet</em> 48 (10): 1119–30. <a href="https://doi.org/10.1038/ng.3641">https://doi.org/10.1038/ng.3641</a>.</p>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pre-processing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="intro.html"/>
+<link rel="next" href="parallelization.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,8 +134,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>3</b> Parallelization</a></li>
+<li class="chapter" data-level="2" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>2</b> Parallelization</a></li>
+<li class="chapter" data-level="3" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>3</b> Pre-processing</a><ul>
+<li class="chapter" data-level="3.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>3.1</b> runVarbin()</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>4</b> QC module</a><ul>
+<li class="chapter" data-level="4.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>4.1</b> runMetrics()</a></li>
+<li class="chapter" data-level="4.2" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>4.2</b> filterCells()</a></li>
+<li class="chapter" data-level="4.3" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>4.3</b> findNormalCells()</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>5</b> Analysis and Visualization module</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>5.1</b> plotRatio()</a></li>
+<li class="chapter" data-level="5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>5.2</b> runUmap()</a></li>
+<li class="chapter" data-level="5.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>5.3</b> plotUmap()</a></li>
+<li class="chapter" data-level="5.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>5.4</b> Clustering</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>5.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="5.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>5.4.2</b> findClusters()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>5.5</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="5.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>5.6</b> calcConsensus()</a></li>
+<li class="chapter" data-level="5.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>5.7</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="5.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>5.8</b> calcInteger()</a></li>
+<li class="chapter" data-level="5.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>5.9</b> plotGeneCopy()</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -159,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">CopyKit User Guide</h1>
 <p class="author"><em>Darlan Conterno Minussi</em></p>
-<p class="date"><em>Last revised: 2021-06-07</em></p>
+<p class="date"><em>Last revised: 2021-06-14</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
@@ -168,7 +189,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>This is the user guide for the <strong>CopyKit</strong> package.</p>
 <p><em>CopyKit</em> is a toolkit for single-cell analysis of copy number datasets. Copykit expands from the existing robust scaffold for single-cell analysis provided by the Bioconductor packages SingleCellExperiment and SummarizedExperiment and, provides the tools to perform binning of sequencing reads, segmentation as well as quality control and downstream analysis of scDNA-Seq datasets.</p>
-<p><em>CopyKit</em> uses the <em>Variable Binning</em> <span class="citation">(Baslan et al. 2012; Gao et al. 2016)</span> pipeline to process datasets</p>
+<p><em>CopyKit</em> uses the <em>Variable Binning</em> <span class="citation">(Baslan et al. 2012; Gao et al. 2016)</span> pipeline to process datasets.</p>
+<p>All the information from a scDNA-Seq dataset is stored within the <em>scCNA object</em> for downstream analysis. <em>CopyKit</em> functions can be split into 4 modules: <em>1) Pre-processing, 2) Quality Control, 3) Analysis and, 4) Visualization module.</em></p>
+<p>The next chapters of this user guide will cover each module in detail.</p>
 
 </div>
             </section>
@@ -177,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="parallelization.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

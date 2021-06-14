@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Analysis and Visualization module | CopyKit User Guide</title>
+  <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Analysis and Visualization module | CopyKit User Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Analysis and Visualization module | CopyKit User Guide" />
+  
+  <meta name="twitter:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  
+
+<meta name="author" content="Darlan Conterno Minussi" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="qc-module.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="images/copykit_hexsticker_v2.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>2</b> Parallelization</a></li>
+<li class="chapter" data-level="3" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>3</b> Pre-processing</a><ul>
+<li class="chapter" data-level="3.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>3.1</b> runVarbin()</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>4</b> QC module</a><ul>
+<li class="chapter" data-level="4.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>4.1</b> runMetrics()</a></li>
+<li class="chapter" data-level="4.2" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>4.2</b> filterCells()</a></li>
+<li class="chapter" data-level="4.3" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>4.3</b> findNormalCells()</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>5</b> Analysis and Visualization module</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>5.1</b> plotRatio()</a></li>
+<li class="chapter" data-level="5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>5.2</b> runUmap()</a></li>
+<li class="chapter" data-level="5.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>5.3</b> plotUmap()</a></li>
+<li class="chapter" data-level="5.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>5.4</b> Clustering</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>5.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="5.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>5.4.2</b> findClusters()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>5.5</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="5.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>5.6</b> calcConsensus()</a></li>
+<li class="chapter" data-level="5.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>5.7</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="5.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>5.8</b> calcInteger()</a></li>
+<li class="chapter" data-level="5.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>5.9</b> plotGeneCopy()</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CopyKit User Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-and-visualization-module" class="section level1">
+<h1><span class="header-section-number">5</span> Analysis and Visualization module</h1>
+<p>The analysis and visualization module from CopyKit work in synergy to help you analyze and assess the results from your day.</p>
+<p>The analysis module provides the following functions: <code>runUmap()</code>, <code>calcInteger()</code>, <code>findSuggestedK()</code>, <code>findClusters()</code>, <code>calcConsensus()</code> and <code>runPhylo()</code>.</p>
+<p>The visualization module functions are: <code>plotMetrics()</code>, <code>plotRatio()</code>, <code>plotUmap()</code>, <code>plotHeatmap()</code>, <code>plotConsensusLine()</code> and <code>plotGeneCopy()</code>.</p>
+<div id="plotratio" class="section level2">
+<h2><span class="header-section-number">5.1</span> plotRatio()</h2>
+<p>It is often important to visualize that the segmentation behaved as expected and closely follows the ratios. Not missing important events. Ratio plots are a great tool for this. You can plot ratio plots with the <code>plotRatio()</code> function. <code>plotRatio()</code> has two different modes. When the input is the CopyKit object an interactive app will run and you can select which cell will be visualized.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="analysis-and-visualization-module.html#cb51-1"></a><span class="kw">plotRatio</span>(tumor)</span></code></pre></div>
+<center>
+<img src="images/plot_ratio_shiny.png" title="fig:" alt="Ratio Plot App" />
+</center>
+<p>If <code>plotRatio()</code> is given a sample name only the plot for that cell will be shown.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="analysis-and-visualization-module.html#cb52-1"></a><span class="kw">plotRatio</span>(tumor, <span class="st">&quot;TN28_2_S1_C10_S1930_L006_R1_001&quot;</span>)</span></code></pre></div>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_ratio_sample-1.png" width="672" /></p>
+</div>
+<div id="runumap" class="section level2">
+<h2><span class="header-section-number">5.2</span> runUmap()</h2>
+<p>runUmap uses generates a <a href="https://umap-learn.readthedocs.io/en/latest/">UMAP</a> reduced dimensions embedding, the resulting embedding is stored within the scCNA reducedDim slot and is an important pre-processing step to the findClusters feature.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="analysis-and-visualization-module.html#cb53-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">runUmap</span>(tumor)</span></code></pre></div>
+<pre><code>## Embedding data with UMAP. Using seed 17</code></pre>
+<pre><code>## Access reduced dimensions slot with: SingleCellExperiment::reducedDim(scCNA, &#39;umap&#39;).</code></pre>
+<pre><code>## Done.</code></pre>
+<p>Additional arguments to control umap parameters can be passed on to<code>runUmap()</code> with the ‘…’ argument.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="analysis-and-visualization-module.html#cb57-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">runUmap</span>(tumor, <span class="dt">n_neighbors =</span> <span class="dv">30</span>, <span class="dt">min_dist =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## Embedding data with UMAP. Using seed 17</code></pre>
+<pre><code>## Access reduced dimensions slot with: SingleCellExperiment::reducedDim(scCNA, &#39;umap&#39;).</code></pre>
+<pre><code>## Done.</code></pre>
+</div>
+<div id="plotumap" class="section level2">
+<h2><span class="header-section-number">5.3</span> plotUmap()</h2>
+<p><code>plotUmap()</code> can be used to plot the reduced dimensional embedding. plotUmap can be colored by any element of the metadata with the argument ‘label’, this will be shown in a later section.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="analysis-and-visualization-module.html#cb61-1"></a><span class="kw">plotUmap</span>(tumor)</span></code></pre></div>
+<pre><code>## Plotting Umap.</code></pre>
+<pre><code>## No cluster information detected, use findClusters() to create it.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="clustering" class="section level2">
+<h2><span class="header-section-number">5.4</span> Clustering</h2>
+<p>The <code>findClusters()</code> function will use the reduced dimensional embedding resulting from runUmap to perform clustering of superclones and subclones.</p>
+<p>When clustering for superclones <code>findClusters()</code> creates a graph representation of the dataset reduced dimension embedding using a shared nearest neighbor algorithm (SNN), from this graph the connected components are extracted and generally represent high-level structures that share large, lineage defining copy number events.</p>
+<p>CopyKit can also be used to detect subclones, i. e. groups of cells containing a unique copy number event per cluster, to do so the umap embedding is again used as the pre-processing step, this time to perform a density-based clustering with <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html">hdbscan</a> as seen in the work from Laks <em>et al.</em> <span class="citation">(<span class="citeproc-not-found" data-reference-id="RN6"><strong>???</strong></span>)</span>.</p>
+<div id="findsugestedk" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> findSugestedK()</h3>
+<p>Density-based clustering requires the input of the k neighbors, frequently chosen ad hoc. To help with parametrization, CopyKit provides the helper findSuggestedK function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity. While findSuggestedK does not guarantee that the suggested value will result in optimal clustering but provides a guide that maximizes cluster stability.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="analysis-and-visualization-module.html#cb64-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">findSuggestedK</span>(tumor)</span></code></pre></div>
+<pre><code>## Calculating jaccard similarity for k range: 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></pre>
+<pre><code>## </code></pre>
+<pre><code>## Suggested k = 9 with mean jaccard similarity of: 0.742</code></pre>
+<p>The suggested value is stored into the metadata and can be accessed at:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="analysis-and-visualization-module.html#cb68-1"></a>S4Vectors<span class="op">::</span><span class="kw">metadata</span>(tumor)<span class="op">$</span>suggestedK</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+</div>
+<div id="findclusters" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> findClusters()</h3>
+<p>To run <code>findClusters()</code> simply use the function in the CopyKit object and provide the k value with the arguments ‘k_superclones’ and ‘k_subclones’.
+<em>NOTE:</em> k_superclones and k_subclones can be used concurrently. Only k_subclones is a mandatory field.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="analysis-and-visualization-module.html#cb70-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">findClusters</span>(tumor,</span>
+<span id="cb70-2"><a href="analysis-and-visualization-module.html#cb70-2"></a>                      <span class="dt">k_superclones =</span> <span class="dv">30</span>,</span>
+<span id="cb70-3"><a href="analysis-and-visualization-module.html#cb70-3"></a>                      <span class="dt">k_subclones =</span> <span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## Finding clusters, using method: hdbscan</code></pre>
+<pre><code>## Done.</code></pre>
+<p>If <code>findSuggestedK()</code> was used and the argument ‘k_subclones’ is not provided, <code>findClusters()</code> will automatically use the value resulting from <code>findSuggestedK()</code> that was stored into the metadata:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="analysis-and-visualization-module.html#cb73-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">findClusters</span>(tumor)</span></code></pre></div>
+<pre><code>## Using suggested k_subclones = 9</code></pre>
+<pre><code>## Finding clusters, using method: hdbscan</code></pre>
+<pre><code>## Done.</code></pre>
+<p>The results from the clustering can be visualized with different plotting functions. For example <code>plotUmap()</code> can be used with the argument ‘label’:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="analysis-and-visualization-module.html#cb77-1"></a><span class="kw">plotUmap</span>(tumor, <span class="dt">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<pre><code>## Coloring by: subclones</code></pre>
+<pre><code>## Plotting Umap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_umap_subclones-1.png" width="672" /></p>
+</div>
+</div>
+<div id="plotheatmap" class="section level2">
+<h2><span class="header-section-number">5.5</span> plotHeatmap()</h2>
+<p>A heatmap can be used to visualize the copy number profiles of the dataset annotated with the subclonal information:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="analysis-and-visualization-module.html#cb80-1"></a><span class="kw">plotHeatmap</span>(tumor, <span class="dt">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_heatmap_subclones-1.png" width="672" /></p>
+<p>Importantly, new information can be added to the metadata and used in conjunction with the plotting functions. The dataset in this example has some spatial information obtained from the macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="analysis-and-visualization-module.html#cb81-1"></a><span class="kw">colData</span>(tumor)<span class="op">$</span>spatial_info &lt;-<span class="st"> </span><span class="kw">str_extract</span>(<span class="kw">colData</span>(tumor)<span class="op">$</span>sample, <span class="st">&quot;S[0-9]{1}&quot;</span>)</span></code></pre></div>
+<p>Once the information has been added, we can use it to color the heatmap points by their spatial information:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="analysis-and-visualization-module.html#cb82-1"></a><span class="kw">plotUmap</span>(tumor, <span class="dt">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<pre><code>## Coloring by: spatial_info</code></pre>
+<pre><code>## Plotting Umap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/umap_spatial-1.png" width="672" /></p>
+<p>It is also possible to annotate the heatmap with that information:
+The ‘label’ argument for <code>plotHeatmap()</code> can add as many annotations as specified by the user as long as they are elements in <code>colData()</code> of the CopyKit object.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="analysis-and-visualization-module.html#cb85-1"></a><span class="kw">plotHeatmap</span>(tumor, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;spatial_info&quot;</span>, <span class="st">&quot;subclones&quot;</span>))</span></code></pre></div>
+<p><img src="CopyKit-UserGuide_files/figure-html/heat_spatial-1.png" width="672" /></p>
+</div>
+<div id="calcconsensus" class="section level2">
+<h2><span class="header-section-number">5.6</span> calcConsensus()</h2>
+<p>Consensus sequences can help visualize the different segments across the groups of cells. A consensus sequence can be calculated in CopyKit with the function <code>calcConsensus()</code></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="analysis-and-visualization-module.html#cb86-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">calcConsensus</span>(tumor)</span></code></pre></div>
+<p><code>plotHeatmap()</code> can also plot consensus heatmap of the CopyKit object:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="analysis-and-visualization-module.html#cb87-1"></a><span class="kw">plotHeatmap</span>(tumor, <span class="dt">consensus =</span> <span class="ot">TRUE</span>, <span class="dt">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_heat_consensus-1.png" width="672" /></p>
+<p>By default <code>calcConsensus()</code> uses the subclones information to calculate a consensus for each subclone. Importantly, any element of the <code>colData()</code> can be used to calculate the consensus.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="analysis-and-visualization-module.html#cb89-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">calcConsensus</span>(tumor, <span class="dt">consensus_by =</span> <span class="st">&quot;spatial_info&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="analysis-and-visualization-module.html#cb90-1"></a><span class="kw">plotHeatmap</span>(tumor, <span class="dt">consensus =</span> <span class="ot">TRUE</span>, <span class="dt">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/consensus_spatial_head-1.png" width="672" /></p>
+</div>
+<div id="plotconsensusline" class="section level2">
+<h2><span class="header-section-number">5.7</span> plotConsensusLine()</h2>
+<p>To make it easier to compare the differences among subclones, <code>plotConsensusLine()</code> opens an app where the consensus sequences are plotted as lines and a checkbox can be used to add overlays of the sequences. Making it easier to determine the differences between regions.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="analysis-and-visualization-module.html#cb92-1"></a><span class="kw">plotConsensusLine</span>(tumor)</span></code></pre></div>
+<center>
+<img src="images/plot_consensus_shiny.png" title="fig:" alt="Plot Consensus Line" />
+</center>
+</div>
+<div id="calcinteger" class="section level2">
+<h2><span class="header-section-number">5.8</span> calcInteger()</h2>
+<p>Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with <code>calcInteger()</code>. CopyKit supports using a fixed value of ploidy that will scale all the cells (generally determined using Flow Cytometry). Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to <code>calcInteger()</code> as long as it contains the same length and sample order as <code>colData()</code></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="analysis-and-visualization-module.html#cb93-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">calcInteger</span>(tumor, <span class="dt">ploidy_value =</span> <span class="fl">3.45</span>)</span></code></pre></div>
+<pre><code>## Scaling ratio values by ploidy value 3.45</code></pre>
+<p>The integer segment mean ratios are stored in the slot <code>integer</code> that can be accessed with the function <code>assay()</code></p>
+<p>If a value of ploidy exists, <code>plotRatio()</code> will use it to plot the integer copy number values as a secondary axis.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="analysis-and-visualization-module.html#cb95-1"></a><span class="kw">plotRatio</span>(tumor, <span class="st">&quot;TN28_2_S1_C10_S1930_L006_R1_001&quot;</span>)</span></code></pre></div>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_ratio_integer-1.png" width="672" /></p>
+</div>
+<div id="plotgenecopy" class="section level2">
+<h2><span class="header-section-number">5.9</span> plotGeneCopy()</h2>
+<p>It might be of interest to check for the copy number states across all the samples for different genes. That can be done with <code>plotGeneCopy()</code> in two different geoms: “swarm” (default) or “violin”. As with other plot functions, points can be colored with the argument ‘label’.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="analysis-and-visualization-module.html#cb96-1"></a><span class="kw">plotGeneCopy</span>(tumor, <span class="dt">genes =</span> <span class="kw">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
+<span id="cb96-2"><a href="analysis-and-visualization-module.html#cb96-2"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
+<span id="cb96-3"><a href="analysis-and-visualization-module.html#cb96-3"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
+<span id="cb96-4"><a href="analysis-and-visualization-module.html#cb96-4"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
+<span id="cb96-5"><a href="analysis-and-visualization-module.html#cb96-5"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
+<span id="cb96-6"><a href="analysis-and-visualization-module.html#cb96-6"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
+<span id="cb96-7"><a href="analysis-and-visualization-module.html#cb96-7"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
+<span id="cb96-8"><a href="analysis-and-visualization-module.html#cb96-8"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
+<span id="cb96-9"><a href="analysis-and-visualization-module.html#cb96-9"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
+<span id="cb96-10"><a href="analysis-and-visualization-module.html#cb96-10"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
+<span id="cb96-11"><a href="analysis-and-visualization-module.html#cb96-11"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
+<span id="cb96-12"><a href="analysis-and-visualization-module.html#cb96-12"></a>                      <span class="dt">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<pre><code>## Coloring by: spatial_info</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>It is also possible to visualize the integer data as a frequency barplot for each gene:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="analysis-and-visualization-module.html#cb98-1"></a><span class="kw">plotGeneCopy</span>(tumor, <span class="dt">genes =</span> <span class="kw">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
+<span id="cb98-2"><a href="analysis-and-visualization-module.html#cb98-2"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
+<span id="cb98-3"><a href="analysis-and-visualization-module.html#cb98-3"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
+<span id="cb98-4"><a href="analysis-and-visualization-module.html#cb98-4"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
+<span id="cb98-5"><a href="analysis-and-visualization-module.html#cb98-5"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
+<span id="cb98-6"><a href="analysis-and-visualization-module.html#cb98-6"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
+<span id="cb98-7"><a href="analysis-and-visualization-module.html#cb98-7"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
+<span id="cb98-8"><a href="analysis-and-visualization-module.html#cb98-8"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
+<span id="cb98-9"><a href="analysis-and-visualization-module.html#cb98-9"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
+<span id="cb98-10"><a href="analysis-and-visualization-module.html#cb98-10"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
+<span id="cb98-11"><a href="analysis-and-visualization-module.html#cb98-11"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
+<span id="cb98-12"><a href="analysis-and-visualization-module.html#cb98-12"></a>             <span class="dt">geom =</span> <span class="st">&#39;barplot&#39;</span>,</span>
+<span id="cb98-13"><a href="analysis-and-visualization-module.html#cb98-13"></a>             <span class="dt">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_gene_copy_integer-1.png" width="672" /></p>
+
+<div id="refs" class="references">
+<div>
+<p>Baslan, T., J. Kendall, L. Rodgers, H. Cox, M. Riggs, A. Stepansky, J. Troge, et al. 2012. “Genome-Wide Copy Number Analysis of Single Cells.” Journal Article. <em>Nat Protoc</em> 7 (6): 1024–41. <a href="https://doi.org/10.1038/nprot.2012.039">https://doi.org/10.1038/nprot.2012.039</a>.</p>
+</div>
+<div>
+<p>Gao, R., A. Davis, T. O. McDonald, E. Sei, X. Shi, Y. Wang, P. C. Tsai, et al. 2016. “Punctuated Copy Number Evolution and Clonal Stasis in Triple-Negative Breast Cancer.” Journal Article. <em>Nat Genet</em> 48 (10): 1119–30. <a href="https://doi.org/10.1038/ng.3641">https://doi.org/10.1038/ng.3641</a>.</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="qc-module.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

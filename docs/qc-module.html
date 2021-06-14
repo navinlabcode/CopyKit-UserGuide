@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 QC module | CopyKit User Guide</title>
+  <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 QC module | CopyKit User Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 QC module | CopyKit User Guide" />
+  
+  <meta name="twitter:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  
+
+<meta name="author" content="Darlan Conterno Minussi" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="pre-processing.html"/>
+<link rel="next" href="analysis-and-visualization-module.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="images/copykit_hexsticker_v2.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>2</b> Parallelization</a></li>
+<li class="chapter" data-level="3" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>3</b> Pre-processing</a><ul>
+<li class="chapter" data-level="3.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>3.1</b> runVarbin()</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>4</b> QC module</a><ul>
+<li class="chapter" data-level="4.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>4.1</b> runMetrics()</a></li>
+<li class="chapter" data-level="4.2" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>4.2</b> filterCells()</a></li>
+<li class="chapter" data-level="4.3" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>4.3</b> findNormalCells()</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>5</b> Analysis and Visualization module</a><ul>
+<li class="chapter" data-level="5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>5.1</b> plotRatio()</a></li>
+<li class="chapter" data-level="5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>5.2</b> runUmap()</a></li>
+<li class="chapter" data-level="5.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>5.3</b> plotUmap()</a></li>
+<li class="chapter" data-level="5.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>5.4</b> Clustering</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>5.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="5.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>5.4.2</b> findClusters()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>5.5</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="5.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>5.6</b> calcConsensus()</a></li>
+<li class="chapter" data-level="5.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>5.7</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="5.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>5.8</b> calcInteger()</a></li>
+<li class="chapter" data-level="5.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>5.9</b> plotGeneCopy()</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CopyKit User Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="qc-module" class="section level1">
+<h1><span class="header-section-number">4</span> QC module</h1>
+<p>CopyKit QC Module consists of 3 main functions: 1) <code>runMetrics()</code>, 2) <code>filterCells()</code> and 3) <code>findNormalCells()</code>.</p>
+<div id="runmetrics" class="section level2">
+<h2><span class="header-section-number">4.1</span> runMetrics()</h2>
+<p><code>runMetrics()</code> is used to add basic quality control information to the metadata of the CopyKit object. It will return information on the overdispersion on the datasets and the number of breakpoints for each single-cell.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="qc-module.html#cb21-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">runMetrics</span>(tumor)</span></code></pre></div>
+<pre><code>## Calculating RMSE</code></pre>
+<pre><code>## Counting breakpoints.</code></pre>
+<pre><code>## Done.</code></pre>
+<p>The resulting information can be seen at the metadata with:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="qc-module.html#cb25-1"></a><span class="kw">colData</span>(tumor)</span></code></pre></div>
+<pre><code>## DataFrame with 782 rows and 11 columns
+##                                                              sample reads_assigned_bins reads_unmapped reads_duplicates
+##                                                         &lt;character&gt;           &lt;integer&gt;      &lt;integer&gt;        &lt;integer&gt;
+## TN28_2_S1_C10_S1930_L006_R1_001     TN28_2_S1_C10_S1930_L006_R1_001              840325          31177           125862
+## TN28_2_S1_C10_S19300_L006_R1_001   TN28_2_S1_C10_S19300_L006_R1_001              772672          25524           103608
+## TN28_2_S1_C100_S2020_L006_R1_001   TN28_2_S1_C100_S2020_L006_R1_001              693135          23270            83325
+## TN28_2_S1_C100_S20200_L006_R1_001 TN28_2_S1_C100_S20200_L006_R1_001              633810          19125            66229
+## TN28_2_S1_C101_S2021_L006_R1_001   TN28_2_S1_C101_S2021_L006_R1_001              742324          27998           100567
+## ...                                                             ...                 ...            ...              ...
+## TN28_3_S1_C111_S24150_L007_R1_001 TN28_3_S1_C111_S24150_L007_R1_001              727963          21808            84577
+## TN28_3_S1_C112_S2416_L007_R1_001   TN28_3_S1_C112_S2416_L007_R1_001              844766          30264           150762
+## TN28_3_S1_C112_S24160_L007_R1_001 TN28_3_S1_C112_S24160_L007_R1_001              744053          23087            97090
+## TN28_3_S1_C114_S2418_L007_R1_001   TN28_3_S1_C114_S2418_L007_R1_001              688956          22883            94968
+## TN28_3_S1_C114_S24180_L007_R1_001 TN28_3_S1_C114_S24180_L007_R1_001              611706          17910            61896
+##                                   reads_multimapped reads_unassigned reads_ambiguous reads_total percentage_duplicates
+##                                           &lt;integer&gt;        &lt;integer&gt;       &lt;integer&gt;   &lt;numeric&gt;             &lt;numeric&gt;
+## TN28_2_S1_C10_S1930_L006_R1_001                   0           251124             171     1248659                   0.1
+## TN28_2_S1_C10_S19300_L006_R1_001                  0           229148             159     1131111                  0.09
+## TN28_2_S1_C100_S2020_L006_R1_001                  0           218355             141     1018226                  0.08
+## TN28_2_S1_C100_S20200_L006_R1_001                 0           198661             156      917981                  0.07
+## TN28_2_S1_C101_S2021_L006_R1_001                  0           217576             155     1088620                  0.09
+## ...                                             ...              ...             ...         ...                   ...
+## TN28_3_S1_C111_S24150_L007_R1_001                 0           208928             162     1043438                  0.08
+## TN28_3_S1_C112_S2416_L007_R1_001                  0           249482             196     1275470                  0.12
+## TN28_3_S1_C112_S24160_L007_R1_001                 0           217770             158     1082158                  0.09
+## TN28_3_S1_C114_S2418_L007_R1_001                  0           201483             137     1008427                  0.09
+## TN28_3_S1_C114_S24180_L007_R1_001                 0           177354             118      868984                  0.07
+##                                                rmse breakpoint_count
+##                                           &lt;numeric&gt;        &lt;numeric&gt;
+## TN28_2_S1_C10_S1930_L006_R1_001   0.162557530250304               34
+## TN28_2_S1_C10_S19300_L006_R1_001  0.167298889259749               36
+## TN28_2_S1_C100_S2020_L006_R1_001  0.132508665229758                0
+## TN28_2_S1_C100_S20200_L006_R1_001 0.137765520470889                2
+## TN28_2_S1_C101_S2021_L006_R1_001   0.13896682656001               37
+## ...                                             ...              ...
+## TN28_3_S1_C111_S24150_L007_R1_001 0.137535442036682               44
+## TN28_3_S1_C112_S2416_L007_R1_001  0.133106294791448               60
+## TN28_3_S1_C112_S24160_L007_R1_001 0.139080900295883               55
+## TN28_3_S1_C114_S2418_L007_R1_001  0.162255320465384               67
+## TN28_3_S1_C114_S24180_L007_R1_001 0.169867880038563               62</code></pre>
+</div>
+<div id="filtercells" class="section level2">
+<h2><span class="header-section-number">4.2</span> filterCells()</h2>
+<p><code>filterCells()</code> removes low-quality cells according to a defined resolution threshold. Cells with correlation smaller than the mean of its k-nearest neighbors are defined as noisy samples and this information, as well as the correlation value, is added to the scCNA object metadata.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="qc-module.html#cb27-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">filterCells</span>(tumor)</span></code></pre></div>
+<pre><code>## Calculating correlation matrix.</code></pre>
+<pre><code>## Adding information to metadata. Access with SummarizedExperiment::colData(scCNA).</code></pre>
+<pre><code>## Done.</code></pre>
+<p>The default resolution threshold is 0.9 and it can be adjusted accordingly to user needs with the argument ‘resolution’.
+<code>filterCells()</code> adds a column to the metadata called ‘filtered’ marking cells that should be removed or kept.
+After filtering the function <code>plotHeatmap()</code> from the visualization module can be used to visualize the results from <code>filterCells()</code> with the argument label set to ‘filtered’. To make visualization easier, rows can also be split according to elements of the metadata with the argument row_split.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="qc-module.html#cb31-1"></a><span class="kw">plotHeatmap</span>(tumor, <span class="dt">label =</span> <span class="st">&#39;filtered&#39;</span>, <span class="dt">row_split =</span> <span class="st">&#39;filtered&#39;</span>)</span></code></pre></div>
+<pre><code>## Ordering by consensus requires cluster information.
+## Switching to hclust</code></pre>
+<pre><code>## No distance matrix detected in the scCNA object.</code></pre>
+<pre><code>## Calculating distance matrix with metric: euclidean</code></pre>
+<pre><code>## Using 48 cores.</code></pre>
+<pre><code>## Access distance matrix with copykit::distMat()</code></pre>
+<pre><code>## Done.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/filter_cells_heat-1.png" width="672" /></p>
+<p>If satisfied with the filtering results, the CopyKit object can be subset as any other R object.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="qc-module.html#cb38-1"></a>tumor &lt;-<span class="st"> </span>tumor[,<span class="kw">colData</span>(tumor)<span class="op">$</span>filtered <span class="op">==</span><span class="st"> &#39;kept&#39;</span>]</span></code></pre></div>
+</div>
+<div id="findnormalcells" class="section level2">
+<h2><span class="header-section-number">4.3</span> findNormalCells()</h2>
+<p>It is common for datasets to contain normal cells with flat profiles mixed in with the aneuploidy cells from a tumor that is being profiled. <code>findNormalCells()</code> performs a sample-wise calculation of the segment ratios coefficient of variation. By default <code>findNormalCells()</code> tries to automatically identify the resolution threshold by fitting a normal mixture model to the distribution of coefficient of variation from all samples. To increase the sensitivity of the model, findNormalCells also simulate the expected coefficient of variation. Lastly, <code>findNormalCells()</code> add the resulting information to the metadata of the CopyKit object in a column named ‘is_normal’.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="qc-module.html#cb39-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">findNormalCells</span>(tumor)</span></code></pre></div>
+<pre><code>## number of iterations= 5</code></pre>
+<pre><code>## Copykit detected 6 that are possibly normal cells using a resolution of: 0.051</code></pre>
+<pre><code>## Done. Information was added to metadata column &#39;is_normal&#39;.</code></pre>
+<p><code>plotHeatmap()</code> can again be used to visualize the results from <code>findNormalCells()</code></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="qc-module.html#cb43-1"></a><span class="kw">plotHeatmap</span>(tumor, <span class="dt">label =</span> <span class="st">&#39;is_normal&#39;</span>)</span></code></pre></div>
+<pre><code>## Ordering by consensus requires cluster information.
+## Switching to hclust</code></pre>
+<pre><code>## No distance matrix detected in the scCNA object.</code></pre>
+<pre><code>## Calculating distance matrix with metric: euclidean</code></pre>
+<pre><code>## Using 48 cores.</code></pre>
+<pre><code>## Access distance matrix with copykit::distMat()</code></pre>
+<pre><code>## Done.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/find_normal_heat-1.png" width="672" /></p>
+<p>The object can be subsetted in the same way as with <code>filterCells()</code></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="qc-module.html#cb50-1"></a>tumor &lt;-<span class="st"> </span>tumor[,<span class="kw">colData</span>(tumor)<span class="op">$</span>is_normal <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>]</span></code></pre></div>
+<p>Your dataset should be ready to proceed with the analysis.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pre-processing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-and-visualization-module.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
