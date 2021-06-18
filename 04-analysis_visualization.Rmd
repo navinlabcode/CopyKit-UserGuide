@@ -89,12 +89,32 @@ The results from the clustering can be visualized with different plotting functi
 plotUmap(tumor, label = 'subclones')
 ```
 
+## calcInteger()
+
+Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with `calcInteger()`. CopyKit supports using a fixed value of ploidy that will scale all the cells (generally determined using Flow Cytometry). Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()` as long as it contains the same length and sample order as `colData()`
+
+```{r calc_integer}
+tumor <- calcInteger(tumor, ploidy_value = 3.45)
+```
+
+The integer segment mean ratios are stored in the slot `integer` that can be accessed with the function `assay()`
+
+If a value of ploidy exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
+```{r plot_ratio_integer}
+plotRatio(tumor, "TN28_2_S1_C10_S1930_L006_R1_001")
+```
+
 ## plotHeatmap()
 
 A heatmap can be used to visualize the copy number profiles of the dataset annotated with the subclonal information:
 
 ```{r plot_heatmap_subclones, fig.height=8}
 plotHeatmap(tumor, label = 'subclones')
+```
+
+Integer copy number heatmaps can be plotted with `plotHeatmap()` and the argument `assay = 'integer'`, importantly the integer matrix must be in the `'integer'` slot.
+```{r plot_ht_int, fig.height=8}
+plotHeatmap(tumor, assay = 'integer')
 ```
 
 Importantly, new information can be added to the metadata and used in conjunction with the plotting functions. The dataset in this example has some spatial information obtained from the macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:
@@ -136,6 +156,12 @@ tumor <- calcConsensus(tumor, consensus_by = "spatial_info")
 plotHeatmap(tumor, consensus = TRUE, label = 'spatial_info')
 ```
 
+**Note:** Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the `assay(scCNA, 'integer')` slot. Check `calcInteger()` for more info.
+```{r eval = FALSE}
+tumor <- calcConsensus(tumor, consensus_by = 'subclones', assay = 'integer')
+```
+
+
 ## plotConsensusLine()
 
 To make it easier to compare the differences among subclones, `plotConsensusLine()` opens an app where the consensus sequences are plotted as lines and a checkbox can be used to add overlays of the sequences. Making it easier to determine the differences between regions.
@@ -151,21 +177,6 @@ plotConsensusLine(tumor)
 <center>
 ![Plot Consensus Line](images/plot_consensus_shiny.png)
 </center>
-
-## calcInteger()
-
-Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with `calcInteger()`. CopyKit supports using a fixed value of ploidy that will scale all the cells (generally determined using Flow Cytometry). Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()` as long as it contains the same length and sample order as `colData()`
-
-```{r calc_integer}
-tumor <- calcInteger(tumor, ploidy_value = 3.45)
-```
-
-The integer segment mean ratios are stored in the slot `integer` that can be accessed with the function `assay()`
-
-If a value of ploidy exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
-```{r plot_ratio_integer}
-plotRatio(tumor, "TN28_2_S1_C10_S1930_L006_R1_001")
-```
 
 ## plotGeneCopy()
 
