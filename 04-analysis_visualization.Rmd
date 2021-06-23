@@ -135,6 +135,12 @@ The 'label' argument for `plotHeatmap()` can add as many annotations as specifie
 plotHeatmap(tumor, label = c("spatial_info", "subclones"))
 ```
 
+If `calcInteger()` was performed, it is possible to visualize how much the copy number calls deviate from the expected integer states by using `plotHeatmap()` with the argument `rounding_error` set to `TRUE`
+```{r rounding_error, fig.height=8}
+plotHeatmap(tumor, label = 'subclones', assay = 'integer', rounding_error = TRUE)
+```
+
+
 ## calcConsensus()
 
 Consensus sequences can help visualize the different segments across the groups of cells. A consensus sequence can be calculated in CopyKit with the function `calcConsensus()`
