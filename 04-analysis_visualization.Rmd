@@ -6,6 +6,24 @@ The analysis module provides the following functions: `runUmap()`, `calcInteger(
 
 The visualization module functions are: `plotMetrics()`, `plotRatio()`, `plotUmap()`, `plotHeatmap()`, `plotConsensusLine()` and `plotGeneCopy()`.
 
+## plotMetrics()
+
+`plotMetrics()` can be used to plot any information available in the `colData(). As a reminder, we can check the elements within coldata() with:
+```{r coldata_names}
+names(colData(tumor))
+```
+
+`plotMetrics()` argument `metric` defines which information to plot. whereas the argument label, if supplied, will color the plot based on that information.
+```{r}
+plotMetrics(tumor, metric = c("overdispersion", 
+                              "breakpoint_count",
+                              "reads_total",
+                              "reads_duplicates",
+                              "reads_assigned_bins",
+                              "percentage_duplicates"),
+            label = "overdispersion")
+```
+
 ## plotRatio()
 
 It is often important to visualize that the segmentation behaved as expected and closely follows the ratios. Not missing important events. Ratio plots are a great tool for this. You can plot ratio plots with the `plotRatio()` function. `plotRatio()` has two different modes. When the input is the CopyKit object an interactive app will run and you can select which cell will be visualized.

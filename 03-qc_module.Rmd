@@ -47,7 +47,7 @@ tumor <- findNormalCells(tumor)
 
 `plotHeatmap()` can again be used to visualize the results from `findNormalCells()`
 ```{r find_normal_heat, fig.height=8}
-plotHeatmap(tumor, label = 'is_normal')
+plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal')
 ```
 
 The object can be subsetted in the same way as with `filterCells()`
