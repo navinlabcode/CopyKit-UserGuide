@@ -24,7 +24,7 @@ tumor <- runVarbin("~/path/to/bam/files/",
 ``` 
  
 ```{r run_varbin_hidden, eval=TRUE, echo=FALSE}
-tumor <- runVarbin("~/projects/copy_number_pipeline_hg38/test_tumor_data/TN28/marked/", 
+tumor <- runVarbin("/mnt/lab/users/dminussi/projects/copy_number_pipeline_hg38/test_tumor_data/PMTC6/marked/", 
                    remove_Y = TRUE)
 ```
  
@@ -53,7 +53,7 @@ head(assay(tumor, 'ft')[,1:5])
 
 Lastly segmentation fits piece-wise constant functions to every profile generating segment means that can be used to infer copy-number states across every cell.
 
-By default, CopyKit uses Circular Binary Segmentation (CBS) from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation.
+By default, CopyKit applies Circular Binary Segmentation (CBS) from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation of every chromosomal arm.
 
 The resulting information from `runSegmentation()` is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*, which can be accessed with the helper function `ratios()` and `segment_ratios()`
 ```{r r_sr_accessors}

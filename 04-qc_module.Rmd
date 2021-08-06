@@ -15,6 +15,24 @@ The resulting information can be seen at the metadata with:
 colData(tumor)
 ```
 
+## findNormalCells()
+
+It is common for datasets to contain normal cells with flat profiles mixed in with the aneuploidy cells from a tumor that is being profiled. `findNormalCells()` performs a sample-wise calculation of the segment ratios coefficient of variation. By default `findNormalCells()` tries to automatically identify the resolution threshold by fitting a normal mixture model to the distribution of coefficient of variation from all samples. To increase the sensitivity of the model, findNormalCells also simulate the expected coefficient of variation. Lastly, `findNormalCells()` add the resulting information to the metadata of the CopyKit object in a column named 'is_normal'. 
+
+```{r find_normal_cells}
+tumor <- findNormalCells(tumor)
+```
+
+`plotHeatmap()` can again be used to visualize the results from `findNormalCells()`
+```{r find_normal_heat, fig.height=8}
+plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal')
+```
+
+The object can be subsetted in the same way as any R object is subsetted.
+```{r find_normal_subset}
+tumor <- tumor[,colData(tumor)$is_normal == FALSE]
+```
+
 ## filterCells()
 
 `filterCells()` removes low-quality cells according to a defined resolution threshold. Cells with correlation smaller than the mean of its k-nearest neighbors are defined as noisy samples and this information, as well as the correlation value, is added to the scCNA object metadata. 
@@ -31,28 +49,10 @@ After filtering the function `plotHeatmap()` from the visualization module can b
 plotHeatmap(tumor, label = 'filtered', row_split = 'filtered')
 ```
 
-If satisfied with the filtering results, the CopyKit object can be subset as any other R object.
+If satisfied with the filtering results we remove the noise cells from the object.
 
 ```{r filter_subset}
 tumor <- tumor[,colData(tumor)$filtered == 'kept']
-```
-
-## findNormalCells()
-
-It is common for datasets to contain normal cells with flat profiles mixed in with the aneuploidy cells from a tumor that is being profiled. `findNormalCells()` performs a sample-wise calculation of the segment ratios coefficient of variation. By default `findNormalCells()` tries to automatically identify the resolution threshold by fitting a normal mixture model to the distribution of coefficient of variation from all samples. To increase the sensitivity of the model, findNormalCells also simulate the expected coefficient of variation. Lastly, `findNormalCells()` add the resulting information to the metadata of the CopyKit object in a column named 'is_normal'. 
-
-```{r find_normal_cells}
-tumor <- findNormalCells(tumor)
-```
-
-`plotHeatmap()` can again be used to visualize the results from `findNormalCells()`
-```{r find_normal_heat, fig.height=8}
-plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal')
-```
-
-The object can be subsetted in the same way as with `filterCells()`
-```{r find_normal_subset}
-tumor <- tumor[,colData(tumor)$is_normal == FALSE]
 ```
 
 Your dataset should be ready to proceed with the analysis.

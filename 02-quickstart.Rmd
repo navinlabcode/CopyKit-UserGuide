@@ -1,0 +1,40 @@
+# Quick-Start
+
+This section provides a basic workflow with *CopyKit*. Detailed description of CopyKit functions is provided in the following sections.
+
+```{r quickstart, eval=FALSE}
+# Run pre-processing module
+tumor <- runVarbin("/path/to/marked/bam/files/",
+                 remove_Y = TRUE)
+
+
+# Mark normal cells if they exist
+tumor <- findNormalCells(tumor)
+
+# Filter cells
+tumor <- filterCells(tumor)
+
+# Visualize the result from filtering and cells marked as diploid
+plotHeatmap(tumor, label = c('filtered', 'is_normal'), row_split = 'filtered')
+
+# Remove cells marked as normal or noise cells from the copykit object
+tumor <- tumor[,SummarizedExperiment::colData(tumor)$filtered == "kept"]
+tumor <- tumor[,SummarizedExperiment::colData(tumor)$is_normal == FALSE]
+
+# Create a umap embedding 
+tumor <- runUmap(tumor)
+
+# Search for the best K value for clustering of subclones 
+# according to jaccard similarity and plot the results
+tumor <- findSuggestedK(tumor)
+plotSuggestedK(tumor)
+
+# Find clusters and plot the results
+tumor  <- findClusters(tumor)
+plotUmap(tumor, label = 'subclones')
+
+# Plot a Copy Number Heatmap with clustering annotation
+plotHeatmap(tumor, label = 'subclones')
+```
+
+

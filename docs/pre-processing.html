@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Pre-processing | CopyKit User Guide</title>
+  <title>4 Pre-processing | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Pre-processing | CopyKit User Guide" />
+  <meta property="og:title" content="4 Pre-processing | CopyKit User Guide" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Pre-processing | CopyKit User Guide" />
+  <meta name="twitter:title" content="4 Pre-processing | CopyKit User Guide" />
   
   <meta name="twitter:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
   
@@ -30,8 +30,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="parallelization.html"/>
+<link rel="prev" href="quick-start.html"/>
 <link rel="next" href="qc-module.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,22 +50,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -135,28 +160,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>2</b> Parallelization</a></li>
-<li class="chapter" data-level="3" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>3</b> Pre-processing</a><ul>
-<li class="chapter" data-level="3.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>3.1</b> runVarbin()</a></li>
+<li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
+<li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>4</b> QC module</a><ul>
-<li class="chapter" data-level="4.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>4.1</b> runMetrics()</a></li>
-<li class="chapter" data-level="4.2" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>4.2</b> filterCells()</a></li>
-<li class="chapter" data-level="4.3" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>4.3</b> findNormalCells()</a></li>
+<li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>5.1</b> runMetrics()</a></li>
+<li class="chapter" data-level="5.2" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>5.2</b> findNormalCells()</a></li>
+<li class="chapter" data-level="5.3" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>5.3</b> filterCells()</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>5</b> Analysis and Visualization module</a><ul>
-<li class="chapter" data-level="5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>5.1</b> plotRatio()</a></li>
-<li class="chapter" data-level="5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>5.2</b> runUmap()</a></li>
-<li class="chapter" data-level="5.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>5.3</b> plotUmap()</a></li>
-<li class="chapter" data-level="5.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>5.4</b> Clustering</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>5.4.1</b> findSugestedK()</a></li>
-<li class="chapter" data-level="5.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>5.4.2</b> findClusters()</a></li>
+<li class="chapter" data-level="6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>6</b> Analysis and Visualization module</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotmetrics"><i class="fa fa-check"></i><b>6.1</b> plotMetrics()</a></li>
+<li class="chapter" data-level="6.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>6.2</b> plotRatio()</a></li>
+<li class="chapter" data-level="6.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>6.3</b> runUmap()</a></li>
+<li class="chapter" data-level="6.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>6.4</b> plotUmap()</a></li>
+<li class="chapter" data-level="6.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>6.5</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>6.5.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>6.5.2</b> findClusters()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>5.5</b> plotHeatmap()</a></li>
-<li class="chapter" data-level="5.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>5.6</b> calcConsensus()</a></li>
-<li class="chapter" data-level="5.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>5.7</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="5.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>5.8</b> calcInteger()</a></li>
-<li class="chapter" data-level="5.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>5.9</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>6.6</b> runPhylo()</a></li>
+<li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.7</b> plotPhylo()</a></li>
+<li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.8</b> calcInteger()</a></li>
+<li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.9</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.10</b> calcConsensus()</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.11</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.12</b> plotGeneCopy()</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>7</b> Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -177,114 +211,144 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pre-processing" class="section level1">
-<h1><span class="header-section-number">3</span> Pre-processing</h1>
+<div id="pre-processing" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Pre-processing</h1>
 <p>CopyKit pre-processing module consists of 1 function that performs 3 main processes:</p>
 <ul>
 <li>Counts reads from the from the <code>.bam</code> files</li>
 <li>Applies a variance stabilization transformation to the dataset</li>
 <li>Segments the data into piece-wise constant function for inference of copy number states</li>
 </ul>
-<div id="runvarbin" class="section level2">
-<h2><span class="header-section-number">3.1</span> runVarbin()</h2>
+<div id="runvarbin" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> runVarbin()</h2>
 <p>First we load CopyKit with the <code>library()</code> function</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="pre-processing.html#cb4-1"></a><span class="kw">library</span>(copykit)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pre-processing.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copykit)</span></code></pre></div>
 <p><strong>NOTE:</strong> CopyKit functions will automatically run in parallel if the BiocParallel framework was registered. For more information check section <a href="parallelization.html#parallelization">2</a>.</p>
 <p><code>runVarbin()</code> accepts duplicates marked <code>.bam</code> files as input and performs the binning of reads into bins according to the variable binning pipeline <span class="citation">(Baslan et al. 2012; Gao et al. 2016)</span>. To help users obtain these processed files from <em>.fastq</em> files a <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a>
 pipeline is available <a href="">here</a> that uses <a href="https://snakemake.readthedocs.io/en/stable/">bowtie2</a> for the alignment of reads and <a href="https://lomereiter.github.io/sambamba/">sambamba</a> for the removal of pcr duplicates. This pipeline can be adapted as per users’ needs and the only requirement for CopyKit is the use of <code>.bam</code> files as the input. <code>runVarbin()</code> the first argument should be the path to the <code>.bam</code> files location.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pre-processing.html#cb5-1"></a>tumor &lt;-<span class="st"> </span><span class="kw">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
-<span id="cb5-2"><a href="pre-processing.html#cb5-2"></a>                   <span class="dt">remove_Y =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="pre-processing.html#cb6-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
+<span id="cb6-2"><a href="pre-processing.html#cb6-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Counting reads.</code></pre>
 <pre><code>## Performing GC correction.</code></pre>
-<pre><code>## Done.</code></pre>
+<pre><code>## Smoothing bin counts.</code></pre>
 <pre><code>## Running segmentation algorithm: CBS for genome hg38</code></pre>
+<pre><code>## Merging levels.</code></pre>
 <pre><code>## Done.</code></pre>
 <p><code>runVarbin()</code> by default uses a varbin pipeline scaffold for the genome <em>hg38</em> with a resolution of bins with an average size of <em>200kb</em>. Both options can be changed with the arguments <em>genome</em> or <em>resolution</em>. For samples that are XX, <code>runVarbin()</code> can be set to ignore any read that may have aligned to chrY with the argument <em>remove_Y = TRUE</em>.</p>
 <p>A consequence of the count nature of copy-number sequencing data is a negative binomial distribution with overdispersion at higher counts. To account for that CopyKit offers a variance stabilization transformation procedure with the function <code>runVst()</code>. By default, CopyKit will apply the freeman-tukey transformation to the bin count dataset.</p>
 <p>The resulting object is the CopyKit object of class scCNA that can be inspected.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pre-processing.html#cb11-1"></a>tumor</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pre-processing.html#cb13-1" aria-hidden="true" tabindex="-1"></a>tumor</span></code></pre></div>
 <pre><code>## class: scCNA 
-## dim: 10327 782 
+## dim: 10327 1536 
 ## metadata(2): genome vst
-## assays(4): segment_ratios ratios bin_counts ft
+## assays(6): segment_ratios ratios ... smoothed_bincounts logr
 ## rownames(10327): 1 2 ... 10326 10327
-## rowData names(4): abspos bin_length mappable_positions gc_content
-## colnames(782): TN28_2_S1_C10_S1930_L006_R1_001 TN28_2_S1_C10_S19300_L006_R1_001 ...
-##   TN28_3_S1_C114_S2418_L007_R1_001 TN28_3_S1_C114_S24180_L007_R1_001
+## rowData names(5): abspos bin_length mappable_positions gc_content arm
+## colnames(1536): PMTC6LiverC100DL1S2_S100_L001_R1_001
+##   PMTC6LiverC100DL1S6_S484_L002_R1_001 ... PMTC6LiverC9DL3S1_S777_L003_R1_001
+##   PMTC6LiverC9DL6L7S1_S1161_L004_R1_001
 ## colData names(9): sample reads_assigned_bins ... reads_total percentage_duplicates
 ## reducedDimNames(0):
-## spikeNames(0):
+## mainExpName: NULL
 ## altExpNames(0):
 ## rowRanges has: 10327 ranges
 ## Phylo: Phylogenetic tree with 0 tips and  nodes
 ## consensus dim: 0 0</code></pre>
 <p>CopyKit objects expand on the <a href="https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html">SingleCellExperiment</a> class where each column represents a single-cell and each row represents a bin.</p>
 <p>The information of the bincounts resulting from <code>runVarbin()</code> are stored withing the bin_counts slot that can be acessed with the <code>bin_counts()</code> accessor. (Here displaying the first five columns).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pre-processing.html#cb13-1"></a><span class="kw">head</span>(<span class="kw">bin_counts</span>(tumor)[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   TN28.2.S1.C10.S1930.L006.R1.001.bam TN28.2.S1.C10.S19300.L006.R1.001.bam TN28.2.S1.C100.S2020.L006.R1.001.bam
-## 1                            62.38872                             54.09573                             61.57994
-## 2                            53.65437                             44.13231                             91.03379
-## 3                            59.41748                             68.71880                             71.76582
-## 4                            28.59606                             38.60081                             71.23185
-## 5                            47.09882                             47.24148                             51.71587
-## 6                            73.32089                             63.24496                             68.05133
-##   TN28.2.S1.C100.S20200.L006.R1.001.bam TN28.2.S1.C101.S2021.L006.R1.001.bam
-## 1                              60.82263                             55.75554
-## 2                              56.60577                             34.57650
-## 3                              81.03261                             66.17844
-## 4                              67.86454                             58.88123
-## 5                              54.59423                             55.61802
-## 6                              33.01010                             47.68769</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pre-processing.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bin_counts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                             33.14764                            10.236551
+## 2                             28.87788                            11.717544
+## 3                             30.53296                             6.005966
+## 4                             28.87125                            10.932743
+## 5                             38.18502                            10.578785
+## 6                             32.25772                             9.861671
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                               44.83653                                42.96656
+## 2                               37.44255                                41.45670
+## 3                               47.33517                                47.27014
+## 4                               41.01801                                45.70836
+## 5                               43.67812                                46.45374
+## 6                               37.29713                                38.60818
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                             41.69094
+## 2                             30.76051
+## 3                             44.16830
+## 4                             34.27968
+## 5                             32.27182
+## 6                             47.18439</code></pre>
 <p>Classically copy number data has been transformed with a logarithm transformation, the log transformation can be set within CopyKit with the argument <code>runVst(copykit_object, transformation = 'log)</code>. <em>Warning</em> The segmentation step (see next section) can be very slow when transformation = ‘log’ is selected. Even though the process is fast for most cells it can hang in a few cells with large breakpoint numbers and take ~ 1hr to complete.</p>
 <p>The resulting transformation is stored within the CopyKit object in the <em>ft</em> slot if freeman-tukey was performed and can be accessed with the <code>assay()</code> function:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pre-processing.html#cb15-1"></a><span class="kw">head</span>(<span class="kw">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   TN28.2.S1.C10.S1930.L006.R1.001.bam TN28.2.S1.C10.S19300.L006.R1.001.bam TN28.2.S1.C100.S2020.L006.R1.001.bam
-## 1                            15.86036                             14.77763                             15.75804
-## 2                            14.71777                             13.36127                             19.13459
-## 3                            15.48114                             16.63946                             17.00176
-## 4                            10.78775                             12.50587                             16.93883
-## 5                            13.79819                             13.81885                             14.45194
-## 6                            17.18372                             15.96797                             16.55904
-##   TN28.2.S1.C100.S20200.L006.R1.001.bam TN28.2.S1.C101.S2021.L006.R1.001.bam
-## 1                              15.66162                             15.00059
-## 2                              15.11353                             11.84478
-## 3                              18.05900                             16.33126
-## 4                              16.53646                             15.41171
-## 5                              14.84494                             14.98224
-## 6                              11.57726                             13.88328</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pre-processing.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                             11.60100                             6.551558
+## 2                             10.83988                             6.989256
+## 3                             11.14108                             5.097586
+## 4                             10.83866                             6.760850
+## 5                             12.43920                             6.655266
+## 6                             11.44654                             6.436035
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                               13.46628                                13.18562
+## 2                               12.31924                                12.95457
+## 3                               13.83241                                13.82300
+## 4                               12.88666                                13.59515
+## 5                               13.29311                                13.70437
+## 6                               12.29561                                12.50705
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                             12.99068
+## 2                             11.18186
+## 3                             13.36666
+## 4                             11.79456
+## 5                             11.44900
+## 6                             13.81059</code></pre>
 <p>Lastly segmentation fits piece-wise constant functions to every profile generating segment means that can be used to infer copy-number states across every cell.</p>
-<p>By default, CopyKit uses Circular Binary Segmentation (CBS) from the <a href="https://bioconductor.org/packages/release/bioc/html/DNAcopy.html">DNAcopy</a> package to perform segmentation.</p>
+<p>By default, CopyKit applies Circular Binary Segmentation (CBS) from the <a href="https://bioconductor.org/packages/release/bioc/html/DNAcopy.html">DNAcopy</a> package to perform segmentation of every chromosomal arm.</p>
 <p>The resulting information from <code>runSegmentation()</code> is stored within the CopyKit object into two different assays: <em>ratios</em> and <em>segment_ratios</em>, which can be accessed with the helper function <code>ratios()</code> and <code>segment_ratios()</code></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pre-processing.html#cb17-1"></a><span class="kw">head</span>(<span class="kw">ratios</span>(tumor)[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   TN28_2_S1_C10_S1930_L006_R1_001 TN28_2_S1_C10_S19300_L006_R1_001 TN28_2_S1_C100_S2020_L006_R1_001
-## 1                       0.7378685                        0.7024296                        0.9143198
-## 2                       0.6345678                        0.5730553                        1.3516414
-## 3                       0.7027278                        0.8923094                        1.0655565
-## 4                       0.3382042                        0.5012291                        1.0576283
-## 5                       0.5570355                        0.6134276                        0.7678611
-## 6                       0.8671627                        0.8212318                        1.0104050
-##   TN28_2_S1_C100_S20200_L006_R1_001 TN28_2_S1_C101_S2021_L006_R1_001
-## 1                         0.9922831                        0.7337057
-## 2                         0.9234876                        0.4550036
-## 3                         1.3219961                        0.8708640
-## 4                         1.1071673                        0.7748376
-## 5                         0.8906706                        0.7318959
-## 6                         0.5385390                        0.6275381</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="pre-processing.html#cb19-1"></a><span class="kw">head</span>(<span class="kw">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   TN28_2_S1_C10_S1930_L006_R1_001 TN28_2_S1_C10_S19300_L006_R1_001 TN28_2_S1_C100_S2020_L006_R1_001
-## 1                       0.6461778                        0.6079205                         1.008218
-## 2                       0.6461778                        0.6079205                         1.008218
-## 3                       0.6461778                        0.6079205                         1.008218
-## 4                       0.6461778                        0.6079205                         1.008218
-## 5                       0.6461778                        0.6079205                         1.008218
-## 6                       0.6461778                        0.6079205                         1.008218
-##   TN28_2_S1_C100_S20200_L006_R1_001 TN28_2_S1_C101_S2021_L006_R1_001
-## 1                          1.000416                        0.6550142
-## 2                          1.000416                        0.6550142
-## 3                          1.000416                        0.6550142
-## 4                          1.000416                        0.6550142
-## 5                          1.000416                        0.6550142
-## 6                          1.000416                        0.6550142</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="pre-processing.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                            1.0268418                            0.9037346
+## 2                            0.8945741                            1.0344841
+## 3                            0.9458446                            0.5302371
+## 4                            0.8943686                            0.9651979
+## 5                            1.1828889                            0.9339487
+## 6                            0.9992741                            0.8706382
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                              0.9471118                               1.0355269
+## 2                              0.7909237                               0.9991381
+## 3                              0.9998921                               1.1392464
+## 4                              0.8664506                               1.1016065
+## 5                              0.9226419                               1.1195707
+## 6                              0.7878521                               0.9304866
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                            1.1169724
+## 2                            0.8241273
+## 3                            1.1833451
+## 4                            0.9184119
+## 5                            0.8646177
+## 6                            1.2641514</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="pre-processing.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                                    1                            0.9857904
+## 2                                    1                            0.9857904
+## 3                                    1                            0.9857904
+## 4                                    1                            0.9857904
+## 5                                    1                            0.9857904
+## 6                                    1                            0.9857904
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                              0.9966125                                1.028728
+## 2                              0.9966125                                1.028728
+## 3                              0.9966125                                1.028728
+## 4                              0.9966125                                1.028728
+## 5                              0.9966125                                1.028728
+## 6                              0.9966125                                1.028728
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                                    1
+## 2                                    1
+## 3                                    1
+## 4                                    1
+## 5                                    1
+## 6                                    1</code></pre>
 <p>From now on, the derived segment ratios will be the main type of data where the copy number analysis will be performed.</p>
 
 </div>
@@ -294,7 +358,7 @@ pipeline is available <a href="">here</a> that uses <a href="https://snakemake.r
           </div>
         </div>
       </div>
-<a href="parallelization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="quick-start.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="qc-module.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -318,6 +382,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
