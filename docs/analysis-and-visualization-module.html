@@ -359,9 +359,11 @@ div.csl-indent {
 <p>A heatmap can be used to visualize the copy number profiles of the dataset annotated with the subclonal information:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="analysis-and-visualization-module.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
 <pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_heatmap_subclones-1.png" width="672" /></p>
 <p>Integer copy number heatmaps can be plotted with <code>plotHeatmap()</code> and the argument <code>assay = 'integer'</code>, importantly the integer matrix must be in the <code>'integer'</code> slot.</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="analysis-and-visualization-module.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
 <pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_ht_int-1.png" width="672" /></p>
 <p>Importantly, new information can be added to the metadata and used in conjunction with the plotting functions. The dataset in this example has some spatial information obtained from the macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="analysis-and-visualization-module.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(tumor)<span class="sc">$</span>spatial_info <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(<span class="fu">colData</span>(tumor)<span class="sc">$</span>sample, <span class="st">&quot;L[0-9]&quot;</span>)</span></code></pre></div>
 <p>Once the information has been added, we can use it to color the heatmap points by their spatial information:</p>
@@ -373,9 +375,11 @@ div.csl-indent {
 The ‘label’ argument for <code>plotHeatmap()</code> can add as many annotations as specified by the user as long as they are elements in <code>colData()</code> of the CopyKit object.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="analysis-and-visualization-module.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;spatial_info&quot;</span>, <span class="st">&quot;subclones&quot;</span>))</span></code></pre></div>
 <pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/heat_spatial-1.png" width="672" /></p>
 <p>If <code>calcInteger()</code> was performed, it is possible to visualize how much the copy number calls deviate from the expected integer states by using <code>plotHeatmap()</code> with the argument <code>rounding_error</code> set to <code>TRUE</code></p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="analysis-and-visualization-module.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>, <span class="at">rounding_error =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/rounding_error-1.png" width="672" /></p>
 </div>
 <div id="calcconsensus" class="section level2" number="6.10">
 <h2><span class="header-section-number">6.10</span> calcConsensus()</h2>
@@ -385,11 +389,13 @@ The ‘label’ argument for <code>plotHeatmap()</code> can add as many annotati
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="analysis-and-visualization-module.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">consensus =</span> <span class="cn">TRUE</span>, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
 <pre><code>## Plotting Heatmap.</code></pre>
 <pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_heat_consensus-1.png" width="672" /></p>
 <p>By default <code>calcConsensus()</code> uses the subclones information to calculate a consensus for each subclone. Importantly, any element of the <code>colData()</code> can be used to calculate the consensus.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="analysis-and-visualization-module.html#cb122-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor, <span class="at">consensus_by =</span> <span class="st">&quot;spatial_info&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="analysis-and-visualization-module.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">consensus =</span> <span class="cn">TRUE</span>, <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
 <pre><code>## Plotting Heatmap.</code></pre>
 <pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/consensus_spatial_head-1.png" width="672" /></p>
 <p><strong>Note:</strong> Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the <code>assay(scCNA, 'integer')</code> slot. Check <code>calcInteger()</code> for more info.</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="analysis-and-visualization-module.html#cb126-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor, <span class="at">consensus_by =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
 </div>

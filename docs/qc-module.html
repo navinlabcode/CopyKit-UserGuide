@@ -294,6 +294,7 @@ div.csl-indent {
 <pre><code>## Access distance matrix with copykit::distMat()</code></pre>
 <pre><code>## Done.</code></pre>
 <pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/find_normal_heat-1.png" width="672" /></p>
 <p>The object can be subsetted in the same way as any R object is subsetted.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="qc-module.html#cb41-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>is_normal <span class="sc">==</span> <span class="cn">FALSE</span>]</span></code></pre></div>
 </div>
@@ -316,6 +317,7 @@ After filtering the function <code>plotHeatmap()</code> from the visualization m
 <pre><code>## Access distance matrix with copykit::distMat()</code></pre>
 <pre><code>## Done.</code></pre>
 <pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/filter_cells_heat-1.png" width="672" /></p>
 <p>If satisfied with the filtering results we remove the noise cells from the object.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="qc-module.html#cb54-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>filtered <span class="sc">==</span> <span class="st">&#39;kept&#39;</span>]</span></code></pre></div>
 <p>Your dataset should be ready to proceed with the analysis.</p>
