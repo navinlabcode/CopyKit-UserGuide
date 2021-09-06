@@ -3,6 +3,8 @@ parallelization
 quick-start
 pre-processing
 runvarbin
+cbs-dnacopy
+multipcf-copynumber
 qc-module
 runmetrics
 findnormalcells
@@ -19,7 +21,10 @@ runphylo
 plotphylo
 calcinteger
 plotheatmap
+plotfreq
 calcconsensus
 plotconsensusline
+findvariablegenes
+plotvariablegenes
 plotgenecopy
 session-info

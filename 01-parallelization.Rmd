@@ -8,24 +8,27 @@ We use `BiocParallel::register()` function to register the number of workers des
 
 ```{r registering_fake, eval=FALSE}
 library(BiocParallel)
-register(MulticoreParam(workers = 100, progressbar = T), default = T)
+register(MulticoreParam(progressbar = T), default = T)
 ```
 
 ```{r registering_true, echo=FALSE}
 library(BiocParallel)
-register(MulticoreParam(workers = 100, progressbar = F), default = T)
+register(MulticoreParam(progressbar = F), default = T)
 ```
 
-
-BiocParallel registered 100 processes for parallelization of copykit functions. The default parameter can be confirmed with:
+The default parameter can be confirmed with:
 ```{r default}
 BiocParallel::bpparam()
 ```
 
+Make sure to check the number of workers in use. The higher the number of workers
+available the faster *CopyKit* computations will perform.
+
 The argument *progressbar* allows for a helpful progression bar while the process is being run.
 
 After this setup *CopyKit* parallelized functions will automatically recognize these parameters and run in parallel.
-It is highly recommended to run CopyKit using parallelization since some functions can take a long time to run otherwise.
+
+Running parallel process is highly recommended to speed up CopyKit calculations.
 
 
 

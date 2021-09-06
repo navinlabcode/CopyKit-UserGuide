@@ -26,3 +26,7 @@ All the information from a scDNA-Seq dataset is stored within the *scCNA object*
 
 The next chapters of this user guide will cover each module in detail.
 
+This documentation was generated with *CopyKit* version:
+```{r version}
+packageVersion("copykit")
+```

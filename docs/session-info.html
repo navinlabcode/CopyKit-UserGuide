@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Session Info | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Session Info | CopyKit User Guide" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,8 @@
   
 <link rel="prev" href="analysis-and-visualization-module.html"/>
 
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -163,7 +163,11 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a></li>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#cbs-dnacopy"><i class="fa fa-check"></i><b>4.1.1</b> CBS {DNACopy}</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#multipcf-copynumber"><i class="fa fa-check"></i><b>4.1.2</b> multipcf {copynumber}</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
 <ul>
@@ -186,9 +190,12 @@ div.csl-indent {
 <li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.7</b> plotPhylo()</a></li>
 <li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.8</b> calcInteger()</a></li>
 <li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.9</b> plotHeatmap()</a></li>
-<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.10</b> calcConsensus()</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.11</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.12</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.10</b> plotFreq()</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.11</b> calcConsensus()</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.12</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findvariablegenes"><i class="fa fa-check"></i><b>6.13</b> findVariableGenes()</a></li>
+<li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotvariablegenes"><i class="fa fa-check"></i><b>6.14</b> plotVariableGenes()</a></li>
+<li class="chapter" data-level="6.15" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.15</b> plotGeneCopy()</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>7</b> Session Info</a></li>
 <li class="divider"></li>
@@ -213,7 +220,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="session-info" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Session Info</h1>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="session-info.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="session-info.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.0 (2021-05-18)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.2 LTS
@@ -231,70 +238,71 @@ div.csl-indent {
 ## [1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] devtools_2.4.2              usethis_2.0.1               stringr_1.4.0              
-##  [4] dplyr_1.0.7                 copykit_0.0.0.9021          BiocParallel_1.26.1        
-##  [7] bookdown_0.22               SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
-## [10] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.1        
-## [13] IRanges_2.26.0              S4Vectors_0.30.0            BiocGenerics_0.38.0        
-## [16] MatrixGenerics_1.4.0        matrixStats_0.60.0         
+##  [1] copykit_0.0.0.9025          SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
+##  [4] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.2        
+##  [7] IRanges_2.26.0              S4Vectors_0.30.0            BiocGenerics_0.38.0        
+## [10] MatrixGenerics_1.4.3        matrixStats_0.60.1          BiocParallel_1.26.2        
+## [13] bookdown_0.23               devtools_2.4.2              usethis_2.0.1              
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] utf8_1.2.1                reticulate_1.20           tidyselect_1.1.1         
-##   [4] grid_4.1.0                munsell_0.5.0             ScaledMatrix_1.0.0       
-##   [7] codetools_0.2-18          statmod_1.4.36            scran_1.20.1             
-##  [10] miniUI_0.1.1.1            withr_2.4.2               colorspace_2.0-2         
-##  [13] highr_0.9                 knitr_1.33                rstudioapi_0.13          
-##  [16] robustbase_0.93-8         Rsubread_2.6.4            labeling_0.4.2           
-##  [19] GenomeInfoDbData_1.2.6    farver_2.1.0              rprojroot_2.0.2          
-##  [22] vctrs_0.3.8               treeio_1.16.1             generics_0.1.0           
-##  [25] xfun_0.24                 fastcluster_1.2.3         diptest_0.76-0           
-##  [28] R6_2.5.0                  doParallel_1.0.16         ggbeeswarm_0.6.0         
-##  [31] clue_0.3-59               rsvd_1.0.5                locfit_1.5-9.4           
-##  [34] pals_1.7                  flexmix_2.3-17            bitops_1.0-7             
-##  [37] cachem_1.0.5              DelayedArray_0.18.0       assertthat_0.2.1         
-##  [40] promises_1.2.0.1          scales_1.1.1              nnet_7.3-16              
-##  [43] beeswarm_0.4.0            gtable_0.3.0              beachmat_2.8.0           
-##  [46] Cairo_1.5-12.2            processx_3.5.2            rlang_0.4.11             
-##  [49] GlobalOptions_0.1.2       splines_4.1.0             lazyeval_0.2.2           
-##  [52] dichromat_2.0-0           BiocManager_1.30.16       yaml_2.2.1               
-##  [55] httpuv_1.6.1              tools_4.1.0               ggplot2_3.3.5            
+##   [1] utf8_1.2.2                reticulate_1.20           tidyselect_1.1.1         
+##   [4] grid_4.1.0                munsell_0.5.0             aCGH_1.70.0              
+##   [7] ScaledMatrix_1.0.0        codetools_0.2-18          statmod_1.4.36           
+##  [10] scran_1.20.1              miniUI_0.1.1.1            withr_2.4.2              
+##  [13] colorspace_2.0-2          highr_0.9                 knitr_1.33               
+##  [16] rstudioapi_0.13           robustbase_0.93-8         Rsubread_2.6.4           
+##  [19] labeling_0.4.2            GenomeInfoDbData_1.2.6    farver_2.1.0             
+##  [22] rprojroot_2.0.2           vctrs_0.3.8               treeio_1.16.2            
+##  [25] generics_0.1.0            xfun_0.23                 fastcluster_1.2.3        
+##  [28] diptest_0.76-0            R6_2.5.1                  doParallel_1.0.16        
+##  [31] ggbeeswarm_0.6.0          clue_0.3-59               rsvd_1.0.5               
+##  [34] locfit_1.5-9.4            pals_1.7                  flexmix_2.3-17           
+##  [37] bitops_1.0-7              cachem_1.0.6              DelayedArray_0.18.0      
+##  [40] assertthat_0.2.1          promises_1.2.0.1          scales_1.1.1             
+##  [43] nnet_7.3-16               beeswarm_0.4.0            gtable_0.3.0             
+##  [46] beachmat_2.8.1            Cairo_1.5-12.2            processx_3.5.2           
+##  [49] rlang_0.4.11              GlobalOptions_0.1.2       splines_4.1.0            
+##  [52] lazyeval_0.2.2            dichromat_2.0-0           yaml_2.2.1               
+##  [55] httpuv_1.6.2              tools_4.1.0               ggplot2_3.3.5            
 ##  [58] ellipsis_0.3.2            jquerylib_0.1.4           RColorBrewer_1.1-2       
 ##  [61] DNAcopy_1.66.0            sessioninfo_1.1.1         Rcpp_1.0.7               
-##  [64] sparseMatrixStats_1.4.0   zlibbioc_1.38.0           purrr_0.3.4              
-##  [67] RCurl_1.98-1.3            ps_1.6.0                  prettyunits_1.1.1        
-##  [70] dbscan_1.1-8              GetoptLong_1.0.5          viridis_0.6.1            
+##  [64] sparseMatrixStats_1.4.2   zlibbioc_1.38.0           purrr_0.3.4              
+##  [67] RCurl_1.98-1.4            ps_1.6.0                  prettyunits_1.1.1        
+##  [70] dbscan_1.1-8              viridis_0.6.1             GetoptLong_1.0.5         
 ##  [73] cowplot_1.1.1             cluster_2.1.2             fs_1.5.0                 
-##  [76] magrittr_2.0.1            RSpectra_0.16-0           magick_2.7.2             
+##  [76] magrittr_2.0.1            RSpectra_0.16-0           magick_2.7.3             
 ##  [79] data.table_1.14.0         circlize_0.4.13           amap_0.8-18              
 ##  [82] ggnewscale_0.4.5          pkgload_1.2.1             patchwork_1.1.1          
 ##  [85] mime_0.11                 evaluate_0.14             xtable_1.8-4             
 ##  [88] mclust_5.4.7              gridExtra_2.3             shape_1.4.6              
-##  [91] testthat_3.0.4            compiler_4.1.0            tibble_3.1.2             
-##  [94] maps_3.3.0                crayon_1.4.1              htmltools_0.5.1.1        
-##  [97] mgcv_1.8-36               segmented_1.3-4           later_1.2.0              
-## [100] tidyr_1.1.3               aplot_0.0.6               lubridate_1.7.10         
-## [103] DBI_1.1.1                 ComplexHeatmap_2.8.0      MASS_7.3-54              
-## [106] fpc_2.2-9                 boot_1.3-28               leidenbase_0.1.3         
-## [109] Matrix_1.3-4              cli_2.5.0                 metapod_1.0.0            
-## [112] igraph_1.2.6              forcats_0.5.1             pkgconfig_2.0.3          
-## [115] rvcheck_0.1.8             scuttle_1.2.0             foreach_1.5.1            
-## [118] ggtree_3.0.2              vipor_0.4.5               bslib_0.2.5.1            
-## [121] dqrng_0.3.0               XVector_0.32.0            snakecase_0.11.0         
-## [124] callr_3.7.0               digest_0.6.27             janitor_2.1.0            
-## [127] rmarkdown_2.9             leiden_0.3.8              tidytree_0.3.4           
-## [130] uwot_0.1.10               edgeR_3.34.0              DelayedMatrixStats_1.14.0
-## [133] kernlab_0.9-29            shiny_1.6.0               gtools_3.9.2             
-## [136] modeltools_0.2-23         rjson_0.2.20              lifecycle_1.0.0          
-## [139] nlme_3.1-152              jsonlite_1.7.2            BiocNeighbors_1.10.0     
-## [142] mapproj_1.2.7             desc_1.3.0                viridisLite_0.4.0        
-## [145] limma_3.48.1              fansi_0.5.0               pillar_1.6.1             
-## [148] lattice_0.20-44           fastmap_1.1.0             DEoptimR_1.0-9           
-## [151] pkgbuild_1.2.0            survival_3.2-11           remotes_2.4.0            
-## [154] glue_1.4.2                FNN_1.1.3                 png_0.1-7                
-## [157] prabclus_2.3-2            iterators_1.0.13          bluster_1.2.1            
-## [160] sass_0.4.0                class_7.3-19              stringi_1.7.3            
-## [163] mixtools_1.2.0            BiocSingular_1.8.1        memoise_2.0.0            
-## [166] irlba_2.3.3               ape_5.5</code></pre>
+##  [91] testthat_3.0.4            compiler_4.1.0            tibble_3.1.4             
+##  [94] maps_3.3.0                crayon_1.4.1              htmltools_0.5.2          
+##  [97] mgcv_1.8-36               segmented_1.3-4           ggfun_0.0.3              
+## [100] later_1.3.0               tidyr_1.1.3               aplot_0.0.6              
+## [103] lubridate_1.7.10          DBI_1.1.1                 ComplexHeatmap_2.8.0     
+## [106] MASS_7.3-54               fpc_2.2-9                 boot_1.3-28              
+## [109] leidenbase_0.1.3          Matrix_1.3-4              cli_3.0.1                
+## [112] metapod_1.0.0             igraph_1.2.6              forcats_0.5.1            
+## [115] pkgconfig_2.0.3           scuttle_1.2.1             foreach_1.5.1            
+## [118] ggtree_3.0.4              vipor_0.4.5               bslib_0.2.5.1            
+## [121] dqrng_0.3.0               multtest_2.48.0           XVector_0.32.0           
+## [124] snakecase_0.11.0          yulab.utils_0.0.2         stringr_1.4.0            
+## [127] callr_3.7.0               digest_0.6.27             janitor_2.1.0            
+## [130] Biostrings_2.60.2         rmarkdown_2.10            leiden_0.3.9             
+## [133] tidytree_0.3.4            uwot_0.1.10               edgeR_3.34.0             
+## [136] DelayedMatrixStats_1.14.3 curl_4.3.2                kernlab_0.9-29           
+## [139] shiny_1.6.0               Rsamtools_2.8.0           gtools_3.9.2             
+## [142] modeltools_0.2-23         rjson_0.2.20              lifecycle_1.0.0          
+## [145] nlme_3.1-152              jsonlite_1.7.2            BiocNeighbors_1.10.0     
+## [148] mapproj_1.2.7             viridisLite_0.4.0         desc_1.3.0               
+## [151] limma_3.48.3              fansi_0.5.0               pillar_1.6.2             
+## [154] lattice_0.20-44           DEoptimR_1.0-9            fastmap_1.1.0            
+## [157] pkgbuild_1.2.0            survival_3.2-11           glue_1.4.2               
+## [160] remotes_2.4.0             FNN_1.1.3                 png_0.1-7                
+## [163] prabclus_2.3-2            iterators_1.0.13          bluster_1.2.1            
+## [166] mixtools_1.2.0            class_7.3-19              stringi_1.7.4            
+## [169] sass_0.4.0                BiocSingular_1.8.1        memoise_2.0.0            
+## [172] dplyr_1.0.7               irlba_2.3.3               ape_5.5</code></pre>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
@@ -355,6 +363,10 @@ gitbook.start({
 "text": null
 },
 "download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -2,7 +2,7 @@
 
 CopyKit pre-processing module consists of 1 function that performs 3 main processes: 
 
-- Counts reads from the from the `.bam` files
+- Counts reads from the from the `.bam` files 
 - Applies a variance stabilization transformation to the dataset
 - Segments the data into piece-wise constant function for inference of copy number states
 
@@ -52,8 +52,16 @@ head(assay(tumor, 'ft')[,1:5])
 ```
 
 Lastly segmentation fits piece-wise constant functions to every profile generating segment means that can be used to infer copy-number states across every cell.
+Segmentation method is chosen by passing the argument `method` to `runVarbin()` with the desired option. Current available segmentation methods are:
 
-By default, CopyKit applies Circular Binary Segmentation (CBS) from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation of every chromosomal arm.
+### CBS {DNACopy}
+
+By default, CopyKit applies Circular Binary Segmentation (CBS) from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation of each chromosome arm. The penalty of the segmentation is controlled by the argument `alpha` that can be passed on to `runVarbin()`
+
+### multipcf {copynumber}
+
+A second segmentation option is using the multipcf segmentation from the package [copynumber](https://www.bioconductor.org/packages/release/bioc/html/copynumber.html).
+multipcf differs from CBS by performing a joint segmentation of the samples, resulting in common break points to all samples.
 
 The resulting information from `runSegmentation()` is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*, which can be accessed with the helper function `ratios()` and `segment_ratios()`
 ```{r r_sr_accessors}

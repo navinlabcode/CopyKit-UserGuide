@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="CopyKit User Guide" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,8 @@
   
 
 <link rel="next" href="parallelization.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -163,7 +163,11 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a></li>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#cbs-dnacopy"><i class="fa fa-check"></i><b>4.1.1</b> CBS {DNACopy}</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#multipcf-copynumber"><i class="fa fa-check"></i><b>4.1.2</b> multipcf {copynumber}</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
 <ul>
@@ -186,9 +190,12 @@ div.csl-indent {
 <li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.7</b> plotPhylo()</a></li>
 <li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.8</b> calcInteger()</a></li>
 <li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.9</b> plotHeatmap()</a></li>
-<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.10</b> calcConsensus()</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.11</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.12</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.10</b> plotFreq()</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.11</b> calcConsensus()</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.12</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findvariablegenes"><i class="fa fa-check"></i><b>6.13</b> findVariableGenes()</a></li>
+<li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotvariablegenes"><i class="fa fa-check"></i><b>6.14</b> plotVariableGenes()</a></li>
+<li class="chapter" data-level="6.15" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.15</b> plotGeneCopy()</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>7</b> Session Info</a></li>
 <li class="divider"></li>
@@ -214,7 +221,7 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">CopyKit User Guide</h1>
 <p class="author"><em>Darlan Conterno Minussi</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>Last revised: 2021-08-06</em></p>
+<p class="date"><em>Last revised: 2021-09-05</em></p>
 </div>
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
@@ -226,6 +233,9 @@ div.csl-indent {
 <p><em>CopyKit</em> uses the <em>Variable Binning</em> <span class="citation">(Baslan et al. 2012; Gao et al. 2016)</span> pipeline to process datasets.</p>
 <p>All the information from a scDNA-Seq dataset is stored within the <em>scCNA object</em> for downstream analysis. <em>CopyKit</em> functions can be split into 4 modules: <em>1) Pre-processing, 2) Quality Control, 3) Analysis and, 4) Visualization module.</em></p>
 <p>The next chapters of this user guide will cover each module in detail.</p>
+<p>This documentation was generated with <em>CopyKit</em> version:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;copykit&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &#39;0.0.0.9025&#39;</code></pre>
 
 </div>
             </section>
@@ -278,6 +288,10 @@ gitbook.start({
 "text": null
 },
 "download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

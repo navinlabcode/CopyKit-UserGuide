@@ -1,3 +1,65 @@
+--- 
+title: "CopyKit User Guide"
+author: "Darlan Conterno Minussi"
+date: "Last revised: `r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: no
+description: "This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis."
+---
+
+# Introduction
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# Parallelization
+
+Placeholder
+
+
+
+<!--chapter:end:01-parallelization.Rmd-->
+
+
+# Quick-Start
+
+Placeholder
+
+
+
+<!--chapter:end:02-quickstart.Rmd-->
+
+
+# Pre-processing 
+
+Placeholder
+
+
+## runVarbin()
+### CBS {DNACopy}
+### multipcf {copynumber}
+
+<!--chapter:end:03-pre_processing.Rmd-->
+
+
+# QC module
+
+Placeholder
+
+
+## runMetrics()
+## findNormalCells()
+## filterCells()
+
+<!--chapter:end:04-qc_module.Rmd-->
+
 ---
 output:
   pdf_document: default
@@ -362,4 +424,16 @@ plotGeneCopy(tumor, genes = c("CDKN2A",
              assay = 'integer')
 ```
 
+
+
+<!--chapter:end:05-analysis_visualization.Rmd-->
+
+# Session Info
+
+```{r session_info}
+sessionInfo()
+```
+
+
+<!--chapter:end:06-session_info.Rmd-->
 
