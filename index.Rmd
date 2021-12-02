@@ -16,17 +16,18 @@ description: "This is a user guide for the package CopyKit: A toolkit for single
 ![CopyKit logo](images/copykit_hexsticker_v2.png){height=30% width=30%}
 </center>
 
-This is the user guide for the **CopyKit** package.
 
-*CopyKit* is a toolkit for single-cell analysis of copy number datasets. Copykit expands from the existing robust scaffold for single-cell analysis provided by the Bioconductor packages SingleCellExperiment and SummarizedExperiment and, provides the tools to perform binning of sequencing reads, segmentation as well as quality control and downstream analysis of scDNA-Seq datasets.
+*CopyKit* provides a suite of tools for pre-processing, quality control, analysis, and visualization of single cell DNA sequencing datasets.
 
-*CopyKit* uses the *Variable Binning* [@RN2; @RN4] pipeline to process datasets.
+The following chapters will cover each module in detail.
 
-All the information from a scDNA-Seq dataset is stored within the *scCNA object* for downstream analysis. *CopyKit* functions can be split into 4 modules: *1) Pre-processing, 2) Quality Control, 3) Analysis and, 4) Visualization module.*
+<center>
+![copykit cheat sheet](images/copykit_cheat_sheet_DCM1.png){height=60% width=60%}
+</center>
 
-The next chapters of this user guide will cover each module in detail.
-
-This documentation was generated with *CopyKit* version:
+Generated with *CopyKit* version:
 ```{r version}
 packageVersion("copykit")
 ```
+
+

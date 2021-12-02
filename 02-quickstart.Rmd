@@ -1,6 +1,6 @@
 # Quick-Start
 
-This section provides a basic workflow with *CopyKit*. Detailed description of CopyKit functions is provided in the following sections.
+This section provides a basic *CopyKit* workflow. 
 
 ```{r quickstart, eval=FALSE}
 # Run pre-processing module
@@ -33,8 +33,12 @@ plotSuggestedK(tumor)
 tumor  <- findClusters(tumor)
 plotUmap(tumor, label = 'subclones')
 
+# calculating consensus, passed on to plotHeatmap ordering
+tumor <- calcConsensus(tumor)
+tumor <- runConsensusPhylo(tumor)
+
 # Plot a Copy Number Heatmap with clustering annotation
 plotHeatmap(tumor, label = 'subclones')
 ```
 
-
+The following sections explain all functions in detail.

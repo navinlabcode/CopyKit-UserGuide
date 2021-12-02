@@ -28,3 +28,6 @@ findvariablegenes
 plotvariablegenes
 plotgenecopy
 session-info
+from-bam-files
+learn-more
+segmentation_lm
