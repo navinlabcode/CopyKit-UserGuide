@@ -242,6 +242,64 @@ div.csl-indent {
 </ul>
 <p>We load CopyKit with the <code>library()</code> function.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pre-processing.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copykit)</span></code></pre></div>
+<pre><code>## Loading required package: SingleCellExperiment</code></pre>
+<pre><code>## Loading required package: SummarizedExperiment</code></pre>
+<pre><code>## Loading required package: MatrixGenerics</code></pre>
+<pre><code>## Loading required package: matrixStats</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MatrixGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:matrixStats&#39;:
+## 
+##     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse, colCounts, colCummaxs,
+##     colCummins, colCumprods, colCumsums, colDiffs, colIQRDiffs, colIQRs, colLogSumExps,
+##     colMadDiffs, colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+##     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds, colSums2,
+##     colTabulates, colVarDiffs, colVars, colWeightedMads, colWeightedMeans,
+##     colWeightedMedians, colWeightedSds, colWeightedVars, rowAlls, rowAnyNAs, rowAnys,
+##     rowAvgsPerColSet, rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+##     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps, rowMadDiffs, rowMads,
+##     rowMaxs, rowMeans2, rowMedians, rowMins, rowOrderStats, rowProds, rowQuantiles,
+##     rowRanges, rowRanks, rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs,
+##     rowVars, rowWeightedMads, rowWeightedMeans, rowWeightedMedians, rowWeightedSds,
+##     rowWeightedVars</code></pre>
+<pre><code>## Loading required package: GenomicRanges</code></pre>
+<pre><code>## Loading required package: stats4</code></pre>
+<pre><code>## Loading required package: BiocGenerics</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call,
+##     duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect, is.unsorted,
+##     lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+##     Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+##     union, unique, unsplit, which.max, which.min</code></pre>
+<pre><code>## Loading required package: S4Vectors</code></pre>
+<pre><code>## 
+## Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     expand.grid, I, unname</code></pre>
+<pre><code>## Loading required package: IRanges</code></pre>
+<pre><code>## Loading required package: GenomeInfoDb</code></pre>
+<pre><code>## Loading required package: Biobase</code></pre>
+<pre><code>## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with &#39;browseVignettes()&#39;. To cite
+##     Bioconductor, see &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Biobase&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MatrixGenerics&#39;:
+## 
+##     rowMedians</code></pre>
+<pre><code>## The following objects are masked from &#39;package:matrixStats&#39;:
+## 
+##     anyMissing, rowMedians</code></pre>
+<pre><code>## Loading required package: Rsubread</code></pre>
+<pre><code>## Loading required package: DNAcopy</code></pre>
 <p><strong>NOTE:</strong> Whenever possible, CopyKit functions will run in parallel if the BiocParallel framework was registered.
 For more information check section <a href="parallelization.html#parallelization">parallelization</a>.</p>
 <div id="from-bam-files" class="section level2" number="4.1">
@@ -252,8 +310,8 @@ For more information check section <a href="parallelization.html#parallelization
 <code>runVarbin()</code> will count the reads into bins according to the variable binning method - <a href="learn-more.html#varbin-lm">Learn More!</a> <span class="citation">(Navin et al. 2011; Baslan et al. 2012; Gao et al. 2016)</span>.</p>
 <p>To help users obtain duplicated marked BAM files from <em>.fastq</em> files we provide a <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a> pipeline <a href="">here</a>.This pipeline can be adapted as per users’ needs. Make sure to align reads to the same genome assembly that will be later used within CopyKit.</p>
 <p><code>runVarbin()</code> first argument should be the path to the <code>.bam</code> files:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="pre-processing.html#cb8-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
-<span id="cb8-2"><a href="pre-processing.html#cb8-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="pre-processing.html#cb32-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
+<span id="cb32-2"><a href="pre-processing.html#cb32-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Counting reads for genome hg38 and resolution: 200kb</code></pre>
 <pre><code>## 34 bam files had less than 10 mean bincounts and were removed.</code></pre>
 <pre><code>## Performing GC correction.</code></pre>
@@ -265,7 +323,7 @@ For more information check section <a href="parallelization.html#parallelization
 <p>By default, <code>runVarbin()</code> uses the <em>hg38</em> genome assembly and a resolution of <em>220kb</em>.
 Both options can be customized with the arguments <em>genome</em> or <em>resolution</em> (see ?runVarbin()).</p>
 <p>The resulting object is the CopyKit object.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pre-processing.html#cb16-1" aria-hidden="true" tabindex="-1"></a>tumor</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="pre-processing.html#cb40-1" aria-hidden="true" tabindex="-1"></a>tumor</span></code></pre></div>
 <pre><code>## class: CopyKit 
 ## dim: 11268 1502 
 ## metadata(3): genome resolution vst
@@ -285,7 +343,7 @@ Both options can be customized with the arguments <em>genome</em> or <em>resolut
 <p>CopyKit objects inherits from the <a href="https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html">SingleCellExperiment</a> class.</p>
 <p>Each column represents a single cell and each row represents a bin.</p>
 <p>The bin counts are stored in the bincounts assay, which can be acessed with <code>bincounts()</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pre-processing.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bincounts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="pre-processing.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bincounts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   PMTC6LiverC100DL1S… PMTC6LiverC100DL1S… PMTC6LiverC100DL4… PMTC6LiverC100DL6… PMTC6LiverC101DL1…
 ##                 &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
@@ -297,7 +355,7 @@ Both options can be customized with the arguments <em>genome</em> or <em>resolut
 ## 6                29.3                5.88               43.0               43.1               38.3</code></pre>
 <p>The binned counts are a mixture of poisson distributions with increased variance at higher counts. To address this problem CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.</p>
 <p>The resulting transformation is stored within the <em>ft</em> assay. IT can be accessed with <code>assay()</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="pre-processing.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="pre-processing.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
 ## 1                            12.258603                             6.558716
 ## 2                            10.832889                             7.300770
@@ -333,7 +391,7 @@ Currently available methods are:</p>
 multipcf differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints to all samples.</p>
 <p>The resulting information is stored within the CopyKit object into two different assays: <em>ratios</em> and <em>segment_ratios</em>.
 They can be accessed with the helper function <code>ratios()</code> and <code>segment_ratios()</code></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pre-processing.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="pre-processing.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
 ## 1                                 1.11                                 0.94
 ## 2                                 0.92                                 1.11
@@ -355,7 +413,7 @@ They can be accessed with the helper function <code>ratios()</code> and <code>se
 ## 4                                 1.00
 ## 5                                 0.84
 ## 6                                 1.02</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pre-processing.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="pre-processing.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
 ## 1                                    1                                    1
 ## 2                                    1                                    1
@@ -410,16 +468,16 @@ Available transformations are freeman-tukey (‘ft’) or ‘log.’</p>
 <li><p>A <a href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">GenomicRanges</a> object with length equal to the number of bins from the cell assay matrix. As long as the length requirment is respected this allows user-defined scaffolds to be used within CopyKit.</p></li>
 </ol>
 <p>To construct the CopyKit object, the following code can be used, if providing bincounts:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="pre-processing.html#cb26-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">bincounts =</span> cell_bincount_matrix),</span>
-<span id="cb26-2"><a href="pre-processing.html#cb26-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="pre-processing.html#cb50-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">bincounts =</span> cell_bincount_matrix),</span>
+<span id="cb50-2"><a href="pre-processing.html#cb50-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
 <p>Next, the functions <code>runVst()</code>, <code>runSegmentation()</code>, and <code>logNorm()</code> can be used to continue with the analysis.</p>
 <p>If providing segment mean ratios</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="pre-processing.html#cb27-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">segment_ratios =</span> cell_bincount_matrix),</span>
-<span id="cb27-2"><a href="pre-processing.html#cb27-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="pre-processing.html#cb51-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">segment_ratios =</span> cell_bincount_matrix),</span>
+<span id="cb51-2"><a href="pre-processing.html#cb51-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
 <p>The object can be passed on to the Quality Control and Analysis modules of CopyKit.
 _PS: If no bincount matrix is provided, functions that require a matrix of bincounts, such as <code>runMetrics()</code> can’t be used in this object.</p>
 <p>It is useful for downstream functions to add the genome assembly used on the dataset.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="pre-processing.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(obj)<span class="sc">$</span>genome <span class="ot">&lt;-</span> <span class="st">&quot;hg38&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="pre-processing.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(obj)<span class="sc">$</span>genome <span class="ot">&lt;-</span> <span class="st">&quot;hg38&quot;</span></span></code></pre></div>
 
 </div>
 </div>

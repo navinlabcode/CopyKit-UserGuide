@@ -243,12 +243,6 @@ The 'label' argument for `plotHeatmap()` can add as many annotations as specifie
 plotHeatmap(tumor, label = c("spatial_info", "subclones"))
 ```
 
-If `calcInteger()` was performed, it is possible to visualize deviations from the expected integer states by using `plotHeatmap()` with the argument `rounding_error` set to `TRUE`
-
-```{r rounding_error, fig.height=8}
-plotHeatmap(tumor, label = 'subclones', assay = 'integer', rounding_error = TRUE)
-```
-
 ## plotFreq()
 
 Computing the frequencies of genomic gain or losses across the genome can be useful to visualize differences between groups. This can be done with `plotFreq()`. 
@@ -271,7 +265,7 @@ Group information can be set to any categorical element of the `colData()` and i
 plotFreq(tumor, 
          low_threshold = 0.8, 
          high_threshold = 1.2, 
-         label = 'spatial_info')
+         label = 'subclones')
 ```
 
 ## calcConsensus()
@@ -381,10 +375,11 @@ plotGeneCopy(tumor, genes = c("CDKN2A",
 
 `plotGeneCopy()` can be specially useful to visualize the result from `findVariableGenes()`
 
-```{r pgc_fvg}
+```{r pgc_fvg, fig.width=10}
 plotGeneCopy(tumor,
              genes = metadata(tumor)$hvg,
-             label = 'spatial_info')
+             label = 'subclones',
+             dodge.width = 0.8)
 ```
 
 A barplot geom is also provided to visualize the integer data as a frequency barplot for each gene:
