@@ -1,0 +1,43 @@
+# Learn more
+
+## Copy Number data from short reads sequencing
+
+## Principle {#principle-lm}
+
+To infer copy number data from short-read sequencing we count the number of reads that align to a particular region of the genome. Counterintuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.
+
+## VarBin {#varbin-lm}
+
+To perform the alignment of millions of reads in a reasonable time frame, aligners trade-off accuracy for speed. Furthermore, the genome is filled with [repetitive and hard to map regions](https://www.nature.com/articles/s41598-019-45839-z). As a consequence, errors produced during the process of alignment are known as mapping errors. 
+
+Mapping errors may be a significant source of bias. Correct estimation of copy number gains or losses is dependent on accurate control of different biases. To infer copy number variations and account for sources of bias, different methods have been developed, including the  [Variable Binning method](https://www.nature.com/articles/nature09807).
+
+The VarBin method accounts for mapping bias by partitioning the genome into bins of variable sizes. The guiding principle is,  if we were to map a diploid genome to our scaffold, each bin will receive an equal number of reads.
+
+To [construct the VarBin scaffolds](https://github.com/robertaboukhalil/ginkgo), reads are simulated from a reference genome and mapped back. The reference genome is partitioned into bins of variable sizes, that receive an equal amount of reads. 
+
+We can construct scaffolds of different resolutions. Higher resolutions will have smaller bin sizes and detect more 'focal' copy number events. The decision of which resolution to use is dependent on diverse factors. Those include the library complexity, number of multiplexed cells, sequencer output, among others. Generally, a target of 1M reads/cell, with a 10% PCR duplicate rate, is sufficient to generate high-quality copy number profiles for the 220kb scaffold.
+
+## GC correction {#gccor-lm}
+
+[GC-content](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3378858/) can be a source of bias within the counts. Normalization of GC content is performed as follows:
+
+>Both fragment counts and GC counts are binned to a bin-size of choice. A curve describing the conditional mean fragment count per GC value is estimated. The resulting GC curve determines a predicted count for each bin based on the bin's GC. These predictions can be used directly to normalize the original signal, or as the rates for a heterogeneous Poisson model.
+*extracted from:* [Summarizing and correcting the GC content bias in high-throughput sequencing. Benjamini & Speed](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3378858/)
+
+Therefore, we smooth the signal using [loess](https://en.wikipedia.org/wiki/Local_regression) normalization.
+
+## Merge Levels {#mergelevels-lm}
+
+After segmentation, some segments remain with small differences, generating spurious breakpoints that are unlikely to be real copy number events. To remove this effect we perform a Wilcoxon rank-sum test between the observed median across two segments. Segments that do not reach significance are merged.
+
+## Segmentation {#segmentation-lm}
+
+### CBS {#cbs-lm}
+
+[Circular Binary Segmentation (CBS)](https://academic.oup.com/biostatistics/article/5/4/557/275197) is a popular method of segmentation. 
+
+From the help of DNAcopy package (see ?DNAcopy::segment):
+
+> This function implements the circular binary segmentation (CBS) algorithm of Olshen and Venkatraman (2004). Given a set of genomic data, either continuous or binary, the algorithm recursively splits chromosomes into either two or three subsegments based on a maximum t-statistic. A reference distribution, used to decided whether or not to split, is estimated by permutation. Options are given to eliminate splits when the means of adjacent segments are not sufficiently far apart. Note that after the first split the α-levels of the tests for splitting are not unconditional.
+

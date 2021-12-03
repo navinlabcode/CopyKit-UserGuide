@@ -8,8 +8,6 @@ CopyKit pre-processing module workhorse is `runVarbin()`
 - Counts variance stabilization transformation.
 - Piece-wise segmentation of stabilized counts.
 
-
-
 We load CopyKit with the `library()` function.
 ```{r}
 library(copykit)
@@ -89,8 +87,8 @@ head(segment_ratios(tumor)[,1:5])
 ```
 
 The following sections describe the functions wrapped by `runVarbin()`.
-**Important: If you started from runVarbin() you do not need to re-run the following functions.**
-They are provided to facilitate running modules with different conditions if needed in place of re-running `runVarbin()`.
+**Important: If you started from runVarbin() you do not need to run the following functions.**
+They are provided to facilitate running modules with different conditions, if needed, in place of re-running `runVarbin()`.
 
 #### runCountReads()
 
@@ -107,11 +105,41 @@ Available transformations are freeman-tukey ('ft') or 'log'.
 
 #### runSegmentation()
 
-`runSegmentation()` runs the segmentation algorithm of choice ('CBS' or 'multipcf'), followed by merge levels that do not reach significance (controlled by the argument alpha) [Learn More!](#mergelevels-lm).
+`runSegmentation()` runs the segmentation algorithm of choice ('CBS' or 'multipcf'), followed by merge levels that do not reach significance [Learn More!](#mergelevels-lm).
+
+#### logNorm()
+
+`logNorm()` performs a log transformation of the _segment_ratios_ assay and stores into the _logr_ assay. The _logr_ assay is used downstream by functions such as `runUmap()`.
 
 ### From external count data or user-defined scaffolds
 
+To use CopyKit's downstream functions with processed datasets, we can create a `CopyKit` object meeting the following requirements:
 
+1. Either a bin count matrix where columns represent cells and rows are bins (to be stored in the `bincounts` assay) or a segment mean ratios matrix where columns represent cells and rows represent segment mean for each bin, an integer matrix of copy number calls can also be used at this step (to be stored in the `segment_ratios` assay). 
+
+2. A [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html) object with length equal to the number of bins from the cell assay matrix. As long as the length requirment is respected this allows user-defined scaffolds to be used within CopyKit.
+
+To construct the CopyKit object, the following code can be used, if providing bincounts:
+```{r, eval=FALSE}
+obj <- CopyKit(list(bincounts = cell_bincount_matrix),
+               rowRanges = genomic_ranges_scaffold)
+```
+
+Next, the functions `runVst()`, `runSegmentation()`, and `logNorm()` can be used to continue with the analysis.
+
+If providing segment mean ratios
+```{r, eval=FALSE}
+obj <- CopyKit(list(segment_ratios = cell_bincount_matrix),
+               rowRanges = genomic_ranges_scaffold)
+```
+
+The object can be passed on to the Quality Control and Analysis modules of CopyKit.
+_PS: If no bincount matrix is provided, functions that require a matrix of bincounts, such as `runMetrics()` can't be used in this object.
+
+It is useful for downstream functions to add the genome assembly used on the dataset.
+```{r, eval=FALSE}
+metadata(obj)$genome <- "hg38"
+```
 
 
 

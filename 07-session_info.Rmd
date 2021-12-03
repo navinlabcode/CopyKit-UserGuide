@@ -1,0 +1,6 @@
+# Session Info
+
+```{r session_info}
+sessionInfo()
+```
+

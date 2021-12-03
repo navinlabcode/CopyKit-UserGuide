@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Quick-Start | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Quick-Start | CopyKit User Guide" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="parallelization.html"/>
 <link rel="next" href="pre-processing.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -163,10 +163,10 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-bam-files"><i class="fa fa-check"></i><b>4.1</b> From BAM files</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#cbs-dnacopy"><i class="fa fa-check"></i><b>4.1.1</b> CBS {DNACopy}</a></li>
-<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#multipcf-copynumber"><i class="fa fa-check"></i><b>4.1.2</b> multipcf {copynumber}</a></li>
+<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.2</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
@@ -196,8 +196,21 @@ div.csl-indent {
 <li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findvariablegenes"><i class="fa fa-check"></i><b>6.13</b> findVariableGenes()</a></li>
 <li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotvariablegenes"><i class="fa fa-check"></i><b>6.14</b> plotVariableGenes()</a></li>
 <li class="chapter" data-level="6.15" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.15</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.16" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.16</b> plotAlluvial()</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>7</b> Session Info</a></li>
+<li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>7.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="7.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>7.2</b> Principle</a></li>
+<li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
+<li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
+<li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.6</b> Segmentation</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.6.1</b> CBS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -220,7 +233,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="quick-start" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Quick-Start</h1>
-<p>This section provides a basic workflow with <em>CopyKit</em>. Detailed description of CopyKit functions is provided in the following sections.</p>
+<p>This section provides a basic <em>CopyKit</em> workflow.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="quick-start.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pre-processing module</span></span>
 <span id="cb6-2"><a href="quick-start.html#cb6-2" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;/path/to/marked/bam/files/&quot;</span>,</span>
 <span id="cb6-3"><a href="quick-start.html#cb6-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span>
@@ -251,8 +264,13 @@ div.csl-indent {
 <span id="cb6-28"><a href="quick-start.html#cb6-28" aria-hidden="true" tabindex="-1"></a>tumor  <span class="ot">&lt;-</span> <span class="fu">findClusters</span>(tumor)</span>
 <span id="cb6-29"><a href="quick-start.html#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span>
 <span id="cb6-30"><a href="quick-start.html#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="quick-start.html#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a Copy Number Heatmap with clustering annotation</span></span>
-<span id="cb6-32"><a href="quick-start.html#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<span id="cb6-31"><a href="quick-start.html#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating consensus, passed on to plotHeatmap ordering</span></span>
+<span id="cb6-32"><a href="quick-start.html#cb6-32" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span>
+<span id="cb6-33"><a href="quick-start.html#cb6-33" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runConsensusPhylo</span>(tumor)</span>
+<span id="cb6-34"><a href="quick-start.html#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="quick-start.html#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a Copy Number Heatmap with clustering annotation</span></span>
+<span id="cb6-36"><a href="quick-start.html#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<p>The following sections explain all functions in detail.</p>
 
 </div>
             </section>
@@ -265,7 +283,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -306,7 +323,7 @@ gitbook.start({
 },
 "download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

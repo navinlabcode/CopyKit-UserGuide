@@ -5,20 +5,18 @@ output:
 ---
 # Analysis and Visualization module
 
-The analysis and visualization module from CopyKit work in synergy to help you analyze and assess the results from your day.
-
-The analysis module provides the following functions: `runUmap()`, `calcInteger()`, `findSuggestedK()`, `findClusters()`, `calcConsensus()` and `runPhylo()`.
-
-The visualization module functions are: `plotMetrics()`, `plotRatio()`, `plotUmap()`, `plotHeatmap()`, `plotConsensusLine()` and `plotGeneCopy()`.
+The analysis and visualization module from CopyKit work in synergy to help you analyze and assess the results.
 
 ## plotMetrics()
 
-`plotMetrics()` can be used to plot any information available in the `colData(). As a reminder, we can check the elements within coldata() with:
+`plotMetrics()` can plot any information available within `colData()`. 
 ```{r coldata_names}
 names(colData(tumor))
 ```
 
-`plotMetrics()` argument `metric` defines which information to plot. whereas the argument label, if supplied, will color the plot based on that information.
+colData information is provided to the argument `metric`.
+
+The argument label, if supplied, will color the points based on that information.
 ```{r}
 plotMetrics(tumor, metric = c("overdispersion", 
                               "breakpoint_count",
@@ -26,12 +24,16 @@ plotMetrics(tumor, metric = c("overdispersion",
                               "reads_duplicates",
                               "reads_assigned_bins",
                               "percentage_duplicates"),
-            label = "overdispersion")
+            label = "percentage_duplicates")
 ```
 
 ## plotRatio()
 
-It is often important to visualize that the segmentation behaved as expected and closely follows the ratios. Not missing important events. Ratio plots are a great tool for this. You can plot ratio plots with the `plotRatio()` function. `plotRatio()` has two different modes. When the input is the CopyKit object an interactive app will run and you can select which cell will be visualized.
+It is important to visualize that the segmentation behaved as expected and closely follows the ratios.  
+
+Ratio plots are a great tool for this. `plotRatio()` has two different modes.
+
+When the input is the CopyKit object, an interactive app will open, allowing selection of which cell will be visualized.
 ```{r plot_ratio_app, eval = FALSE}
 plotRatio(tumor)
 ```
@@ -39,33 +41,29 @@ plotRatio(tumor)
 ![Ratio Plot App](images/plot_ratio_shiny.png)
 </center>
 
-If `plotRatio()` is given a sample name only the plot for that cell will be shown.
+If a sample name is provided to `plotRatio()`, only the plot for that cell will be shown.
+
 ```{r plot_ratio_sample, warning = FALSE}
 plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 ```
 
-
 ## runUmap()
 
-runUmap uses generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) reduced dimensions embedding, the resulting embedding is stored within the scCNA reducedDim slot and is an important pre-processing step to the findClusters feature.
+`runUmap()` generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) embedding. The resulting embedding is stored in the `reducedDim` slot 
+
+`runUmap()` is an important pre-processing step to the `findClusters()` feature.
 
 ```{r run_umap}
 tumor <- runUmap(tumor)
 ```
 
-Additional arguments to control umap parameters can be passed on to`runUmap()` with the '...' argument. As exemplified in the code below.
-By default, *CopyKit* will pass to the umap different values of n_neighbor and min_dist using: `n_neighbor = 30` and `min_dist = 0`.
+Additional arguments to control umap parameters can be passed on to`runUmap()` with the '...' argument. 
 
 The full list of additional arguments that can be passed on to `uwot::umap`  with the '...' argument to `runUmap()` can be seen in the [uwot manual](https://cran.r-project.org/web/packages/uwot/uwot.pdf).
 
-
-```{r}
-tumor <- runUmap(tumor, n_neighbors = 30, min_dist = 0)
-```
-
 ## plotUmap()
 
-`plotUmap()` can be used to plot the reduced dimensional embedding. plotUmap can be colored by any element of the metadata with the argument 'label', this will be shown in a later section.
+`plotUmap()` can be used to visualize the reduced dimensional embedding. plotUmap can be colored by any element of the colData with the argument 'label'.
 
 ```{r}
 plotUmap(tumor)
@@ -73,30 +71,39 @@ plotUmap(tumor)
 
 ## Clustering
 
-findClusters uses the reduced dimensional embedding resulting from `runUmap()` to perform clustering at two levels, hereby referred to as superclones and subclones. When clustering for superclones, `findClusters()` creates a graph representation of the reduced dimension embedding using a shared nearest neighbor algorithm (SNN), from this graph the connected components are extracted and generally represent high-level structures that share large, lineage defining copy number events. At a more fine-grained resolution, CopyKit can also be used to detect subclones, i. e. groups of cells containing more exclusive copy number event per cluster. To do so, the umap embedding is again used as the pre-processing step, this time to perform a density-based clustering with hdbscan hdbscan. 
+`findClusters()` uses the reduced dimensional embedding resulting from `runUmap()` to perform clustering at two levels (superclones and subclones).
 
-The `findClusters()` function will use the reduced dimensional embedding resulting from `runUmap()` to perform clustering of superclones and subclones.
+At a more fine-grained resolution, CopyKit can also be used to detect subclones. To do so, the umap embedding is used as the pre-processing step.
 
-When clustering for superclones `findClusters()` creates a graph representation of the dataset reduced dimension embedding using a shared nearest neighbor algorithm (SNN), from this graph the connected components are extracted and generally represent high-level structures that share large, lineage defining copy number events.
+When clustering for superclones `findClusters()` creates a graph representation of the reduced dimension embedding using a shared nearest neighbor algorithm (SNN). From this graph the connected components are extracted and generally represent high-level structures that share large copy number events.
 
-CopyKit can also be used to detect subclones, i. e. groups of cells containing a unique copy number event per cluster, to do so the umap embedding is again used as the pre-processing step, this time to perform a density-based clustering with [hdbscan](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) previously applied in different copy number analysis, as seen, in the work from Laks *et al.* [@RN6].
+CopyKit can also be used to detect subclones. The umap embedding used as the pre-processing step. 
+Different clustering algorithms can be used to detect subclones:
+1) [hdbscan](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) (default)
+2) [Leiden](https://www.nature.com/articles/s41598-019-41695-z)
+3) [Louvain](https://arxiv.org/abs/0803.0476)
 
-Network clustering algorithms can also be used to detect subclones. By setting the argument `method` to *leiden* CopyKit will again use the SNN representation of the reduced dimensional embedding to apply the graph based clustering. 
+The hdbscan method is recommended and has been successfully previously applied in the work from Laks *et al.* [@RN6].
 
 ### findSugestedK()
 
-Density-based clustering requires the input of the k neighbors, frequently chosen ad hoc. To help with parametrization, CopyKit provides the helper findSuggestedK function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity, by default the metric being maximized is *mean*, however, it is also possible to maximize the *median* with the argument `metric`. While findSuggestedK does not guarantee that the suggested value will result in optimal clustering but provides a guide that maximizes cluster stability.
+To help with parametrization, CopyKit provides the helper `findSuggestedK()` function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity, by default the metric being maximized is *median* (argument `metric`). While findSuggestedK does not guarantee optimal clustering but provides a guide that maximizes cluster stability.
 
 ```{r find_suggested_k}
 tumor <- findSuggestedK(tumor)
 ```
 
-CopyKit provides different ways to inspect the results from `findSuggestedK()` with `plotSuggestedK()`. The default geom plots a boxplot showing the mean values of each k assessed during the grid search as the red point inside each boxplot
+We can inspect the results of `findSuggestedK()` with `plotSuggestedK()`.
+
+The default geom plots a boxplot of each k assessed during the grid search as the red point inside each boxplot
 ```{r plot_suggested_k_boxplot}
 plotSuggestedK(tumor)
 ```
+In which red dots represent the mean.
 
-if the argument `geom` is set to *tile*, `plotSuggestedK()` plots a heatmap where each row is a detected subclone, each column is a k assessed during the grid search and the color represents the jaccard similarity for a given clone. Clones not detected in a given k are presented in the color gray.
+if the argument `geom` is set to *tile*, `plotSuggestedK()` plots a heatmap where each row is a detected subclone, each column is a k assessed during the grid search and the color represents the jaccard similarity for a given clone.
+
+Clones not detected in a given k are presented in gray.
 ```{r plot_suggested_k_tile}
 plotSuggestedK(tumor, geom = 'tile')
 ```
@@ -113,21 +120,21 @@ S4Vectors::metadata(tumor)$suggestedK
 
 ### findClusters()
 
-To run `findClusters()` simply use the function in the CopyKit object and provide the k value with the arguments 'k_superclones' and 'k_subclones'.
-*NOTE:* k_superclones and k_subclones can be used concurrently. Only k_subclones is a mandatory field.
+To run `findClusters()` we can provide the CopyKit object.
 
-By default, `findClusters()` will use the [hdbscan](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) method for clustering
+```{r findCL_findSuggested}
+tumor <- findClusters(tumor)
+```
+
+If `findSuggestedK()` was run prior, and the argument 'k_subclones' is not provided, `findClusters()` will automatically use the value resulting from `findSuggestedK()` that was stored into the metadata:
+
+k values can be manually controlled with 'k_superclones' and 'k_subclones'.
+*NOTE:* k_superclones and k_subclones can be used concurrently. Only k_subclones is a mandatory field.
 
 ```{r findCl_withparam, eval = FALSE}
 tumor <- findClusters(tumor,
                       k_superclones = 30,
                       k_subclones = 15)
-```
-
-If `findSuggestedK()` was used and the argument 'k_subclones' is not provided, `findClusters()` will automatically use the value resulting from `findSuggestedK()` that was stored into the metadata:
-
-```{r findCL_findSuggested}
-tumor <- findClusters(tumor)
 ```
 
 If the method used for clustering was *hdbscan*, it is possible that a subgroup of outliers is identified, those are added to subgroup `c0` and may be removed by subsetting the copykit object. Copykit will inform if any cell was classified as c0 in an informative message after running `findClusters()`
@@ -136,7 +143,7 @@ If the method used for clustering was *hdbscan*, it is possible that a subgroup 
 tumor <- tumor[,colData(tumor)$subclones != 'c0']
 ```
 
-The results from the clustering can be visualized with different plotting functions. For example `plotUmap()` can be used with the argument 'label':
+We can use different plotting functions to visualize clustering results. For example `plotUmap()` can be used with the argument 'label':
 
 ```{r plot_umap_subclones}
 plotUmap(tumor, label = 'subclones')
@@ -144,20 +151,23 @@ plotUmap(tumor, label = 'subclones')
 
 ## runPhylo()
 
-CopyKit can store phylogenetic trees inside the scCNA object. To run a phylogenetic tree simply use the function `runPhylo()`. The resulting tree is stored within the scCNA object in the phylo slot:
+To run a phylogenetic analysis use the function `runPhylo()`. 
+Available methods are [Neighbor Joining](https://pubmed.ncbi.nlm.nih.gov/3447015/) and [Balanced Minimum evolution](https://pubmed.ncbi.nlm.nih.gov/8412650/)
+
+The resulting tree is stored within the CopyKit object in the phylo slot:
 ```{r run_phylo}
 tumor <- runPhylo(tumor, metric = 'manhattan')
 ```
 
 ## plotPhylo()
 
-Resulting phylogenetic trees from `runPhylo()` can be plotted with the function `plotPhylo()`
+To visualize the resulting phylogenetic trees from `runPhylo()` we can use the `plotPhylo()` function.
 
 ```{r plot_phylo, fig.height=8}
 plotPhylo(tumor)
 ```
 
-`plotPhylo()` can use any element of the metadata to color the leaves of the tree
+`plotPhylo()` can use any element of the colData to color the leaves of the tree.
 
 ```{r plot_phylo_label, fig.height=8}
 plotPhylo(tumor, label = 'subclones')
@@ -165,7 +175,9 @@ plotPhylo(tumor, label = 'subclones')
 
 ## calcInteger()
 
-Segment mean ratios can be scaled to integer values, this process of ploidy scaling is accomplished within CopyKit with `calcInteger()`. CopyKit supports different methods of calculating integer copy number profiles.
+Segment ratio means can be scaled to integer values with `calcInteger()`. 
+
+CopyKit supports different methods of calculating integer copy number profiles.
 
 To calculate computational ploidies CopyKit adopts the [scquantum]() package. To use scquantum just set the argument method to *scquantum*.
 
@@ -179,35 +191,47 @@ By setting the argument `method` to *fixed*, a fixed value of ploidy (generally 
 tumor <- calcInteger(tumor, ploidy_value = 4.3)
 ```
 
-Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()` as long as it contains the same length and sample order as `colData()`
+Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()`, as long as it is of the same length and sample order as `colData()`
 
-The integer segment mean ratios are stored in the slot `integer` that can be accessed with the function `assay()`
+The integer values are stored in the slot `integer` that can be accessed with the function `assay()`
 
-If a value of ploidy exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
+If the assay _integer_ exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
 ```{r plot_ratio_integer, warning=FALSE}
 plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 ```
 
 ## plotHeatmap()
 
-A heatmap can be used to visualize the copy number profiles of the dataset annotated with the subclonal information:
+To visualize copy number profiles with a heatmap we can use `plotHeatmap()` 
 
+The heatmap can be annotated with elements of colData.
+
+To order subclones, one option is to calculate a consensus phylogeny, explained in later sections:
+```{r}
+tumor <- calcConsensus(tumor)
+tumor <- runConsensusPhylo(tumor)
+```
+
+To plot the heatmap.
 ```{r plot_heatmap_subclones, fig.height=8}
 plotHeatmap(tumor, label = 'subclones')
 ```
 
-Integer copy number heatmaps can be plotted with `plotHeatmap()` and the argument `assay = 'integer'`, importantly the integer matrix must be in the `'integer'` slot.
+To plot integer copy number heatmaps pass the argument `assay = 'integer'`, importantly the integer matrix must be in the `'integer'`slot.
 ```{r plot_ht_int, fig.height=8}
 plotHeatmap(tumor, assay = 'integer')
 ```
 
-Importantly, new information can be added to the metadata and used in conjunction with the plotting functions. The dataset in this example has some spatial information obtained from the macrodissection of the tissue. It is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:
+New information can be added to `colData()` and used in conjunction with the plotting functions. 
+
+The example dataset has macro-spatial information. 
+The information is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:
 
 ```{r add_spatial_info}
 colData(tumor)$spatial_info <- stringr::str_extract(colData(tumor)$sample, "L[0-9]")
 ```
 
-Once the information has been added, we can use it to color the heatmap points by their spatial information:
+Once the information has been added, we can use it to color the umap by their spatial information:
 
 ```{r umap_spatial}
 plotUmap(tumor, label = 'spatial_info')
@@ -219,26 +243,29 @@ The 'label' argument for `plotHeatmap()` can add as many annotations as specifie
 plotHeatmap(tumor, label = c("spatial_info", "subclones"))
 ```
 
-If `calcInteger()` was performed, it is possible to visualize how much the copy number calls deviate from the expected integer states by using `plotHeatmap()` with the argument `rounding_error` set to `TRUE`
+If `calcInteger()` was performed, it is possible to visualize deviations from the expected integer states by using `plotHeatmap()` with the argument `rounding_error` set to `TRUE`
+
 ```{r rounding_error, fig.height=8}
 plotHeatmap(tumor, label = 'subclones', assay = 'integer', rounding_error = TRUE)
 ```
 
 ## plotFreq()
 
-Computing the frequencies of genomic gain or losses across the genome can be useful to visualize the differences between groups. This can be done with `plotFreq()`. 
-For every region of the genome, `plotFreq()` will calculate the frequency of gain or losses according to a determined threshold across all samples.
-The thresholds are controlled with the arguments `low_threshold` (values below this value will be counted as genomic losses) and `high_threshold` (values above this value will be counted as genomic gains).
-Ideally those values will be set accordingly to the ploidy of the sample. the sample used in the example throughout this documentation has a ploidy of approximately 4.3, therefore a gain or loss of one copy number for this sample should have a difference in the segment ratio value of 1/4.3 (~0.23). Therefore we will set the accordingly to a difference of plus or minus 0.2 (leaving some room for error), compared to a segment ratio of 1.
+Computing the frequencies of genomic gain or losses across the genome can be useful to visualize differences between groups. This can be done with `plotFreq()`. 
+For every region of the genome, `plotFreq()` will calculate the frequency of gain or losses according to a threshold across all samples.
+The thresholds are controlled with the arguments `low_threshold` (values below will be counted as genomic losses) and `high_threshold` (values above will be counted as genomic gains).
 
-The argument `assay` can be provided to pass on the `integer` assay instead of the `segment_ratios` assay.
+Ideally thresholds will be set according to the ploidy of the sample. 
+For example, the sample presented throughout this documentation has a ploidy of approximately 4.3, therefore a gain or loss of one copy number for this sample should have a difference in the segment ratio value of 1/4.3 (~0.23). Therefore we will set the accordingly to a difference of plus or minus 0.2 (leaving some room for error), compared to a segment ratio of 1.
+
+The argument `assay` can be provided to pass on the `integer` assay instead of the `segment_ratios` assay (adjust thresholds accordingly).
 
 Two geoms are available `area` or `line`
 ```{r plot_freq_sample}
 plotFreq(tumor, low_threshold = 0.8, high_threshold = 1.2)
 ```
 
-Group information can be set to any categorical element of the metadata and is provided with the argument `label`. If no information is provided on `label` a frequency plot of the entire sample will be plotted.
+Group information can be set to any categorical element of the `colData()` and is provided with the argument `label`.
 
 ```{r plot_freq_label, fig.height=6}
 plotFreq(tumor, 
@@ -249,33 +276,32 @@ plotFreq(tumor,
 
 ## calcConsensus()
 
-Consensus sequences can help visualize the different segments across the groups of cells. A consensus sequence can be calculated in CopyKit with the function `calcConsensus()`
+Consensus sequences can help visualize the different segments across subclones. To calculate consensus matrices we can use `calcConsensus()`
 ```{r calc_consensus}
 tumor <- calcConsensus(tumor)
 ```
 
-`plotHeatmap()` can also plot consensus heatmap of the CopyKit object:
+`plotHeatmap()` can plot a consensus heatmap:
 ```{r plot_heat_consensus}
 plotHeatmap(tumor, consensus = TRUE, label = 'subclones')
 ```
 
-By default `calcConsensus()` uses the subclones information to calculate a consensus for each subclone. Importantly, any element of the `colData()` can be used to calculate the consensus.
-```{r calc_consensus_spatial}
-tumor <- calcConsensus(tumor, consensus_by = "spatial_info")
+`plotHeatmap()` can annotate the consensus heatmap with information from the metadata:
+```{r plot_heat_freq_bar}
+plotHeatmap(tumor, consensus = TRUE, label = 'subclones', group = 'spatial_info')
 ```
 
-```{r consensus_spatial_head}
-plotHeatmap(tumor, consensus = TRUE, label = 'spatial_info')
-```
+By default `calcConsensus()` uses the subclones information to calculate a consensus for each subclone.
+Any element of the `colData()` can be used to calculate the consensus.
 
-**Note:** Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the `assay(scCNA, 'integer')` slot. Check `calcInteger()` for more info.
+**Note:** Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the `assay(tumor, 'integer')` slot. Check `calcInteger()` for more info.
 ```{r eval = FALSE}
 tumor <- calcConsensus(tumor, consensus_by = 'subclones', assay = 'integer')
 ```
 
 ## plotConsensusLine()
 
-To make it easier to compare the differences among subclones, `plotConsensusLine()` opens an app where the consensus sequences are plotted as lines and a checkbox can be used to add overlays of the sequences. Making it easier to determine the differences between regions.
+To compare the differences among subclones, `plotConsensusLine()` opens an interactive app where the consensus sequences are plotted as lines.
 
 ```{r calc_consensus_again, echo = FALSE}
 tumor <- calcConsensus(tumor)
@@ -293,7 +319,9 @@ plotConsensusLine(tumor)
 
 Finding variable genes can provide important information as to which genes contribute the most to the subclonal structure of the sample. This can be done with `findVariableGenes()`.
 
-`findVariableGenes()` requires a list of genes to be provided with the argument `genes`. To facilitate *CopyKit* provides a list of 100 putative oncogenes and tumor supressor genes from [Davoli et al.](https://www.sciencedirect.com/science/article/pii/S0092867413012877?via%3Dihub) in a vector called `tumor_genes` which is loaded with CopyKit.
+`findVariableGenes()` requires a list of genes with the argument `genes`. 
+
+A list of 100 putative oncogenes and tumor supressor genes from [Davoli et al.](https://www.sciencedirect.com/science/article/pii/S0092867413012877?via%3Dihub) can be found in a vector called `tumor_genes`, which is loaded with CopyKit.
 The argument `top_n` controls the number of genes to be returned
 
 ```{r fvg}
@@ -306,9 +334,21 @@ The resulting list of variable genes is stored within the metadata of the CopyKi
 ```{r fvg_result}
 metadata(tumor)$hvg
 ```
-Results are on decreasing order from most variable to list variable. The results can be visualized with `plotVariableGenes()` and `plotGeneCopy()`.
+Results are presented from most variable to list variable. 
 
-Importantly, `findVariableGenes()` cannot be used as a comparison of groups but as a way of finding the most variable genes across the entire sample. Another thing to be aware is that genes that are overexpressed and present diversity of copy number states tend to be oncogenes, therefore using only `findVariableGenes()` as a discovery tool can under emphasize events in important tumor supressor genes across a sample. 
+The results can be visualized with `plotVariableGenes()` and `plotGeneCopy()`.
+
+Note: Genes with large diversity of copy number states tend to be oncogenes, Using `findVariableGenes()` as a discovery tool can under represent events in tumor supressor genes that tend to be deleted. 
+
+Genes can be annotated to a heatmap in `plotHeatmap()` with the _genes_ argument.
+```{r plot_heatmap_subclones_genes, fig.height=8}
+plotHeatmap(tumor, label = 'subclones', genes = metadata(tumor)$hvg)
+```
+
+The genes argument can be a vector of gene HUGO symbols:
+```{r plot_heatmap_subclones_genes_falsee, eval=FALSE, fig.height=8}
+plotHeatmap(tumor, label = 'subclones', genes = c("TP53", "BRAF", "MYC"))
+```
 
 ## plotVariableGenes()
 
@@ -320,7 +360,9 @@ plotVariableGenes(tumor)
 
 ## plotGeneCopy()
 
-It might be of interest to check for the copy number states across all the samples for different genes. That can be done with `plotGeneCopy()` in two different geoms: “swarm” (default) or “violin”. As with other plot functions, points can be colored with the argument 'label'.
+To check copy number states across of genes we can use `plotGeneCopy()`. Two different geoms: “swarm” (default) or “violin” can be applied. 
+
+As with other plotting functions, points can be colored with the argument 'label'.
 
 ```{r}
 plotGeneCopy(tumor, genes = c("CDKN2A",
@@ -362,4 +404,10 @@ plotGeneCopy(tumor, genes = c("CDKN2A",
              assay = 'integer')
 ```
 
+## plotAlluvial()
+
+To visualize frequencies across elements of the metadata we can use `plotAlluvial()` 
+```{r}
+plotAlluvial(tumor, label = c("subclones", "spatial_info"))
+```
 

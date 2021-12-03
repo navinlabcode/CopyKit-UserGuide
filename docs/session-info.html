@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Session Info | CopyKit User Guide</title>
+  <title>8 Session Info | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Session Info | CopyKit User Guide" />
+  <meta property="og:title" content="8 Session Info | CopyKit User Guide" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Session Info | CopyKit User Guide" />
+  <meta name="twitter:title" content="8 Session Info | CopyKit User Guide" />
   
   <meta name="twitter:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
   
@@ -30,10 +30,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analysis-and-visualization-module.html"/>
+<link rel="prev" href="learn-more.html"/>
 
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -163,10 +163,10 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-bam-files"><i class="fa fa-check"></i><b>4.1</b> From BAM files</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#cbs-dnacopy"><i class="fa fa-check"></i><b>4.1.1</b> CBS {DNACopy}</a></li>
-<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#multipcf-copynumber"><i class="fa fa-check"></i><b>4.1.2</b> multipcf {copynumber}</a></li>
+<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.2</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
@@ -196,8 +196,21 @@ div.csl-indent {
 <li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findvariablegenes"><i class="fa fa-check"></i><b>6.13</b> findVariableGenes()</a></li>
 <li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotvariablegenes"><i class="fa fa-check"></i><b>6.14</b> plotVariableGenes()</a></li>
 <li class="chapter" data-level="6.15" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.15</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.16" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.16</b> plotAlluvial()</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>7</b> Session Info</a></li>
+<li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>7.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="7.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>7.2</b> Principle</a></li>
+<li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
+<li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
+<li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.6</b> Segmentation</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.6.1</b> CBS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -218,12 +231,12 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="session-info" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Session Info</h1>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="session-info.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.1.0 (2021-05-18)
+<div id="session-info" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Session Info</h1>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="session-info.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.1 (2021-08-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.2 LTS
+## Running under: Ubuntu 20.04.3 LTS
 ## 
 ## Matrix products: default
 ## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
@@ -235,74 +248,83 @@ div.csl-indent {
 ## [10] LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] copykit_0.0.0.9025          SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
-##  [4] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.2        
-##  [7] IRanges_2.26.0              S4Vectors_0.30.0            BiocGenerics_0.38.0        
-## [10] MatrixGenerics_1.4.3        matrixStats_0.60.1          BiocParallel_1.26.2        
-## [13] bookdown_0.23               devtools_2.4.2              usethis_2.0.1              
+##  [1] BiocParallel_1.28.0         bookdown_0.24               copykit_0.0.0.9031         
+##  [4] DNAcopy_1.68.0              Rsubread_2.8.1              SingleCellExperiment_1.16.0
+##  [7] SummarizedExperiment_1.24.0 Biobase_2.54.0              GenomicRanges_1.46.0       
+## [10] GenomeInfoDb_1.30.0         IRanges_2.28.0              S4Vectors_0.32.2           
+## [13] BiocGenerics_0.40.0         MatrixGenerics_1.6.0        matrixStats_0.61.0         
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] utf8_1.2.2                reticulate_1.20           tidyselect_1.1.1         
-##   [4] grid_4.1.0                munsell_0.5.0             aCGH_1.70.0              
-##   [7] ScaledMatrix_1.0.0        codetools_0.2-18          statmod_1.4.36           
-##  [10] scran_1.20.1              miniUI_0.1.1.1            withr_2.4.2              
-##  [13] colorspace_2.0-2          highr_0.9                 knitr_1.33               
-##  [16] rstudioapi_0.13           robustbase_0.93-8         Rsubread_2.6.4           
-##  [19] labeling_0.4.2            GenomeInfoDbData_1.2.6    farver_2.1.0             
-##  [22] rprojroot_2.0.2           vctrs_0.3.8               treeio_1.16.2            
-##  [25] generics_0.1.0            xfun_0.23                 fastcluster_1.2.3        
-##  [28] diptest_0.76-0            R6_2.5.1                  doParallel_1.0.16        
-##  [31] ggbeeswarm_0.6.0          clue_0.3-59               rsvd_1.0.5               
-##  [34] locfit_1.5-9.4            pals_1.7                  flexmix_2.3-17           
-##  [37] bitops_1.0-7              cachem_1.0.6              DelayedArray_0.18.0      
-##  [40] assertthat_0.2.1          promises_1.2.0.1          scales_1.1.1             
-##  [43] nnet_7.3-16               beeswarm_0.4.0            gtable_0.3.0             
-##  [46] beachmat_2.8.1            Cairo_1.5-12.2            processx_3.5.2           
-##  [49] rlang_0.4.11              GlobalOptions_0.1.2       splines_4.1.0            
-##  [52] lazyeval_0.2.2            dichromat_2.0-0           yaml_2.2.1               
-##  [55] httpuv_1.6.2              tools_4.1.0               ggplot2_3.3.5            
-##  [58] ellipsis_0.3.2            jquerylib_0.1.4           RColorBrewer_1.1-2       
-##  [61] DNAcopy_1.66.0            sessioninfo_1.1.1         Rcpp_1.0.7               
-##  [64] sparseMatrixStats_1.4.2   zlibbioc_1.38.0           purrr_0.3.4              
-##  [67] RCurl_1.98-1.4            ps_1.6.0                  prettyunits_1.1.1        
-##  [70] dbscan_1.1-8              viridis_0.6.1             GetoptLong_1.0.5         
-##  [73] cowplot_1.1.1             cluster_2.1.2             fs_1.5.0                 
-##  [76] magrittr_2.0.1            RSpectra_0.16-0           magick_2.7.3             
-##  [79] data.table_1.14.0         circlize_0.4.13           amap_0.8-18              
-##  [82] ggnewscale_0.4.5          pkgload_1.2.1             patchwork_1.1.1          
-##  [85] mime_0.11                 evaluate_0.14             xtable_1.8-4             
-##  [88] mclust_5.4.7              gridExtra_2.3             shape_1.4.6              
-##  [91] testthat_3.0.4            compiler_4.1.0            tibble_3.1.4             
-##  [94] maps_3.3.0                crayon_1.4.1              htmltools_0.5.2          
-##  [97] mgcv_1.8-36               segmented_1.3-4           ggfun_0.0.3              
-## [100] later_1.3.0               tidyr_1.1.3               aplot_0.0.6              
-## [103] lubridate_1.7.10          DBI_1.1.1                 ComplexHeatmap_2.8.0     
-## [106] MASS_7.3-54               fpc_2.2-9                 boot_1.3-28              
-## [109] leidenbase_0.1.3          Matrix_1.3-4              cli_3.0.1                
-## [112] metapod_1.0.0             igraph_1.2.6              forcats_0.5.1            
-## [115] pkgconfig_2.0.3           scuttle_1.2.1             foreach_1.5.1            
-## [118] ggtree_3.0.4              vipor_0.4.5               bslib_0.2.5.1            
-## [121] dqrng_0.3.0               multtest_2.48.0           XVector_0.32.0           
-## [124] snakecase_0.11.0          yulab.utils_0.0.2         stringr_1.4.0            
-## [127] callr_3.7.0               digest_0.6.27             janitor_2.1.0            
-## [130] Biostrings_2.60.2         rmarkdown_2.10            leiden_0.3.9             
-## [133] tidytree_0.3.4            uwot_0.1.10               edgeR_3.34.0             
-## [136] DelayedMatrixStats_1.14.3 curl_4.3.2                kernlab_0.9-29           
-## [139] shiny_1.6.0               Rsamtools_2.8.0           gtools_3.9.2             
-## [142] modeltools_0.2-23         rjson_0.2.20              lifecycle_1.0.0          
-## [145] nlme_3.1-152              jsonlite_1.7.2            BiocNeighbors_1.10.0     
-## [148] mapproj_1.2.7             viridisLite_0.4.0         desc_1.3.0               
-## [151] limma_3.48.3              fansi_0.5.0               pillar_1.6.2             
-## [154] lattice_0.20-44           DEoptimR_1.0-9            fastmap_1.1.0            
-## [157] pkgbuild_1.2.0            survival_3.2-11           glue_1.4.2               
-## [160] remotes_2.4.0             FNN_1.1.3                 png_0.1-7                
-## [163] prabclus_2.3-2            iterators_1.0.13          bluster_1.2.1            
-## [166] mixtools_1.2.0            class_7.3-19              stringi_1.7.4            
-## [169] sass_0.4.0                BiocSingular_1.8.1        memoise_2.0.0            
-## [172] dplyr_1.0.7               irlba_2.3.3               ape_5.5</code></pre>
+##   [1] rappdirs_0.3.3            rtracklayer_1.54.0        prabclus_2.3-2           
+##   [4] coda_0.19-4               tidyr_1.1.4               ggplot2_3.3.5            
+##   [7] clusterGeneration_1.3.7   bit64_4.0.5               knitr_1.36               
+##  [10] irlba_2.3.3               DelayedArray_0.20.0       KEGGREST_1.34.0          
+##  [13] RCurl_1.98-1.5            doParallel_1.0.16         generics_0.1.1           
+##  [16] GenomicFeatures_1.46.1    ScaledMatrix_1.2.0        cowplot_1.1.1            
+##  [19] RSQLite_2.2.8             combinat_0.0-8            bit_4.0.4                
+##  [22] xml2_1.3.2                lubridate_1.8.0           httpuv_1.6.3             
+##  [25] assertthat_0.2.1          viridis_0.6.2             amap_0.8-18              
+##  [28] xfun_0.28                 jquerylib_0.1.4           hms_1.1.1                
+##  [31] evaluate_0.14             promises_1.2.0.1          DEoptimR_1.0-9           
+##  [34] fansi_0.5.0               restfulr_0.0.13           progress_1.2.2           
+##  [37] dbplyr_2.1.1              igraph_1.2.8              DBI_1.1.1                
+##  [40] tmvnsim_1.0-2             paletteer_1.4.0           purrr_0.3.4              
+##  [43] ellipsis_0.3.2            RSpectra_0.16-0           dplyr_1.0.7              
+##  [46] ggnewscale_0.4.5          backports_1.3.0           biomaRt_2.50.0           
+##  [49] sparseMatrixStats_1.6.0   vctrs_0.3.8               ggalluvial_0.12.3        
+##  [52] cachem_1.0.6              robustbase_0.93-9         GenomicAlignments_1.30.0 
+##  [55] treeio_1.18.0             prettyunits_1.1.1         scran_1.22.0             
+##  [58] mclust_5.4.7              mnormt_2.0.2              phytools_0.7-90          
+##  [61] cluster_2.1.2             ape_5.5                   segmented_1.3-4          
+##  [64] lazyeval_0.2.2            crayon_1.4.2              labeling_0.4.2           
+##  [67] edgeR_3.36.0              pkgconfig_2.0.3           vipor_0.4.5              
+##  [70] nlme_3.1-153              nnet_7.3-16               pals_1.7                 
+##  [73] rlang_0.4.12              diptest_0.76-0            lifecycle_1.0.1          
+##  [76] miniUI_0.1.1.1            filelock_1.0.2            dbscan_1.1-8             
+##  [79] BiocFileCache_2.2.0       rsvd_1.0.5                dichromat_2.0-0          
+##  [82] Matrix_1.3-4              aplot_0.1.1               phangorn_2.7.1           
+##  [85] boot_1.3-28               beeswarm_0.4.0            GlobalOptions_0.1.2      
+##  [88] viridisLite_0.4.0         png_0.1-7                 rjson_0.2.20             
+##  [91] bitops_1.0-7              Biostrings_2.62.0         blob_1.2.2               
+##  [94] DelayedMatrixStats_1.16.0 shape_1.4.6               stringr_1.4.0            
+##  [97] gridGraphics_0.5-1        beachmat_2.10.0           scales_1.1.1             
+## [100] memoise_2.0.0             magrittr_2.0.1            zlibbioc_1.40.0          
+## [103] compiler_4.1.1            dqrng_0.3.0               BiocIO_1.4.0             
+## [106] RColorBrewer_1.1-2        plotrix_3.8-2             clue_0.3-60              
+## [109] cli_3.1.0                 Rsamtools_2.10.0          snakecase_0.11.0         
+## [112] XVector_0.34.0            patchwork_1.1.1           mgcv_1.8-38              
+## [115] MASS_7.3-54               tidyselect_1.1.1          stringi_1.7.5            
+## [118] forcats_0.5.1             highr_0.9                 purler_0.1.1             
+## [121] yaml_2.2.1                BiocSingular_1.10.0       locfit_1.5-9.4           
+## [124] grid_4.1.1                sass_0.4.0                fastmatch_1.1-3          
+## [127] tools_4.1.1               parallel_4.1.1            circlize_0.4.13          
+## [130] rstudioapi_0.13           bluster_1.4.0             foreach_1.5.1            
+## [133] gridExtra_2.3             janitor_2.1.0             metapod_1.2.0            
+## [136] farver_2.1.0              scatterplot3d_0.3-41      digest_0.6.28            
+## [139] FNN_1.1.3                 shiny_1.7.1               quadprog_1.5-8           
+## [142] fpc_2.2-9                 Rcpp_1.0.7                broom_0.7.10             
+## [145] scuttle_1.4.0             later_1.3.0               httr_1.4.2               
+## [148] AnnotationDbi_1.56.1      ComplexHeatmap_2.10.0     kernlab_0.9-29           
+## [151] colorspace_2.0-2          XML_3.99-0.8              reticulate_1.22          
+## [154] splines_4.1.1             uwot_0.1.10               yulab.utils_0.0.4        
+## [157] statmod_1.4.36            rematch2_2.1.2            tidytree_0.3.5           
+## [160] expm_0.999-6              aCGH_1.72.0               multtest_2.50.0          
+## [163] mapproj_1.2.7             ggplotify_0.1.0           flexmix_2.3-17           
+## [166] xtable_1.8-4              jsonlite_1.7.2            ggtree_3.2.0             
+## [169] modeltools_0.2-23         ggfun_0.0.4               R6_2.5.1                 
+## [172] pillar_1.6.4              htmltools_0.5.2           mime_0.12                
+## [175] glue_1.4.2                fastmap_1.1.0             BiocNeighbors_1.12.0     
+## [178] class_7.3-19              codetools_0.2-18          maps_3.4.0               
+## [181] utf8_1.2.2                bslib_0.3.1               lattice_0.20-45          
+## [184] tibble_3.1.5              mixtools_1.2.0            numDeriv_2016.8-1.1      
+## [187] ggbeeswarm_0.6.0          curl_4.3.2                leiden_0.3.9             
+## [190] gtools_3.9.2              magick_2.7.3              survival_3.2-13          
+## [193] limma_3.50.0              rmarkdown_2.11            munsell_0.5.0            
+## [196] GetoptLong_1.0.5          fastcluster_1.2.3         GenomeInfoDbData_1.2.7   
+## [199] iterators_1.0.13          gtable_0.3.0</code></pre>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
@@ -311,6 +333,9 @@ Baslan, T., J. Kendall, L. Rodgers, H. Cox, M. Riggs, A. Stepansky, J. Troge, et
 <div class="csl-entry">
 Gao, R., A. Davis, T. O. McDonald, E. Sei, X. Shi, Y. Wang, P. C. Tsai, et al. 2016. <span>“Punctuated Copy Number Evolution and Clonal Stasis in Triple-Negative Breast Cancer.”</span> Journal Article. <em>Nat Genet</em> 48 (10): 1119–30. <a href="https://doi.org/10.1038/ng.3641">https://doi.org/10.1038/ng.3641</a>.
 </div>
+<div class="csl-entry">
+Navin, N., J. Kendall, J. Troge, P. Andrews, L. Rodgers, J. McIndoo, K. Cook, et al. 2011. <span>“Tumour Evolution Inferred by Single-Cell Sequencing.”</span> Journal Article. <em>Nature</em> 472 (7341): 90–94. <a href="https://doi.org/10.1038/nature09807">https://doi.org/10.1038/nature09807</a>.
+</div>
 </div>
 </div>
             </section>
@@ -318,12 +343,11 @@ Gao, R., A. Davis, T. O. McDonald, E. Sei, X. Shi, Y. Wang, P. C. Tsai, et al. 2
           </div>
         </div>
       </div>
-<a href="analysis-and-visualization-module.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="learn-more.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -364,7 +388,7 @@ gitbook.start({
 },
 "download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

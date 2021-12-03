@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Parallelization | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Parallelization | CopyKit User Guide" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="quick-start.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -163,10 +163,10 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1</b> runVarbin()</a>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-bam-files"><i class="fa fa-check"></i><b>4.1</b> From BAM files</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#cbs-dnacopy"><i class="fa fa-check"></i><b>4.1.1</b> CBS {DNACopy}</a></li>
-<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#multipcf-copynumber"><i class="fa fa-check"></i><b>4.1.2</b> multipcf {copynumber}</a></li>
+<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.2</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
@@ -196,8 +196,21 @@ div.csl-indent {
 <li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findvariablegenes"><i class="fa fa-check"></i><b>6.13</b> findVariableGenes()</a></li>
 <li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotvariablegenes"><i class="fa fa-check"></i><b>6.14</b> plotVariableGenes()</a></li>
 <li class="chapter" data-level="6.15" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.15</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.16" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.16</b> plotAlluvial()</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>7</b> Session Info</a></li>
+<li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>7.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="7.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>7.2</b> Principle</a></li>
+<li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
+<li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
+<li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.6</b> Segmentation</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.6.1</b> CBS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -220,26 +233,24 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="parallelization" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Parallelization</h1>
-<p>For all parallel calculations, <em>CopyKit</em> adopts the <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf">BiocParallel</a> framework.</p>
-<p>Make sure to read the BiocParallel vignette to choose the best parameters for your machine. An example workflow can be done as follows:</p>
-<p>We use <code>BiocParallel::register()</code> function to register the number of workers desired.</p>
+<p>Whenever possible, <em>CopyKit</em> uses the <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf">BiocParallel</a> framework.</p>
+<p>Running parallel process is highly recommended to speed up CopyKit calculations.</p>
+<p>Make sure to read the BiocParallel <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf">vignette</a> to choose the best parameters for your machine and OS.</p>
+<p>Use <code>BiocParallel::register()</code> function to register the number of workers desired.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="parallelization.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiocParallel)</span>
 <span id="cb3-2"><a href="parallelization.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">register</span>(<span class="fu">MulticoreParam</span>(<span class="at">progressbar =</span> T), <span class="at">default =</span> T)</span></code></pre></div>
-<p>The default parameter can be confirmed with:</p>
+<p>Confirm parameters:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="parallelization.html#cb4-1" aria-hidden="true" tabindex="-1"></a>BiocParallel<span class="sc">::</span><span class="fu">bpparam</span>()</span></code></pre></div>
 <pre><code>## class: MulticoreParam
 ##   bpisup: FALSE; bpnworkers: 124; bptasks: 0; bpjobname: BPJOB
 ##   bplog: FALSE; bpthreshold: INFO; bpstopOnError: TRUE
 ##   bpRNGseed: ; bptimeout: 2592000; bpprogressbar: FALSE
-##   bpexportglobals: TRUE
+##   bpexportglobals: TRUE; bpforceGC: TRUE
 ##   bplogdir: NA
 ##   bpresultdir: NA
 ##   cluster type: FORK</code></pre>
-<p>Make sure to check the number of workers in use. The higher the number of workers
-available the faster <em>CopyKit</em> computations will perform.</p>
-<p>The argument <em>progressbar</em> allows for a helpful progression bar while the process is being run.</p>
-<p>After this setup <em>CopyKit</em> parallelized functions will automatically recognize these parameters and run in parallel.</p>
-<p>Running parallel process is highly recommended to speed up CopyKit calculations.</p>
+<p>Make sure to check the number of workers.</p>
+<p>Use the argument <em>progressbar</em> to obtain a progress bar.</p>
 
 </div>
             </section>
@@ -252,7 +263,6 @@ available the faster <em>CopyKit</em> computations will perform.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -293,7 +303,7 @@ gitbook.start({
 },
 "download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

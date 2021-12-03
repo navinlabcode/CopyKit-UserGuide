@@ -1,58 +1,73 @@
 # QC module
 
-CopyKit QC Module consists of 3 main functions: 1) `runMetrics()`, 2) `filterCells()` and 3) `findNormalCells()`.
+CopyKit QC Module consists of 3 main functions: 
+1) `runMetrics()`
+2) `filterCells()` 
+3) `findNormalCells()`.
 
 ## runMetrics()
 
-`runMetrics()` is used to add basic quality control information to the metadata of the CopyKit object. It will return information on the overdispersion on the datasets and the number of breakpoints for each single-cell.
+`runMetrics()` adds basic quality control information to colData. 
+It returns sample-wise metrics of overdispersion and breakpoint counts.
 
 ```{r run_metrics}
 tumor <- runMetrics(tumor)
 ```
 
-The resulting information can be seen at the metadata with:
+The resulting information can be seen with:
 ```{r rm_metadata}
 colData(tumor)
 ```
 
 ## findNormalCells()
 
-It is common for datasets to contain normal cells with flat profiles mixed in with the aneuploidy cells from a tumor that is being profiled. `findNormalCells()` performs a sample-wise calculation of the segment ratios coefficient of variation. By default `findNormalCells()` tries to automatically identify the resolution threshold by fitting a normal mixture model to the distribution of coefficient of variation from all samples. To increase the sensitivity of the model, findNormalCells also simulate the expected coefficient of variation. Lastly, `findNormalCells()` add the resulting information to the metadata of the CopyKit object in a column named 'is_normal'. 
+Datasets may contain normal cells mixed with the aneuploidy cells. 
+
+To detect diploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. The expected coefficient of variation for diploid cells N(0, 0.01) is simulated for a thousand data points. An expectation-maximization algorithm is used to fit a mixture of normal distributions to the coefficient of variation from the samples together with the simulated datasets. The distribution containing the simulated dataset is inferred to be the diploid distribution. Samples that group with the inferred diploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean diploid distributions are classified as diploid samples.
+
+The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`.
+
 
 ```{r find_normal_cells}
 tumor <- findNormalCells(tumor)
 ```
 
-`plotHeatmap()` can again be used to visualize the results from `findNormalCells()`
+The results from `findNormalCells()` are stored within the colData in the column _is_normal_.
+
+We can visualize the results with `plotHeatmap()` 
 ```{r find_normal_heat, fig.height=8}
 plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal')
 ```
 
-The object can be subsetted in the same way as any R object is subsetted.
+The object is subsetted in the same way as with any R object.
 ```{r find_normal_subset}
 tumor <- tumor[,colData(tumor)$is_normal == FALSE]
 ```
 
 ## filterCells()
 
-`filterCells()` removes low-quality cells according to a defined resolution threshold. Cells with correlation smaller than the mean of its k-nearest neighbors are defined as noisy samples and this information, as well as the correlation value, is added to the scCNA object metadata. 
+`filterCells()` removes low-quality cells according to a defined resolution threshold.
+
+To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means. Next, we calculate a sample-wise mean of the correlation between a sample and its k-nearest-neighbors (default = 5). Samples in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
 
 ```{r filter_cells}
 tumor <- filterCells(tumor)
 ```
 
-The default resolution threshold is 0.9 and it can be adjusted accordingly to user needs with the argument 'resolution'.
-`filterCells()` adds a column to the metadata called 'filtered' marking cells that should be removed or kept.
-After filtering the function `plotHeatmap()` from the visualization module can be used to visualize the results from `filterCells()` with the argument label set to 'filtered'. To make visualization easier, rows can also be split according to elements of the metadata with the argument row_split.
+The default resolution can be adjusted with the argument 'resolution'.
+
+Results from `filterCells()` are added to colData (column _filtered_) marking cells that should be removed or kept.
+
+We can check the results with `plotHeatmap()`. To make visualization easier, rows can also be split according to elements of colData with the argument row_split.
 
 ```{r filter_cells_heat, fig.height=8}
 plotHeatmap(tumor, label = 'filtered', row_split = 'filtered')
 ```
 
-If satisfied with the filtering results we remove the noise cells from the object.
+We remove the marked noise cells from the object with:
 
 ```{r filter_subset}
 tumor <- tumor[,colData(tumor)$filtered == 'kept']
 ```
 
-Your dataset should be ready to proceed with the analysis.
+The dataset should be ready to proceed with the analysis.
