@@ -19,7 +19,7 @@ description: "This is a user guide for the package CopyKit: A toolkit for single
 
 *CopyKit* provides a suite of tools for pre-processing, quality control, analysis, and visualization of single cell DNA sequencing datasets.
 
-The following chapters will cover each module in detail.
+The following chapters will cover each module in detail
 
 <center>
 ![copykit cheat sheet](images/copykit_cheat_sheet_DCM1.png){height=60% width=60%}
