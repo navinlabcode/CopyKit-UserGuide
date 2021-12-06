@@ -2,11 +2,15 @@
 
 This section provides a basic *CopyKit* workflow. 
 
+<!-- I always assume people need to have each step even loading the library. This is doubably true since you have different spellings/capitalizations.--> 
+
 ```{r quickstart, eval=FALSE}
+# Load library
+library(copykit)
+
 # Run pre-processing module
 tumor <- runVarbin("/path/to/marked/bam/files/",
                  remove_Y = TRUE)
-
 
 # Mark normal cells if they exist
 tumor <- findNormalCells(tumor)
@@ -33,11 +37,11 @@ plotSuggestedK(tumor)
 tumor  <- findClusters(tumor)
 plotUmap(tumor, label = 'subclones')
 
-# calculating consensus, passed on to plotHeatmap ordering
+# Calculate consensus, pass on to plotHeatmap ordering
 tumor <- calcConsensus(tumor)
 tumor <- runConsensusPhylo(tumor)
 
-# Plot a Copy Number Heatmap with clustering annotation
+# Plot a copy number heatmap with clustering annotation
 plotHeatmap(tumor, label = 'subclones')
 ```
 
