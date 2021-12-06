@@ -2,10 +2,11 @@
 
 Whenever possible, *CopyKit* uses the [BiocParallel](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) framework. 
 
-Running parallel process is highly recommended to speed up CopyKit calculations.
+Running parallel process is highly recommended to speed up *CopyKit* calculations.
 
 Make sure to read the BiocParallel [vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) to choose the best parameters for your machine and OS. 
 
+<!--- I suggest you use cores or workers/cores. I am not as familiar with the term workers. --->
 Use `BiocParallel::register()` function to register the number of workers desired.
 
 ```{r registering_fake, eval=FALSE}
@@ -23,6 +24,8 @@ Confirm parameters:
 BiocParallel::bpparam()
 ```
 
-Make sure to check the number of workers. 
+Make sure to check the number of cores to be used. 
+On Unix, Linux and Mac systems the number of workers will be the number of cores found using parallel::detectCores() minus 2. 
+If this not defined it will set it 1. Therefore, it is strongly suggested that you check the number of cores to get the best parallel optimization.
 
-Use the argument *progressbar* to obtain a progress bar.
+To visually monitor the progress, you can use the argument *progressbar* to obtain a progress bar. 
