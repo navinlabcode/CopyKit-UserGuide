@@ -1,6 +1,7 @@
 # QC module
 
 CopyKit QC Module consists of 3 main functions: 
+
 1) `runMetrics()`
 2) `filterCells()` 
 3) `findNormalCells()`.
@@ -23,10 +24,14 @@ colData(tumor)
 
 Datasets may contain normal cells mixed with the aneuploidy cells. 
 
-To detect diploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. The expected coefficient of variation for diploid cells N(0, 0.01) is simulated for a thousand data points. An expectation-maximization algorithm is used to fit a mixture of normal distributions to the coefficient of variation from the samples together with the simulated datasets. The distribution containing the simulated dataset is inferred to be the diploid distribution. Samples that group with the inferred diploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean diploid distributions are classified as diploid samples.
+To detect diploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
+The expected coefficient of variation for diploid cells N(0, 0.01) is simulated for a thousand data points. 
+An expectation-maximization algorithm is used to fit a mixture of normal distributions to the coefficient of variation from the samples together with the simulated datasets. 
+The distribution containing the simulated dataset is inferred to be the diploid distribution. 
+Samples that group with the inferred diploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean diploid distributions are classified as diploid samples.
 
 The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`.
-
+<!-- need to describe what you mean can be changes and how the change effects it.-->
 
 ```{r find_normal_cells}
 tumor <- findNormalCells(tumor)
@@ -34,7 +39,7 @@ tumor <- findNormalCells(tumor)
 
 The results from `findNormalCells()` are stored within the colData in the column _is_normal_.
 
-We can visualize the results with `plotHeatmap()` 
+We can visualize the results with `plotHeatmap()`:
 ```{r find_normal_heat, fig.height=8}
 plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal')
 ```
@@ -48,17 +53,20 @@ tumor <- tumor[,colData(tumor)$is_normal == FALSE]
 
 `filterCells()` removes low-quality cells according to a defined resolution threshold.
 
-To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means. Next, we calculate a sample-wise mean of the correlation between a sample and its k-nearest-neighbors (default = 5). Samples in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
+To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means. 
+Next, we calculate a sample-wise mean of the correlation between a sample and its k-nearest-neighbors (default = 5). 
+Samples in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
 
 ```{r filter_cells}
 tumor <- filterCells(tumor)
 ```
 
 The default resolution can be adjusted with the argument 'resolution'.
+<!-- need to describe what you mean can be changes and how the change effects it.-->
 
 Results from `filterCells()` are added to colData (column _filtered_) marking cells that should be removed or kept.
 
-We can check the results with `plotHeatmap()`. To make visualization easier, rows can also be split according to elements of colData with the argument row_split.
+We can check the results with `plotHeatmap()`. To make visualization easier, rows can also be split according to elements of colData with the argument `row_split`.
 
 ```{r filter_cells_heat, fig.height=8}
 plotHeatmap(tumor, label = 'filtered', row_split = 'filtered')
