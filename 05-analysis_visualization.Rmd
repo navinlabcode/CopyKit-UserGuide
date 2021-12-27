@@ -14,7 +14,7 @@ The analysis and visualization module from CopyKit work in synergy to help you a
 names(colData(tumor))
 ```
 
-colData information is provided to the argument `metric`.
+`colData` information is provided to the argument `metric`.
 
 The argument label, if supplied, will color the points based on that information.
 ```{r}
@@ -49,7 +49,7 @@ plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 
 ## runUmap()
 
-`runUmap()` generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) embedding. The resulting embedding is stored in the `reducedDim` slot 
+`runUmap()` generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) embedding. The resulting embedding is stored in the `reducedDim` slot. 
 
 `runUmap()` is an important pre-processing step to the `findClusters()` feature.
 
@@ -75,19 +75,27 @@ plotUmap(tumor)
 
 At a more fine-grained resolution, CopyKit can also be used to detect subclones. To do so, the umap embedding is used as the pre-processing step.
 
-When clustering for superclones `findClusters()` creates a graph representation of the reduced dimension embedding using a shared nearest neighbor algorithm (SNN). From this graph the connected components are extracted and generally represent high-level structures that share large copy number events.
+When clustering for superclones `findClusters()` creates a graph representation of the reduced dimension embedding using a shared nearest neighbor algorithm (SNN). 
+From this graph the connected components are extracted and generally represent high-level structures that share large copy number events.
 
 CopyKit can also be used to detect subclones. The umap embedding used as the pre-processing step. 
+
 Different clustering algorithms can be used to detect subclones:
+
 1) [hdbscan](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) (default)
+
 2) [Leiden](https://www.nature.com/articles/s41598-019-41695-z)
+
 3) [Louvain](https://arxiv.org/abs/0803.0476)
 
+<!-- Something is writing incorrectly in the reference section here. -->
 The hdbscan method is recommended and has been successfully previously applied in the work from Laks *et al.* [@RN6].
 
 ### findSugestedK()
 
-To help with parametrization, CopyKit provides the helper `findSuggestedK()` function. findSuggestedK performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity, by default the metric being maximized is *median* (argument `metric`). While findSuggestedK does not guarantee optimal clustering but provides a guide that maximizes cluster stability.
+To help with parametrization, CopyKit provides the helper `findSuggestedK()` function. 
+`findSuggestedK` performs a clustering bootstrapping over a range of k values and returns the value that maximizes the jaccard similarity, by default the metric being maximized is *median* (argument `metric`). 
+While `findSuggestedK` does not guarantee optimal clustering but provides a guide that maximizes cluster stability.
 
 ```{r find_suggested_k}
 tumor <- findSuggestedK(tumor)
@@ -95,13 +103,15 @@ tumor <- findSuggestedK(tumor)
 
 We can inspect the results of `findSuggestedK()` with `plotSuggestedK()`.
 
-The default geom plots a boxplot of each k assessed during the grid search as the red point inside each boxplot
+The default geom plots a boxplot of each k assessed during the grid search as the red point inside each boxplot.
 ```{r plot_suggested_k_boxplot}
 plotSuggestedK(tumor)
 ```
-In which red dots represent the mean.
 
-if the argument `geom` is set to *tile*, `plotSuggestedK()` plots a heatmap where each row is a detected subclone, each column is a k assessed during the grid search and the color represents the jaccard similarity for a given clone.
+<!-- it might be good to add a little more description of what how to read the plots. -->
+The boxplot shows the variation for each tested k with the red dots represent the mean.
+
+If the argument `geom` is set to *tile*, `plotSuggestedK()` plots a heatmap where each row is a detected subclone, each column is a k assessed during the grid search and the color represents the jaccard similarity for a given clone.
 
 Clones not detected in a given k are presented in gray.
 ```{r plot_suggested_k_tile}
@@ -137,7 +147,8 @@ tumor <- findClusters(tumor,
                       k_subclones = 15)
 ```
 
-If the method used for clustering was *hdbscan*, it is possible that a subgroup of outliers is identified, those are added to subgroup `c0` and may be removed by subsetting the copykit object. Copykit will inform if any cell was classified as c0 in an informative message after running `findClusters()`
+If the method used for clustering was *hdbscan*, it is possible that a subgroup of outliers is identified, those are added to subgroup `c0` and may be removed by subsetting the copykit object. 
+Copykit will inform if any cell was classified as c0 in an informative message after running `findClusters()`
 
 ```{r filter_outliers}
 tumor <- tumor[,colData(tumor)$subclones != 'c0']
@@ -181,6 +192,7 @@ CopyKit supports different methods of calculating integer copy number profiles.
 
 To calculate computational ploidies CopyKit adopts the [scquantum]() package. To use scquantum just set the argument method to *scquantum*.
 
+<!-- NOTE you have set this to not evaluate. Need to double check that it works outside of this. -->
 ```{r calc_integer_scquantum, eval = FALSE}
 tumor <- calcInteger(tumor, method = 'scquantum')
 ```
@@ -191,9 +203,9 @@ By setting the argument `method` to *fixed*, a fixed value of ploidy (generally 
 tumor <- calcInteger(tumor, ploidy_value = 4.3)
 ```
 
-Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()`, as long as it is of the same length and sample order as `colData()`
+Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()`, as long as it is of the same length and sample order as `colData()`.
 
-The integer values are stored in the slot `integer` that can be accessed with the function `assay()`
+The integer values are stored in the slot `integer` that can be accessed with the function `assay()`.
 
 If the assay _integer_ exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
 ```{r plot_ratio_integer, warning=FALSE}
@@ -202,7 +214,7 @@ plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 
 ## plotHeatmap()
 
-To visualize copy number profiles with a heatmap we can use `plotHeatmap()` 
+To visualize copy number profiles with a heatmap we can use `plotHeatmap()`. 
 
 The heatmap can be annotated with elements of colData.
 
@@ -225,7 +237,8 @@ plotHeatmap(tumor, assay = 'integer')
 New information can be added to `colData()` and used in conjunction with the plotting functions. 
 
 The example dataset has macro-spatial information. 
-The information is encoded in the sample name by the letter S followed by a number. We can extract that information and add it as an extra column to the metadata:
+The information is encoded in the sample name by the letter S followed by a number. 
+We can extract that information and add it as an extra column to the metadata:
 
 ```{r add_spatial_info}
 colData(tumor)$spatial_info <- stringr::str_extract(colData(tumor)$sample, "L[0-9]")
@@ -250,11 +263,12 @@ For every region of the genome, `plotFreq()` will calculate the frequency of gai
 The thresholds are controlled with the arguments `low_threshold` (values below will be counted as genomic losses) and `high_threshold` (values above will be counted as genomic gains).
 
 Ideally thresholds will be set according to the ploidy of the sample. 
-For example, the sample presented throughout this documentation has a ploidy of approximately 4.3, therefore a gain or loss of one copy number for this sample should have a difference in the segment ratio value of 1/4.3 (~0.23). Therefore we will set the accordingly to a difference of plus or minus 0.2 (leaving some room for error), compared to a segment ratio of 1.
+For example, the sample presented throughout this documentation has a ploidy of approximately 4.3, therefore a gain or loss of one copy number for this sample should have a difference in the segment ratio value of 1/4.3 (~0.23). 
+Therefore we will set the accordingly to a difference of plus or minus 0.2 (leaving some room for error), compared to a segment ratio of 1.
 
 The argument `assay` can be provided to pass on the `integer` assay instead of the `segment_ratios` assay (adjust thresholds accordingly).
 
-Two geoms are available `area` or `line`
+Two geoms are available `area` or `line`.
 ```{r plot_freq_sample}
 plotFreq(tumor, low_threshold = 0.8, high_threshold = 1.2)
 ```
@@ -270,7 +284,7 @@ plotFreq(tumor,
 
 ## calcConsensus()
 
-Consensus sequences can help visualize the different segments across subclones. To calculate consensus matrices we can use `calcConsensus()`
+Consensus sequences can help visualize the different segments across subclones. To calculate consensus matrices we can use `calcConsensus()`.
 ```{r calc_consensus}
 tumor <- calcConsensus(tumor)
 ```
