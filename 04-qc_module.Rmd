@@ -3,7 +3,9 @@
 CopyKit QC Module consists of 3 main functions: 
 
 1) `runMetrics()`
+
 2) `filterCells()` 
+
 3) `findNormalCells()`.
 
 ## runMetrics()
@@ -15,7 +17,7 @@ It returns sample-wise metrics of overdispersion and breakpoint counts.
 tumor <- runMetrics(tumor)
 ```
 
-The resulting information can be seen with:
+The resulting information can be viewed with:
 ```{r rm_metadata}
 colData(tumor)
 ```
@@ -25,7 +27,7 @@ colData(tumor)
 Datasets may contain normal cells mixed with the aneuploidy cells. 
 
 To detect diploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
-The expected coefficient of variation for diploid cells N(0, 0.01) is simulated for a thousand data points. 
+The expected coefficient of variation for diploid cells `N(0, 0.01)` is simulated for a thousand data points. 
 An expectation-maximization algorithm is used to fit a mixture of normal distributions to the coefficient of variation from the samples together with the simulated datasets. 
 The distribution containing the simulated dataset is inferred to be the diploid distribution. 
 Samples that group with the inferred diploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean diploid distributions are classified as diploid samples.
