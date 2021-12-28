@@ -30,10 +30,12 @@ plotMetrics(tumor, metric = c("overdispersion",
 ## plotRatio()
 
 It is important to visualize that the segmentation behaved as expected and closely follows the ratios.  
+This helps to verify that the segmentation is correct and visually assess the data quality.
 
 Ratio plots are a great tool for this. `plotRatio()` has two different modes.
 
 When the input is the CopyKit object, an interactive app will open, allowing selection of which cell will be visualized.
+<!-- make sure to test this since it is not something that change be evaluated in the report. -->
 ```{r plot_ratio_app, eval = FALSE}
 plotRatio(tumor)
 ```
@@ -49,7 +51,8 @@ plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 
 ## runUmap()
 
-`runUmap()` generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) embedding. The resulting embedding is stored in the `reducedDim` slot. 
+`runUmap()` generates a [UMAP](https://umap-learn.readthedocs.io/en/latest/) embedding. 
+The resulting embedding is stored in the `reducedDim` slot. 
 
 `runUmap()` is an important pre-processing step to the `findClusters()` feature.
 
@@ -63,7 +66,8 @@ The full list of additional arguments that can be passed on to `uwot::umap`  wit
 
 ## plotUmap()
 
-`plotUmap()` can be used to visualize the reduced dimensional embedding. plotUmap can be colored by any element of the colData with the argument 'label'.
+`plotUmap()` can be used to visualize the reduced dimensional embedding. 
+`plotUmap` can be colored by any element of the colData with the argument 'label'.
 
 ```{r}
 plotUmap(tumor)
@@ -113,6 +117,7 @@ The boxplot shows the variation for each tested k with the red dots represent th
 
 If the argument `geom` is set to *tile*, `plotSuggestedK()` plots a heatmap where each row is a detected subclone, each column is a k assessed during the grid search and the color represents the jaccard similarity for a given clone.
 
+<!-- I think I might be having issue, but in the example, I don't see any gray. I just see blue to yellow gradient. -->
 Clones not detected in a given k are presented in gray.
 ```{r plot_suggested_k_tile}
 plotSuggestedK(tumor, geom = 'tile')
@@ -141,13 +146,14 @@ If `findSuggestedK()` was run prior, and the argument 'k_subclones' is not provi
 k values can be manually controlled with 'k_superclones' and 'k_subclones'.
 *NOTE:* k_superclones and k_subclones can be used concurrently. Only k_subclones is a mandatory field.
 
+<!-- Make sure to double check this statement still worked it is not being evaluated in the run. -->
 ```{r findCl_withparam, eval = FALSE}
 tumor <- findClusters(tumor,
                       k_superclones = 30,
                       k_subclones = 15)
 ```
 
-If the method used for clustering was *hdbscan*, it is possible that a subgroup of outliers is identified, those are added to subgroup `c0` and may be removed by subsetting the copykit object. 
+If the method used for clustering was *hdbscan*, it is possible that a subgroup of outliers is identified, those are added to subgroup `c0` and may be removed by subsetting the CopyKit object. 
 Copykit will inform if any cell was classified as c0 in an informative message after running `findClusters()`
 
 ```{r filter_outliers}
@@ -163,7 +169,7 @@ plotUmap(tumor, label = 'subclones')
 ## runPhylo()
 
 To run a phylogenetic analysis use the function `runPhylo()`. 
-Available methods are [Neighbor Joining](https://pubmed.ncbi.nlm.nih.gov/3447015/) and [Balanced Minimum evolution](https://pubmed.ncbi.nlm.nih.gov/8412650/)
+Available methods are [Neighbor Joining](https://pubmed.ncbi.nlm.nih.gov/3447015/) and [Balanced Minimum evolution](https://pubmed.ncbi.nlm.nih.gov/8412650/).
 
 The resulting tree is stored within the CopyKit object in the phylo slot:
 ```{r run_phylo}
@@ -237,7 +243,8 @@ plotHeatmap(tumor, assay = 'integer')
 New information can be added to `colData()` and used in conjunction with the plotting functions. 
 
 The example dataset has macro-spatial information. 
-The information is encoded in the sample name by the letter S followed by a number. 
+The information is encoded in the sample name by the letter L followed by a number. 
+<!-- I changed this from S to L because it looks like you used L in the actually graphs. --> 
 We can extract that information and add it as an extra column to the metadata:
 
 ```{r add_spatial_info}
@@ -302,6 +309,7 @@ plotHeatmap(tumor, consensus = TRUE, label = 'subclones', group = 'spatial_info'
 By default `calcConsensus()` uses the subclones information to calculate a consensus for each subclone.
 Any element of the `colData()` can be used to calculate the consensus.
 
+<!-- Make sure to double check this statement still worked it is not being evaluated in the run. -->
 **Note:** Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the `assay(tumor, 'integer')` slot. Check `calcInteger()` for more info.
 ```{r eval = FALSE}
 tumor <- calcConsensus(tumor, consensus_by = 'subclones', assay = 'integer')
@@ -315,6 +323,7 @@ To compare the differences among subclones, `plotConsensusLine()` opens an inter
 tumor <- calcConsensus(tumor)
 ```
 
+<!-- Make sure to double check this statement still worked it is not being evaluated in the run. -->
 ```{r plot_cons_line, eval=FALSE}
 plotConsensusLine(tumor)
 ```
@@ -330,7 +339,7 @@ Finding variable genes can provide important information as to which genes contr
 `findVariableGenes()` requires a list of genes with the argument `genes`. 
 
 A list of 100 putative oncogenes and tumor supressor genes from [Davoli et al.](https://www.sciencedirect.com/science/article/pii/S0092867413012877?via%3Dihub) can be found in a vector called `tumor_genes`, which is loaded with CopyKit.
-The argument `top_n` controls the number of genes to be returned
+The argument `top_n` controls the number of genes to be returned.
 
 ```{r fvg}
 tumor <- findVariableGenes(tumor, 
@@ -346,7 +355,7 @@ Results are presented from most variable to list variable.
 
 The results can be visualized with `plotVariableGenes()` and `plotGeneCopy()`.
 
-Note: Genes with large diversity of copy number states tend to be oncogenes, Using `findVariableGenes()` as a discovery tool can under represent events in tumor supressor genes that tend to be deleted. 
+**Note:**  Genes with large diversity of copy number states tend to be oncogenes, Using `findVariableGenes()` as a discovery tool can under represent events in tumor supressor genes that tend to be deleted. 
 
 Genes can be annotated to a heatmap in `plotHeatmap()` with the _genes_ argument.
 ```{r plot_heatmap_subclones_genes, fig.height=8}
