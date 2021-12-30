@@ -1,6 +1,6 @@
 # QC module
 
-CopyKit QC Module consists of 3 main functions: 
+CopyKit QC Module consists of 3 main functions:  
 
 1) `runMetrics()`
 
@@ -26,11 +26,11 @@ colData(tumor)
 
 Datasets may contain normal cells mixed with the aneuploidy cells. 
 
-To detect diploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
-The expected coefficient of variation for diploid cells `N(0, 0.01)` is simulated for a thousand data points. 
+To detect euploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
+The expected coefficient of variation for euploid cells `N(0, 0.01)` is simulated for a thousand data points. 
 An expectation-maximization algorithm is used to fit a mixture of normal distributions to the coefficient of variation from the samples together with the simulated datasets. 
-The distribution containing the simulated dataset is inferred to be the diploid distribution. 
-Samples that group with the inferred diploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean diploid distributions are classified as diploid samples.
+The distribution containing the simulated dataset is inferred to be the euploid distribution. 
+Samples that group with the inferred euploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean euploid distributions are classified as euploid samples.
 
 The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`.
 <!-- need to describe what you mean can be changes and how the change effects it.-->
@@ -53,18 +53,21 @@ tumor <- tumor[,colData(tumor)$is_normal == FALSE]
 
 ## filterCells()
 
-`filterCells()` removes low-quality cells according to a defined resolution threshold.
+`filterCells()` annotates low-quality cells according to a defined resolution threshold.
 
 To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means. 
 Next, we calculate a sample-wise mean of the correlation between a sample and its k-nearest-neighbors (default = 5). 
 Samples in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
 
+<!-- I think it's confusing to refer to each cell as a "sample" because "sample" usually implies specimen. -->
+
 ```{r filter_cells}
 tumor <- filterCells(tumor)
 ```
 
-The default resolution can be adjusted with the argument 'resolution'.
+The default correlation cutoff for filtering can be adjusted with the argument 'resolution'.
 <!-- need to describe what you mean can be changes and how the change effects it.-->
+<!-- and state what high and low values of this meam practically-->
 
 Results from `filterCells()` are added to colData (column _filtered_) marking cells that should be removed or kept.
 
