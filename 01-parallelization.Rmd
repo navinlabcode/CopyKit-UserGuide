@@ -2,7 +2,7 @@
 
 Whenever possible, *CopyKit* uses the [BiocParallel](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) framework. 
 
-Running parallel process is highly recommended to speed up *CopyKit* calculations.
+Running parallel processes is highly recommended to speed up *CopyKit* calculations.
 
 Make sure to read the BiocParallel [vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) to choose the best parameters for your machine and OS. 
 
