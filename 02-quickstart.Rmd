@@ -3,25 +3,27 @@
 This section provides a basic *CopyKit* workflow. 
 
 <!-- I always assume people need to have each step even loading the library. This is doubably true since you have different spellings/capitalizations.--> 
+<!-- Yes. Sans paths, this page should work as copypasta for lazy people --> 
 
 ```{r quickstart, eval=FALSE}
 # Load library
 library(copykit)
 
 # Run pre-processing module
+# The output is an scCNA object
 tumor <- runVarbin("/path/to/marked/bam/files/",
                  remove_Y = TRUE)
 
 # Mark normal cells if they exist
 tumor <- findNormalCells(tumor)
 
-# Filter cells
+# Mark noisy cells for filtering
 tumor <- filterCells(tumor)
 
-# Visualize the result from filtering and cells marked as diploid
+# Visualize cells labeled by filter and normal status
 plotHeatmap(tumor, label = c('filtered', 'is_normal'), row_split = 'filtered')
 
-# Remove cells marked as normal or noise cells from the copykit object
+# Remove cells marked as noisy and/or normal from the copykit object
 tumor <- tumor[,SummarizedExperiment::colData(tumor)$filtered == "kept"]
 tumor <- tumor[,SummarizedExperiment::colData(tumor)$is_normal == FALSE]
 
@@ -33,11 +35,12 @@ tumor <- runUmap(tumor)
 tumor <- findSuggestedK(tumor)
 plotSuggestedK(tumor)
 
-# Find clusters and plot the results
+# Find clusters of similar copy number profiles and plot the results
 tumor  <- findClusters(tumor)
 plotUmap(tumor, label = 'subclones')
 
-# Calculate consensus, pass on to plotHeatmap ordering
+# Calculate consensus profiles for each subclone, 
+# and order cells by cluster for visualization with plotHeatmap
 tumor <- calcConsensus(tumor)
 tumor <- runConsensusPhylo(tumor)
 
