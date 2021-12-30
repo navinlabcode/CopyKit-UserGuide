@@ -1,27 +1,27 @@
 # Pre-processing 
 
-CopyKit pre-processing module workhorse is `runVarbin()` 
+CopyKit's pre-processing module workhorse is `runVarbin()` 
 
 `runVarbin()` is a wrapper for a series of functions that perform three main processes: 
 
-- Binning and read counting from the `.bam` files.
-- Counts variance stabilization transformation.
-- Piece-wise segmentation of stabilized counts.
+1. Binning and read counting from the `.bam` files
+2. Applying a variance stabilization transformation to the bin counts
+3. Piece-wise segmentating stabilized bin counts
 
 We load CopyKit with the `library()` function.
 ```{r}
 library(copykit)
 ```
 
-**NOTE:** Whenever possible, CopyKit functions will run in parallel if the BiocParallel framework was registered. 
-For more information check section [parallelization](#parallelization).
+**NOTE:** If the BiocParallel framework was registered, CopyKit functions will, whenever possible, run in parallel. 
+For more information check the [parallelization](#parallelization) section.
 
 ## From BAM files
 
 ### runVarbin()
 
 The input for `runVarbin()` is the folder location containing your *marked duplicate `.bam` files*.
-The `runVarbin()` function counts the reads into bins according to the variable binning method - [Learn More!](#varbin-lm) [@RN13; @RN2; @RN4].
+The `runVarbin()` function counts the number of reads in each genomic bin according to the variable binning method - [Learn More!](#varbin-lm) [@RN13; @RN2; @RN4].
 
 <!-- link 'here' just sends you back to the pre-processing start-->
 To help users obtain *marked duplicate `.bam` files* from *.fastq* files we provide a [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline [here]().This pipeline can be adapted as per users' needs. 
@@ -41,7 +41,7 @@ tumor <- runVarbin("/mnt/lab/users/dminussi/projects/copy_number_pipeline_hg38/t
  
 An optional second argument `remove_Y` provides a convenient shortcut to exclude chromosome Y from the dataset.
 
-By default, `runVarbin()` uses the *hg38* genome assembly and *220kb* bin resolution.
+By default, `runVarbin()` uses the *hg38* genome assembly and a *220kb* bin resolution.
 Both options can be customized with the arguments *genome* or *resolution*. (See ?runVarbin() for more details). 
 
 The resulting object is the CopyKit object.
@@ -53,7 +53,7 @@ CopyKit object classes inherit from the [SingleCellExperiment](https://bioconduc
 
 Each column represents a single cell and each row represents a bin. 
 
-The bin counts are stored in the bincounts assay, which can be accessed with `bincounts()`.
+The read counts for each bin are stored in the bincounts assay, which can be accessed with `bincounts()`.
 ```{r}
 head(bincounts(tumor)[,1:5])
 ```
@@ -65,7 +65,7 @@ The resulting transformation is stored within the *ft* assay, which can be acces
 head(assay(tumor, 'ft')[,1:5])
 ```
 
-Lastly, we perform segmentation to fit piecewise constant functions. The resulting segment means can be used to infer copy number states across the different genomic regions.
+Lastly, we perform segmentation to fit piecewise constant functions to the genome-ordered bin counts. The resulting segment means can be used to infer copy number states across the different genomic regions.
 
 The segmentation method is chosen with the argument `method` to `runVarbin()`.
 Currently available methods are:
@@ -88,8 +88,9 @@ They can be accessed with the helper function `ratios()` and `segment_ratios()`
 head(ratios(tumor)[,1:5])
 head(segment_ratios(tumor)[,1:5])
 ```
+<!-- Briefly explain how the ratios are calculated... --> 
 
-### runVarbin() pieces
+### runVarbin() step-wise
 <!-- I suggest that you change the title I added here. I just added it to break it from being in the previous subsection where it did not fit. --> 
 
 The following sections describe the functions wrapped by `runVarbin()`.
@@ -111,7 +112,7 @@ The available transformations are freeman-tukey ('ft') or 'log'.
 
 #### runSegmentation()
 
-`runSegmentation()` runs the segmentation algorithm of choice ('CBS' or 'multipcf'), followed by merge levels that do not reach significance [Learn More!](#mergelevels-lm).
+`runSegmentation()` runs the segmentation algorithm of choice ('CBS' or 'multipcf'), followed by merging consecutive segments whose change does not reach the significance threshold [Learn More!](#mergelevels-lm).
 
 <!-- how is significance defined? Is there an argument that can be passed? --> 
 
@@ -143,7 +144,7 @@ obj <- CopyKit(list(segment_ratios = cell_bincount_matrix),
 
 The object can be passed on to the Quality Control and Analysis modules of CopyKit.
 
-Further, it is useful for downstream functions to add the genome assembly used on the dataset.
+Furthermore, it is useful for downstream functions to add the genome assembly used on the dataset.
 ```{r, eval=FALSE}
 metadata(obj)$genome <- "hg38"
 ```
