@@ -25,9 +25,6 @@ The following chapters will cover each module in detail.
 ![copykit cheat sheet](images/copykit_cheat_sheet_DCM1.png){height=60% width=60%}
 </center>
 
-<!-- This graphic is fuzzy and the black on color text is hard to read. Also the title text, at least, needs to be larger -->
-
-<!-- Consider renaming either the package name for loading or the package name in the guide. Currently, we have to different "spellings" this can be confusing. -->
 Generated with *CopyKit* version:
 ```{r version}
 packageVersion("copykit")

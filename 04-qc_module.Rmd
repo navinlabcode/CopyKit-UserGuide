@@ -1,6 +1,6 @@
 # QC module
 
-CopyKit QC Module consists of 3 main functions:  
+CopyKit Quality Control Module consists of 3 main functions:  
 
 1) `runMetrics()`
 
@@ -24,16 +24,15 @@ colData(tumor)
 
 ## findNormalCells()
 
-Datasets may contain normal cells mixed with the aneuploidy cells. 
+Datasets may contain euploid cells mixed with the aneuploidy cells. 
 
 To detect euploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
-The expected coefficient of variation for euploid cells `N(0, 0.01)` is simulated for a thousand data points. 
-An expectation-maximization algorithm is used to fit a mixture of normal distributions to the coefficient of variation from the samples together with the simulated datasets. 
+The expected coefficient of variation for euploid cells `N(0, 0.01)` is simulated for *x* data points, where *x* is equal to the number of cells within the dataset. 
+An expectation-maximization algorithm is used to fit a mixture of gaussian distributions to the coefficient of variation from the samples together with the simulated datasets. 
 The distribution containing the simulated dataset is inferred to be the euploid distribution. 
-Samples that group with the inferred euploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean euploid distributions are classified as euploid samples.
+Samples that group with the inferred euploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean euploid distribution are classified as euploid samples.
 
-The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`.
-<!-- need to describe what you mean can be changes and how the change effects it.-->
+The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`. For example, by setting a threshold = 0.1, findNormalCells will mark as euploid all cells with a coefficient of variation less or equal than 0.1.
 
 ```{r find_normal_cells}
 tumor <- findNormalCells(tumor)
@@ -43,7 +42,7 @@ The results from `findNormalCells()` are stored within the colData in the column
 
 We can visualize the results with `plotHeatmap()`:
 ```{r find_normal_heat, fig.height=8}
-plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal')
+plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal', n_threads = 40)
 ```
 
 The object is subsetted in the same way as with any R object.
@@ -56,25 +55,22 @@ tumor <- tumor[,colData(tumor)$is_normal == FALSE]
 `filterCells()` annotates low-quality cells according to a defined resolution threshold.
 
 To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means. 
-Next, we calculate a sample-wise mean of the correlation between a sample and its k-nearest-neighbors (default = 5). 
-Samples in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
-
-<!-- I think it's confusing to refer to each cell as a "sample" because "sample" usually implies specimen. -->
+Next, we calculate a sample-wise mean of the correlation between a cell and its k-nearest-neighbors (default = 5). 
+Cells in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
 
 ```{r filter_cells}
 tumor <- filterCells(tumor)
 ```
 
-The default correlation cutoff for filtering can be adjusted with the argument 'resolution'.
-<!-- need to describe what you mean can be changes and how the change effects it.-->
-<!-- and state what high and low values of this meam practically-->
+The default correlation cutoff for filtering can be adjusted with the argument 'resolution'. For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
+Higher resolution values will result in stricter filtering criterias. 
 
 Results from `filterCells()` are added to colData (column _filtered_) marking cells that should be removed or kept.
 
 We can check the results with `plotHeatmap()`. To make visualization easier, rows can also be split according to elements of colData with the argument `row_split`.
 
 ```{r filter_cells_heat, fig.height=8}
-plotHeatmap(tumor, label = 'filtered', row_split = 'filtered')
+plotHeatmap(tumor, label = 'filtered', row_split = 'filtered', n_threads = 40)
 ```
 
 We remove the marked noise cells from the object with:

@@ -2,40 +2,38 @@
 
 This section provides a basic *CopyKit* workflow. 
 
-<!-- I always assume people need to have each step even loading the library. This is doubably true since you have different spellings/capitalizations.--> 
-<!-- Yes. Sans paths, this page should work as copypasta for lazy people --> 
-
 ```{r quickstart, eval=FALSE}
 # Load library
 library(copykit)
 
 # Run pre-processing module
-# The output is an scCNA object
 tumor <- runVarbin("/path/to/marked/bam/files/",
                  remove_Y = TRUE)
 
-# Mark normal cells if they exist
+# Mark euploid cells if they exist
 tumor <- findNormalCells(tumor)
 
-# Mark noisy cells for filtering
+# Mark low-quality cells for filtering
 tumor <- filterCells(tumor)
 
 # Visualize cells labeled by filter and normal status
 plotHeatmap(tumor, label = c('filtered', 'is_normal'), row_split = 'filtered')
 
-# Remove cells marked as noisy and/or normal from the copykit object
+# Remove cells marked as low-quality and/or normal from the copykit object
 tumor <- tumor[,SummarizedExperiment::colData(tumor)$filtered == "kept"]
 tumor <- tumor[,SummarizedExperiment::colData(tumor)$is_normal == FALSE]
 
 # Create a umap embedding 
 tumor <- runUmap(tumor)
 
-# Search for the best K value for clustering of subclones 
-# according to jaccard similarity and plot the results
+# Search for the K value that maximizes jaccard similarity for clustering of subclones 
+# Plot the results
+# This step is optional. A fixed K value can be provided later to findClusters()
 tumor <- findSuggestedK(tumor)
 plotSuggestedK(tumor)
 
 # Find clusters of similar copy number profiles and plot the results
+# If no k_subclones value is provided, automatically detect it from findSuggestedK()
 tumor  <- findClusters(tumor)
 plotUmap(tumor, label = 'subclones')
 

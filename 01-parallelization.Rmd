@@ -6,14 +6,12 @@ Running parallel processes is highly recommended to speed up *CopyKit* calculati
 
 Make sure to read the BiocParallel [vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) to choose the best parameters for your machine and OS. 
 
-<!--- I suggest you use cores or workers/cores. I am not as familiar with the term workers. --->
-<!--- I disagree, workers and cores are not synonymous terms. Workers are esentially threads where as cores are the physical cores. I think this is technically assigning workers and not necessarily cores? --->
-
-Use `BiocParallel::register()` function to register the number of workers desired.
+Use `BiocParallel::register()` function to register the number of workers (threads) desired.
+To visually monitor the progress, you can use the argument *progressbar* to obtain a progress bar. 
 
 ```{r registering_fake, eval=FALSE}
 library(BiocParallel)
-register(MulticoreParam(progressbar = T), default = T)
+register(MulticoreParam(progressbar = T, workers = 100), default = T)
 ```
 
 ```{r registering_true, echo=FALSE}
@@ -26,10 +24,6 @@ Confirm parameters:
 BiocParallel::bpparam()
 ```
 
-Make sure to check the number of cores to be used. 
-On Unix, Linux and Mac systems the number of workers will be the number of cores found using parallel::detectCores() minus 2. 
-If this not defined it will set it 1. Therefore, it is strongly suggested that you check the number of cores to get the best parallel optimization.
+*Note about plotHeatmap() function parallelization*:
+**plotHeatmap()** uses a different framework and requires the argument *n_threads* to set the number of threads when in use with the argument *order_cells = hclust*. This is to speed up the calculation of a distance matrix. Using more threads when ordering the heatmap with *hclust* will significantly speed up the plotting of the heatmap. See example in plotHeatmap help.
 
-<!--- Add a quick example of actually assigning the workers for different systems, and maybe what the param should look like when it works --->
-
-To visually monitor the progress, you can use the argument *progressbar* to obtain a progress bar. 
