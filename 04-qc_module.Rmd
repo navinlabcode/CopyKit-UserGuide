@@ -1,10 +1,10 @@
-# QC module
+findAneuploidCells# QC module
 
 CopyKit Quality Control Module consists of 3 main functions:  
 
 1) `runMetrics()`
 
-2) `filterCells()` 
+2) `findOutliers()` 
 
 3) `findNormalCells()`.
 
@@ -50,22 +50,22 @@ The object is subsetted in the same way as with any R object.
 tumor <- tumor[,colData(tumor)$is_normal == FALSE]
 ```
 
-## filterCells()
+## findOutliers()
 
-`filterCells()` annotates low-quality cells according to a defined resolution threshold.
+`findOutliers()` annotates low-quality cells according to a defined resolution threshold.
 
 To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means. 
 Next, we calculate a sample-wise mean of the correlation between a cell and its k-nearest-neighbors (default = 5). 
 Cells in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9). 
 
 ```{r filter_cells}
-tumor <- filterCells(tumor)
+tumor <- findOutliers(tumor)
 ```
 
 The default correlation cutoff for filtering can be adjusted with the argument 'resolution'. For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
 Higher resolution values will result in stricter filtering criterias. 
 
-Results from `filterCells()` are added to colData (column _filtered_) marking cells that should be removed or kept.
+Results from `findOutliers()` are added to colData (column _filtered_) marking cells that should be removed or kept.
 
 We can check the results with `plotHeatmap()`. To make visualization easier, rows can also be split according to elements of colData with the argument `row_split`.
 

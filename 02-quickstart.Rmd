@@ -1,4 +1,4 @@
-# Quick-Start
+findAneuploidCells# Quick-Start
 
 This section provides a basic *CopyKit* workflow. 
 
@@ -14,7 +14,7 @@ tumor <- runVarbin("/path/to/marked/bam/files/",
 tumor <- findNormalCells(tumor)
 
 # Mark low-quality cells for filtering
-tumor <- filterCells(tumor)
+tumor <- findOutliers(tumor)
 
 # Visualize cells labeled by filter and normal status
 plotHeatmap(tumor, label = c('filtered', 'is_normal'), row_split = 'filtered')
