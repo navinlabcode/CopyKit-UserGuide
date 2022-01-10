@@ -1,4 +1,4 @@
-findAneuploidCells# QC module
+# QC module
 
 CopyKit Quality Control Module consists of 3 main functions:  
 
@@ -6,7 +6,7 @@ CopyKit Quality Control Module consists of 3 main functions:
 
 2) `findOutliers()` 
 
-3) `findNormalCells()`.
+3) `findAneuploidCells()`.
 
 ## runMetrics()
 
@@ -22,32 +22,32 @@ The resulting information can be viewed with:
 colData(tumor)
 ```
 
-## findNormalCells()
+## findAneuploidCells()
 
 Datasets may contain euploid cells mixed with the aneuploidy cells. 
 
-To detect euploid cells `findNormalCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
+To detect euploid cells `findAneuploidCells()` calculates the sample-wise coefficient of variation from the segment ratio means. 
 The expected coefficient of variation for euploid cells `N(0, 0.01)` is simulated for *x* data points, where *x* is equal to the number of cells within the dataset. 
 An expectation-maximization algorithm is used to fit a mixture of gaussian distributions to the coefficient of variation from the samples together with the simulated datasets. 
 The distribution containing the simulated dataset is inferred to be the euploid distribution. 
 Samples that group with the inferred euploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean euploid distribution are classified as euploid samples.
 
-The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`. For example, by setting a threshold = 0.1, findNormalCells will mark as euploid all cells with a coefficient of variation less or equal than 0.1.
+The threshold can be changed from the automatic detection to a custom threshold with the argument `resolution`. For example, by setting a threshold = 0.1, findAneuploidCells will mark as euploid all cells with a coefficient of variation less or equal than 0.1.
 
 ```{r find_normal_cells}
-tumor <- findNormalCells(tumor)
+tumor <- findAneuploidCells(tumor)
 ```
 
-The results from `findNormalCells()` are stored within the colData in the column _is_normal_.
+The results from `findAneuploidCells()` are stored within the colData in the column _is_aneuploid_.
 
 We can visualize the results with `plotHeatmap()`:
 ```{r find_normal_heat, fig.height=8}
-plotHeatmap(tumor, label = 'is_normal', row_split = 'is_normal', n_threads = 40)
+plotHeatmap(tumor, label = 'is_aneuploid', row_split = 'is_aneuploid', n_threads = 40)
 ```
 
-The object is subsetted in the same way as with any R object.
+The object is subsetted in the same way as with any R object, to keep only the aneuploid cells.
 ```{r find_normal_subset}
-tumor <- tumor[,colData(tumor)$is_normal == FALSE]
+tumor <- tumor[,colData(tumor)$is_aneuploid == TRUE]
 ```
 
 ## findOutliers()
@@ -65,18 +65,18 @@ tumor <- findOutliers(tumor)
 The default correlation cutoff for filtering can be adjusted with the argument 'resolution'. For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
 Higher resolution values will result in stricter filtering criterias. 
 
-Results from `findOutliers()` are added to colData (column _filtered_) marking cells that should be removed or kept.
+Results from `findOutliers()` are added to colData (column _outlier_) marking cells that can be removed or kept.
 
 We can check the results with `plotHeatmap()`. To make visualization easier, rows can also be split according to elements of colData with the argument `row_split`.
 
 ```{r filter_cells_heat, fig.height=8}
-plotHeatmap(tumor, label = 'filtered', row_split = 'filtered', n_threads = 40)
+plotHeatmap(tumor, label = 'outlier', row_split = 'outlier', n_threads = 40)
 ```
 
 We remove the marked noise cells from the object with:
 
 ```{r filter_subset}
-tumor <- tumor[,colData(tumor)$filtered == 'kept']
+tumor <- tumor[,colData(tumor)$outlier == FALSE]
 ```
 
 The dataset should be ready to proceed with the analysis.

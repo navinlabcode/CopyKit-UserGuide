@@ -166,14 +166,15 @@ div.csl-indent {
 <li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-bam-files"><i class="fa fa-check"></i><b>4.1</b> From BAM files</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
-<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.2</b> From external count data or user-defined scaffolds</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin-modules"><i class="fa fa-check"></i><b>4.1.2</b> runVarbin() modules</a></li>
+<li class="chapter" data-level="4.1.3" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.3</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>5.1</b> runMetrics()</a></li>
-<li class="chapter" data-level="5.2" data-path="qc-module.html"><a href="qc-module.html#findnormalcells"><i class="fa fa-check"></i><b>5.2</b> findNormalCells()</a></li>
-<li class="chapter" data-level="5.3" data-path="qc-module.html"><a href="qc-module.html#filtercells"><i class="fa fa-check"></i><b>5.3</b> filterCells()</a></li>
+<li class="chapter" data-level="5.2" data-path="qc-module.html"><a href="qc-module.html#findaneuploidcells"><i class="fa fa-check"></i><b>5.2</b> findAneuploidCells()</a></li>
+<li class="chapter" data-level="5.3" data-path="qc-module.html"><a href="qc-module.html#findoutliers"><i class="fa fa-check"></i><b>5.3</b> findOutliers()</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>6</b> Analysis and Visualization module</a>
 <ul>
@@ -193,10 +194,8 @@ div.csl-indent {
 <li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.10</b> plotFreq()</a></li>
 <li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.11</b> calcConsensus()</a></li>
 <li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.12</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findvariablegenes"><i class="fa fa-check"></i><b>6.13</b> findVariableGenes()</a></li>
-<li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotvariablegenes"><i class="fa fa-check"></i><b>6.14</b> plotVariableGenes()</a></li>
-<li class="chapter" data-level="6.15" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.15</b> plotGeneCopy()</a></li>
-<li class="chapter" data-level="6.16" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.16</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.13</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.14</b> plotAlluvial()</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
 <ul>
@@ -238,28 +237,41 @@ div.csl-indent {
 </div>
 <div id="principle-lm" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Principle</h2>
-<p>To infer copy number data from short-read sequencing we count the number of reads that align to a particular region of the genome. Counterintuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.</p>
+<!-- Writing comment: this seems to have just been dropped into the middle of text. -->
+<p>To infer copy number data from short-read sequencing we count the number of reads that align to a particular region of the genome.
+Counterintuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.</p>
 </div>
 <div id="varbin-lm" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> VarBin</h2>
-<p>To perform the alignment of millions of reads in a reasonable time frame, aligners trade-off accuracy for speed. Furthermore, the genome is filled with <a href="https://www.nature.com/articles/s41598-019-45839-z">repetitive and hard to map regions</a>. As a consequence, errors produced during the process of alignment are known as mapping errors.</p>
-<p>Mapping errors may be a significant source of bias. Correct estimation of copy number gains or losses is dependent on accurate control of different biases. To infer copy number variations and account for sources of bias, different methods have been developed, including the <a href="https://www.nature.com/articles/nature09807">Variable Binning method</a>.</p>
-<p>The VarBin method accounts for mapping bias by partitioning the genome into bins of variable sizes. The guiding principle is, if we were to map a diploid genome to our scaffold, each bin will receive an equal number of reads.</p>
-<p>To <a href="https://github.com/robertaboukhalil/ginkgo">construct the VarBin scaffolds</a>, reads are simulated from a reference genome and mapped back. The reference genome is partitioned into bins of variable sizes, that receive an equal amount of reads.</p>
-<p>We can construct scaffolds of different resolutions. Higher resolutions will have smaller bin sizes and detect more ‘focal’ copy number events. The decision of which resolution to use is dependent on diverse factors. Those include the library complexity, number of multiplexed cells, sequencer output, among others. Generally, a target of 1M reads/cell, with a 10% PCR duplicate rate, is sufficient to generate high-quality copy number profiles for the 220kb scaffold.</p>
+<p>To perform the alignment of millions of reads in a reasonable time frame, aligners trade-off accuracy for speed.
+Furthermore, the genome is filled with <a href="https://www.nature.com/articles/s41598-019-45839-z">repetitive and hard to map regions</a>.
+As a consequence, errors produced during the process of alignment are known as mapping errors.</p>
+<p>Mapping errors may be a significant source of bias.
+Correct estimation of copy number gains or losses is dependent on accurate control of different biases.
+To infer copy number variations and account for sources of bias, different methods have been developed, including the <a href="https://www.nature.com/articles/nature09807">Variable Binning method</a>.</p>
+<p>The VarBin method accounts for mapping bias by partitioning the genome into bins of variable sizes.
+The guiding principle is, if we were to map a diploid genome to our scaffold, each bin will receive an equal number of reads.</p>
+<p>To <a href="https://github.com/robertaboukhalil/ginkgo">construct the VarBin scaffolds</a>, reads are simulated from a reference genome and mapped back.
+The reference genome is partitioned into bins of variable sizes, that receive an equal amount of reads.</p>
+<p>We can construct scaffolds of different resolutions. Higher resolutions will have smaller bin sizes and detect more ‘focal’ copy number events.
+The decision of which resolution to use is dependent on diverse factors.
+Those include the library complexity, number of multiplexed cells, sequencer output, among others.
+Generally, a target of 1M reads/cell, with a 10% PCR duplicate rate, is sufficient to generate high-quality copy number profiles for the 220kb scaffold.</p>
 </div>
 <div id="gccor-lm" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> GC correction</h2>
-<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3378858/">GC-content</a> can be a source of bias within the counts. Normalization of GC content is performed as follows:</p>
-<blockquote>
-<p>Both fragment counts and GC counts are binned to a bin-size of choice. A curve describing the conditional mean fragment count per GC value is estimated. The resulting GC curve determines a predicted count for each bin based on the bin’s GC. These predictions can be used directly to normalize the original signal, or as the rates for a heterogeneous Poisson model.
-<em>extracted from:</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3378858/">Summarizing and correcting the GC content bias in high-throughput sequencing. Benjamini &amp; Speed</a></p>
-</blockquote>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3378858/">GC-content</a> can be a source of bias within the counts.
+Normalization of GC content is performed as follows:</p>
+<p>Both fragment counts and GC counts are binned to a bin-size of choice. A curve describing the conditional mean fragment count per GC value is estimated.
+The resulting GC curve determines a predicted count for each bin based on the bin’s GC.
+These predictions can be used directly to normalize the original signal, or as the rates for a heterogeneous Poisson model.
+<em>Extracted from:</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3378858/">Summarizing and correcting the GC content bias in high-throughput sequencing. Benjamini &amp; Speed</a></p>
 <p>Therefore, we smooth the signal using <a href="https://en.wikipedia.org/wiki/Local_regression">loess</a> normalization.</p>
 </div>
 <div id="mergelevels-lm" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Merge Levels</h2>
-<p>After segmentation, some segments remain with small differences, generating spurious breakpoints that are unlikely to be real copy number events. To remove this effect we perform a Wilcoxon rank-sum test between the observed median across two segments. Segments that do not reach significance are merged.</p>
+<p>After segmentation, some segments remain with small differences, generating spurious breakpoints that are unlikely to be real copy number events.
+To remove this effect we perform a Wilcoxon rank-sum test between the observed median across two segments. Segments that do not reach significance are merged.</p>
 </div>
 <div id="segmentation-lm" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Segmentation</h2>
@@ -267,9 +279,11 @@ div.csl-indent {
 <h3><span class="header-section-number">7.6.1</span> CBS</h3>
 <p><a href="https://academic.oup.com/biostatistics/article/5/4/557/275197">Circular Binary Segmentation (CBS)</a> is a popular method of segmentation.</p>
 <p>From the help of DNAcopy package (see ?DNAcopy::segment):</p>
-<blockquote>
-<p>This function implements the circular binary segmentation (CBS) algorithm of Olshen and Venkatraman (2004). Given a set of genomic data, either continuous or binary, the algorithm recursively splits chromosomes into either two or three subsegments based on a maximum t-statistic. A reference distribution, used to decided whether or not to split, is estimated by permutation. Options are given to eliminate splits when the means of adjacent segments are not sufficiently far apart. Note that after the first split the α-levels of the tests for splitting are not unconditional.</p>
-</blockquote>
+<p>This function implements the circular binary segmentation (CBS) algorithm of Olshen and Venkatraman (2004).
+Given a set of genomic data, either continuous or binary, the algorithm recursively splits chromosomes into either two or three subsegments based on a maximum t-statistic.
+A reference distribution, used to decided whether or not to split, is estimated by permutation.
+Options are given to eliminate splits when the means of adjacent segments are not sufficiently far apart.
+Note that after the first split the α-levels of the tests for splitting are not unconditional.</p>
 
 </div>
 </div>

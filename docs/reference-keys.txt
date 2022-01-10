@@ -6,6 +6,7 @@ from-bam-files
 runvarbin
 cbs-dnacopy
 multipcf-copynumber
+runvarbin-modules
 runcountreads
 runvst
 runsegmentation
@@ -13,8 +14,8 @@ lognorm
 from-external-count-data-or-user-defined-scaffolds
 qc-module
 runmetrics
-findnormalcells
-filtercells
+findaneuploidcells
+findoutliers
 analysis-and-visualization-module
 plotmetrics
 plotratio
@@ -30,8 +31,6 @@ plotheatmap
 plotfreq
 calcconsensus
 plotconsensusline
-findvariablegenes
-plotvariablegenes
 plotgenecopy
 plotalluvial
 learn-more

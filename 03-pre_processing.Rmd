@@ -44,7 +44,7 @@ By default, `runVarbin()` uses the *hg38* genome assembly and a *220kb* bin reso
 Both options can be customized with the arguments *genome* or *resolution*. (See ?runVarbin() for more details). 
 
 If bam files originate from **paired end sequencing**, make sure to set the argument *is_paired_end* to true:
-```{r run_varbin, eval=FALSE}
+```{r run_varbin_pe, eval=FALSE}
 tumor <- runVarbin("~/path/to/bam/files/", 
                    remove_Y = TRUE,
                    is_paired_end = TRUE)

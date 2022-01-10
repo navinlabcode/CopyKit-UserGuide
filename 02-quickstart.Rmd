@@ -1,4 +1,4 @@
-findAneuploidCells# Quick-Start
+# Quick-Start
 
 This section provides a basic *CopyKit* workflow. 
 
@@ -16,12 +16,12 @@ tumor <- findNormalCells(tumor)
 # Mark low-quality cells for filtering
 tumor <- findOutliers(tumor)
 
-# Visualize cells labeled by filter and normal status
-plotHeatmap(tumor, label = c('filtered', 'is_normal'), row_split = 'filtered')
+# Visualize cells labeled by filter and aneuploid status
+plotHeatmap(tumor, label = c('outlier', 'is_aneuploid'), row_split = 'outlier')
 
-# Remove cells marked as low-quality and/or normal from the copykit object
-tumor <- tumor[,SummarizedExperiment::colData(tumor)$filtered == "kept"]
-tumor <- tumor[,SummarizedExperiment::colData(tumor)$is_normal == FALSE]
+# Remove cells marked as low-quality and/or aneuploid from the copykit object
+tumor <- tumor[,SummarizedExperiment::colData(tumor)$outlier == FALSE]
+tumor <- tumor[,SummarizedExperiment::colData(tumor)$is_aneuploid == TRUE]
 
 # Create a umap embedding 
 tumor <- runUmap(tumor)
