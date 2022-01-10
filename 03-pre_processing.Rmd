@@ -39,8 +39,20 @@ tumor <- runVarbin("/mnt/lab/users/dminussi/projects/copy_number_pipeline_hg38/t
                    remove_Y = TRUE)
 ```
 
+
 By default, `runVarbin()` uses the *hg38* genome assembly and a *220kb* bin resolution.
 Both options can be customized with the arguments *genome* or *resolution*. (See ?runVarbin() for more details). 
+
+If bam files originate from **paired end sequencing**, make sure to set the argument *is_paired_end* to true:
+```{r run_varbin, eval=FALSE}
+tumor <- runVarbin("~/path/to/bam/files/", 
+                   remove_Y = TRUE,
+                   is_paired_end = TRUE)
+``` 
+
+By default, `runVarbin()` uses the *hg38* genome assembly and a resolution of *220kb*.
+Both options can be customized with the arguments *genome* or *resolution* (see ?runVarbin()). 
+
 
 The resulting object is the CopyKit object.
 ```{r copykit_object}
