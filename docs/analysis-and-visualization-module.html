@@ -237,10 +237,9 @@ div.csl-indent {
 <h2><span class="header-section-number">6.1</span> plotMetrics()</h2>
 <p><code>plotMetrics()</code> can plot any information available within <code>colData()</code>.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="analysis-and-visualization-module.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">colData</span>(tumor))</span></code></pre></div>
-<pre><code>##  [1] &quot;sample&quot;                &quot;reads_assigned_bins&quot;   &quot;reads_unmapped&quot;       
-##  [4] &quot;reads_duplicates&quot;      &quot;reads_multimapped&quot;     &quot;reads_unassigned&quot;     
-##  [7] &quot;reads_ambiguous&quot;       &quot;reads_total&quot;           &quot;percentage_duplicates&quot;
-## [10] &quot;overdispersion&quot;        &quot;breakpoint_count&quot;      &quot;is_aneuploid&quot;         
+<pre><code>##  [1] &quot;sample&quot;                &quot;reads_assigned_bins&quot;   &quot;reads_unmapped&quot;        &quot;reads_duplicates&quot;     
+##  [5] &quot;reads_multimapped&quot;     &quot;reads_unassigned&quot;      &quot;reads_ambiguous&quot;       &quot;reads_total&quot;          
+##  [9] &quot;percentage_duplicates&quot; &quot;overdispersion&quot;        &quot;breakpoint_count&quot;      &quot;is_aneuploid&quot;         
 ## [13] &quot;find_normal_cv&quot;        &quot;cell_corr_value&quot;       &quot;outlier&quot;</code></pre>
 <p><code>colData</code> information is provided to the argument <code>metric</code>.</p>
 <p>The argument label, if supplied, will color the points based on that information.</p>

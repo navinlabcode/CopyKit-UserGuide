@@ -251,15 +251,14 @@ div.csl-indent {
 ## 
 ##     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse, colCounts, colCummaxs,
 ##     colCummins, colCumprods, colCumsums, colDiffs, colIQRDiffs, colIQRs, colLogSumExps,
-##     colMadDiffs, colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-##     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds, colSums2,
-##     colTabulates, colVarDiffs, colVars, colWeightedMads, colWeightedMeans,
-##     colWeightedMedians, colWeightedSds, colWeightedVars, rowAlls, rowAnyNAs, rowAnys,
-##     rowAvgsPerColSet, rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-##     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps, rowMadDiffs, rowMads,
-##     rowMaxs, rowMeans2, rowMedians, rowMins, rowOrderStats, rowProds, rowQuantiles,
-##     rowRanges, rowRanks, rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs,
-##     rowVars, rowWeightedMads, rowWeightedMeans, rowWeightedMedians, rowWeightedSds,
+##     colMadDiffs, colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats, colProds,
+##     colQuantiles, colRanges, colRanks, colSdDiffs, colSds, colSums2, colTabulates, colVarDiffs,
+##     colVars, colWeightedMads, colWeightedMeans, colWeightedMedians, colWeightedSds,
+##     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet, rowCollapse, rowCounts,
+##     rowCummaxs, rowCummins, rowCumprods, rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs,
+##     rowLogSumExps, rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins, rowOrderStats,
+##     rowProds, rowQuantiles, rowRanges, rowRanks, rowSdDiffs, rowSds, rowSums2, rowTabulates,
+##     rowVarDiffs, rowVars, rowWeightedMads, rowWeightedMeans, rowWeightedMedians, rowWeightedSds,
 ##     rowWeightedVars</code></pre>
 <pre><code>## Loading required package: GenomicRanges</code></pre>
 <pre><code>## Loading required package: stats4</code></pre>
@@ -272,10 +271,10 @@ div.csl-indent {
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call,
-##     duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect, is.unsorted,
-##     lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-##     Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-##     union, unique, unsplit, which.max, which.min</code></pre>
+##     duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply, Map,
+##     mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind,
+##     Reduce, rownames, sapply, setdiff, sort, table, tapply, union, unique, unsplit, which.max,
+##     which.min</code></pre>
 <pre><code>## Loading required package: S4Vectors</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;S4Vectors&#39;</code></pre>
@@ -287,8 +286,8 @@ div.csl-indent {
 <pre><code>## Loading required package: Biobase</code></pre>
 <pre><code>## Welcome to Bioconductor
 ## 
-##     Vignettes contain introductory material; view with &#39;browseVignettes()&#39;. To cite
-##     Bioconductor, see &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+##     Vignettes contain introductory material; view with &#39;browseVignettes()&#39;. To cite Bioconductor,
+##     see &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;Biobase&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:MatrixGenerics&#39;:
@@ -336,9 +335,8 @@ Both options can be customized with the arguments <em>genome</em> or <em>resolut
 ## assays(6): bincounts ft ... ratios logr
 ## rownames(11268): 1 2 ... 11267 11268
 ## rowData names(3): gc_content abspos arm
-## colnames(1502): PMTC6LiverC100DL1S2_S100_L001_R1_001
-##   PMTC6LiverC100DL1S6_S484_L002_R1_001 ... PMTC6LiverC9DL1S5_S393_L002_R1_001
-##   PMTC6LiverC9DL6L7S1_S1161_L004_R1_001
+## colnames(1502): PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 ...
+##   PMTC6LiverC9DL1S5_S393_L002_R1_001 PMTC6LiverC9DL6L7S1_S1161_L004_R1_001
 ## colData names(9): sample reads_assigned_bins ... reads_total percentage_duplicates
 ## reducedDimNames(0):
 ## mainExpName: NULL
@@ -351,14 +349,14 @@ Both options can be customized with the arguments <em>genome</em> or <em>resolut
 <p>The read counts for each bin are stored in the bincounts assay, which can be accessed with <code>bincounts()</code>.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="pre-processing.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bincounts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
-##   PMTC6LiverC100DL1S… PMTC6LiverC100DL1S… PMTC6LiverC100DL4… PMTC6LiverC100DL6… PMTC6LiverC101DL1…
-##                 &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
-## 1                37.1               10.3                44.5               44.2               38.6
-## 2                28.8               12.8                53.1               52.0               31.4
-## 3                34.8                9.03               50.4               47.3               31.9
-## 4                24.3               14.2                34.9               35.5               36.9
-## 5                30.8                9.18               55.8               37.1               29.2
-## 6                29.3                5.88               43.0               43.1               38.3</code></pre>
+##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL… PMTC6LiverC100DL… PMTC6LiverC100DL… PMTC6LiverC101D…
+##                                  &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;
+## 1                                 37.1             10.3               44.5              44.2             38.6
+## 2                                 28.8             12.8               53.1              52.0             31.4
+## 3                                 34.8              9.03              50.4              47.3             31.9
+## 4                                 24.3             14.2               34.9              35.5             36.9
+## 5                                 30.8              9.18              55.8              37.1             29.2
+## 6                                 29.3              5.88              43.0              43.1             38.3</code></pre>
 <p>One issue with bin counts is they are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.</p>
 <p>The resulting transformation is stored within the <em>ft</em> assay, which can be accessed with <code>assay()</code>:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pre-processing.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>

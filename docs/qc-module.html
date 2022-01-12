@@ -262,45 +262,32 @@ It returns sample-wise metrics of overdispersion and breakpoint counts.</p>
 ## PMTC6LiverC9DL1S1_S9_L001_R1_001        PMTC6LiverC9DL1S1_S9..              274402          38326
 ## PMTC6LiverC9DL1S5_S393_L002_R1_001      PMTC6LiverC9DL1S5_S3..              465001          34111
 ## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001   PMTC6LiverC9DL6L7S1_..              336559          38814
-##                                         reads_duplicates reads_multimapped reads_unassigned
-##                                                &lt;integer&gt;         &lt;integer&gt;        &lt;integer&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001               34883                 0            75555
-## PMTC6LiverC100DL1S6_S484_L002_R1_001               12657                 0            28651
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001             58222                 0           110352
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001            53055                 0            98560
-## PMTC6LiverC101DL1S2_S101_L001_R1_001               43008                 0            87786
-## ...                                                  ...               ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001              54159                 0            96735
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001             36534                 0            64866
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                   25527                 0            59107
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                 48055                 0            96126
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001              37898                 0            71998
-##                                         reads_ambiguous reads_total percentage_duplicates
-##                                               &lt;integer&gt;   &lt;numeric&gt;             &lt;numeric&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001                 90      503443                 0.069
-## PMTC6LiverC100DL1S6_S484_L002_R1_001                 27      194165                 0.065
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001              103      735636                 0.079
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001              91      646947                 0.082
-## PMTC6LiverC101DL1S2_S101_L001_R1_001                 76      583280                 0.074
-## ...                                                 ...         ...                   ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                86      649423                 0.083
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001               56      436032                 0.084
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                     54      397416                 0.064
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                  109      643402                 0.075
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                60      485329                 0.078
-##                                         overdispersion breakpoint_count
-##                                              &lt;numeric&gt;        &lt;numeric&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001        0.00262992                0
-## PMTC6LiverC100DL1S6_S484_L002_R1_001        0.01564945                0
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001      0.00302844                0
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001     0.00379236                0
-## PMTC6LiverC101DL1S2_S101_L001_R1_001        0.00674672                0
-## ...                                                ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001       0.00195059                0
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001      0.00362179                0
-## PMTC6LiverC9DL1S1_S9_L001_R1_001            0.00406539                0
-## PMTC6LiverC9DL1S5_S393_L002_R1_001          0.00276767                0
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001       0.00231466                0</code></pre>
+##                                         reads_duplicates reads_multimapped reads_unassigned reads_ambiguous
+##                                                &lt;integer&gt;         &lt;integer&gt;        &lt;integer&gt;       &lt;integer&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001               34883                 0            75555              90
+## PMTC6LiverC100DL1S6_S484_L002_R1_001               12657                 0            28651              27
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001             58222                 0           110352             103
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001            53055                 0            98560              91
+## PMTC6LiverC101DL1S2_S101_L001_R1_001               43008                 0            87786              76
+## ...                                                  ...               ...              ...             ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001              54159                 0            96735              86
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001             36534                 0            64866              56
+## PMTC6LiverC9DL1S1_S9_L001_R1_001                   25527                 0            59107              54
+## PMTC6LiverC9DL1S5_S393_L002_R1_001                 48055                 0            96126             109
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001              37898                 0            71998              60
+##                                         reads_total percentage_duplicates overdispersion breakpoint_count
+##                                           &lt;numeric&gt;             &lt;numeric&gt;      &lt;numeric&gt;        &lt;numeric&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001         503443                 0.069     0.00262992                0
+## PMTC6LiverC100DL1S6_S484_L002_R1_001         194165                 0.065     0.01564945                0
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001       735636                 0.079     0.00302844                0
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001      646947                 0.082     0.00379236                0
+## PMTC6LiverC101DL1S2_S101_L001_R1_001         583280                 0.074     0.00674672                0
+## ...                                             ...                   ...            ...              ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001        649423                 0.083     0.00195059                0
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001       436032                 0.084     0.00362179                0
+## PMTC6LiverC9DL1S1_S9_L001_R1_001             397416                 0.064     0.00406539                0
+## PMTC6LiverC9DL1S5_S393_L002_R1_001           643402                 0.075     0.00276767                0
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001        485329                 0.078     0.00231466                0</code></pre>
 </div>
 <div id="findaneuploidcells" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> findAneuploidCells()</h2>
@@ -312,7 +299,7 @@ The distribution containing the simulated dataset is inferred to be the euploid 
 Samples that group with the inferred euploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean euploid distribution are classified as euploid samples.</p>
 <p>The threshold can be changed from the automatic detection to a custom threshold with the argument <code>resolution</code>. For example, by setting a threshold = 0.1, findAneuploidCells will mark as euploid all cells with a coefficient of variation less or equal than 0.1.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="qc-module.html#cb60-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findAneuploidCells</span>(tumor)</span></code></pre></div>
-<pre><code>## number of iterations= 23</code></pre>
+<pre><code>## number of iterations= 17</code></pre>
 <pre><code>## Copykit detected 612 that are possibly normal cells using a resolution of: 0.054</code></pre>
 <pre><code>## Added information to colData(CopyKit).</code></pre>
 <p>The results from <code>findAneuploidCells()</code> are stored within the colData in the column <em>is_aneuploid</em>.</p>

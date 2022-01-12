@@ -11,7 +11,7 @@ tumor <- runVarbin("/path/to/marked/bam/files/",
                  remove_Y = TRUE)
 
 # Mark euploid cells if they exist
-tumor <- findNormalCells(tumor)
+tumor <- findAneuploidCells(tumor)
 
 # Mark low-quality cells for filtering
 tumor <- findOutliers(tumor)
