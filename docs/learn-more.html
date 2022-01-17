@@ -204,9 +204,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
 <li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
 <li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
-<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.6</b> Segmentation</a>
+<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>7.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="7.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.7</b> Segmentation</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.6.1</b> CBS</a></li>
+<li class="chapter" data-level="7.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.7.1</b> CBS</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
@@ -232,6 +233,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="learn-more" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Learn more</h1>
+<p>This section is always expanding. If you have a contribution and would like to add explanations for a method related to copy number data, please submit a <a href="https://github.com/navinlabcode/CopyKit-UserGuide">PR</a>. Contributions are extremely welcomed!</p>
 <div id="copy-number-data-from-short-reads-sequencing" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Copy Number data from short reads sequencing</h2>
 </div>
@@ -239,7 +241,7 @@ div.csl-indent {
 <h2><span class="header-section-number">7.2</span> Principle</h2>
 <!-- Writing comment: this seems to have just been dropped into the middle of text. -->
 <p>To infer copy number data from short-read sequencing we count the number of reads that align to a particular region of the genome.
-Counterintuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.</p>
+Counter intuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.</p>
 </div>
 <div id="varbin-lm" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> VarBin</h2>
@@ -273,10 +275,17 @@ These predictions can be used directly to normalize the original signal, or as t
 <p>After segmentation, some segments remain with small differences, generating spurious breakpoints that are unlikely to be real copy number events.
 To remove this effect we perform a Wilcoxon rank-sum test between the observed median across two segments. Segments that do not reach significance are merged.</p>
 </div>
-<div id="segmentation-lm" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Segmentation</h2>
-<div id="cbs-lm" class="section level3" number="7.6.1">
-<h3><span class="header-section-number">7.6.1</span> CBS</h3>
+<div id="infercn-lm" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> How do we infer copy numbers</h2>
+<p>We previously partitioned the reference genome into bins of variables size and performed the alignment of the reads to the bins, quantifying the number of reads contained in each bin.</p>
+<p>We can infer the relative copy number of a sample relative to the average number of reads of the sample.</p>
+<p>Therefore, we perform a sample-wise normalization of the bin counts by their mean. This way, a value of 1 corresponds to the average copy number of the sample, whereas higher values reflect amplified regions, and lower values represent genomic losses. The resulting matrix is known as the <strong>ratio matrix</strong> and it’s segmented counterpart is known as the <strong>segment ratios mean matrix</strong>.</p>
+<p>Importantly, with this normalization, we can’t immediately determine the integer copy number of a given segment. However several methods have been developed to infer the ploidy of a cell and its segments using short read sequencing.</p>
+</div>
+<div id="segmentation-lm" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Segmentation</h2>
+<div id="cbs-lm" class="section level3" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> CBS</h3>
 <p><a href="https://academic.oup.com/biostatistics/article/5/4/557/275197">Circular Binary Segmentation (CBS)</a> is a popular method of segmentation.</p>
 <p>From the help of DNAcopy package (see ?DNAcopy::segment):</p>
 <p>This function implements the circular binary segmentation (CBS) algorithm of Olshen and Venkatraman (2004).

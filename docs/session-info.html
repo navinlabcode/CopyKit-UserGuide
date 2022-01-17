@@ -204,9 +204,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
 <li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
 <li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
-<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.6</b> Segmentation</a>
+<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>7.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="7.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.7</b> Segmentation</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.6.1</b> CBS</a></li>
+<li class="chapter" data-level="7.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.7.1</b> CBS</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
@@ -264,7 +265,7 @@ div.csl-indent {
 ##  [17] ScaledMatrix_1.2.0        cowplot_1.1.1             RSQLite_2.2.8             combinat_0.0-8           
 ##  [21] bit_4.0.4                 xml2_1.3.2                lubridate_1.8.0           httpuv_1.6.3             
 ##  [25] assertthat_0.2.1          viridis_0.6.2             amap_0.8-18               xfun_0.28                
-##  [29] hms_1.1.1                 jquerylib_0.1.4           evaluate_0.14             promises_1.2.0.1         
+##  [29] jquerylib_0.1.4           hms_1.1.1                 evaluate_0.14             promises_1.2.0.1         
 ##  [33] DEoptimR_1.0-9            fansi_0.5.0               restfulr_0.0.13           progress_1.2.2           
 ##  [37] dbplyr_2.1.1              igraph_1.2.8              DBI_1.1.1                 tmvnsim_1.0-2            
 ##  [41] paletteer_1.4.0           purrr_0.3.4               ellipsis_0.3.2            RSpectra_0.16-0          
@@ -272,11 +273,11 @@ div.csl-indent {
 ##  [49] sparseMatrixStats_1.6.0   vctrs_0.3.8               ggalluvial_0.12.3         withr_2.4.3              
 ##  [53] cachem_1.0.6              robustbase_0.93-9         GenomicAlignments_1.30.0  treeio_1.18.0            
 ##  [57] prettyunits_1.1.1         scran_1.22.0              mclust_5.4.7              mnormt_2.0.2             
-##  [61] phytools_0.7-90           cluster_2.1.2             segmented_1.3-4           ape_5.5                  
+##  [61] phytools_0.7-90           cluster_2.1.2             ape_5.5                   segmented_1.3-4          
 ##  [65] lazyeval_0.2.2            crayon_1.4.2              labeling_0.4.2            edgeR_3.36.0             
 ##  [69] pkgconfig_2.0.3           vipor_0.4.5               nlme_3.1-153              nnet_7.3-16              
-##  [73] pals_1.7                  rlang_0.4.12              diptest_0.76-0            miniUI_0.1.1.1           
-##  [77] lifecycle_1.0.1           filelock_1.0.2            dbscan_1.1-8              BiocFileCache_2.2.0      
+##  [73] pals_1.7                  rlang_0.4.12              diptest_0.76-0            lifecycle_1.0.1          
+##  [77] miniUI_0.1.1.1            filelock_1.0.2            dbscan_1.1-8              BiocFileCache_2.2.0      
 ##  [81] rsvd_1.0.5                dichromat_2.0-0           Matrix_1.3-4              aplot_0.1.1              
 ##  [85] phangorn_2.7.1            boot_1.3-28               beeswarm_0.4.0            GlobalOptions_0.1.2      
 ##  [89] viridisLite_0.4.0         png_0.1-7                 rjson_0.2.20              bitops_1.0-7             
@@ -302,7 +303,7 @@ div.csl-indent {
 ## [169] ggtree_3.2.0              modeltools_0.2-23         ggfun_0.0.4               R6_2.5.1                 
 ## [173] pillar_1.6.4              htmltools_0.5.2           mime_0.12                 glue_1.4.2               
 ## [177] fastmap_1.1.0             BiocNeighbors_1.12.0      class_7.3-19              codetools_0.2-18         
-## [181] maps_3.4.0                utf8_1.2.2                lattice_0.20-45           bslib_0.3.1              
+## [181] maps_3.4.0                utf8_1.2.2                bslib_0.3.1               lattice_0.20-45          
 ## [185] tibble_3.1.5              mixtools_1.2.0            numDeriv_2016.8-1.1       ggbeeswarm_0.6.0         
 ## [189] curl_4.3.2                leiden_0.3.9              gtools_3.9.2              magick_2.7.3             
 ## [193] survival_3.2-13           limma_3.50.0              rmarkdown_2.11            munsell_0.5.0            

@@ -23,7 +23,7 @@ For more information check the [parallelization](#parallelization) section.
 The input for `runVarbin()` is the path of the folder containing your *marked duplicate `.bam` files*.
 The `runVarbin()` function counts the number of reads in each genomic bin according to the variable binning method - [Learn More!](#varbin-lm) [@RN13; @RN2; @RN4].
 
-To help users obtain *marked duplicate `.bam` files* from *.fastq* files we provide a [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline [here]().This pipeline can be adapted as per users' needs. 
+To help users obtain *marked duplicate `.bam` files* from *.fastq* files we provide a [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline [here](https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines).This pipeline can be adapted as per users' needs. 
 **NOTE:** Reads must be aligned to the same genome assembly used within CopyKit. 
  
 The `runVarbin()` function requires an argument specifying the path to the `.bam` files:
@@ -95,13 +95,12 @@ The multipcf function differs from CBS by performing a joint segmentation of the
 
 ---
 
-The resulting information from segmentation is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*.
+The resulting information from segmentation is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*. [Learn More!](#infercn-lm)
 They can be accessed with the helper function `ratios()` and `segment_ratios()`
 ```{r r_sr_accessors}
 head(ratios(tumor)[,1:5])
 head(segment_ratios(tumor)[,1:5])
 ```
-<!-- Briefly explain how the ratios are calculated... Add to learn-more --> 
 
 ---
 

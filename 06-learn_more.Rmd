@@ -1,12 +1,14 @@
 # Learn more
 
+This section is always expanding. If you have a contribution and would like to add explanations for a method related to copy number data, please submit a [PR](https://github.com/navinlabcode/CopyKit-UserGuide). Contributions are extremely welcomed!
+
 ## Copy Number data from short reads sequencing
 
 ## Principle {#principle-lm}
 
 <!-- Writing comment: this seems to have just been dropped into the middle of text. -->
 To infer copy number data from short-read sequencing we count the number of reads that align to a particular region of the genome. 
-Counterintuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.
+Counter intuitively, we are not drawn to the individual nucleotides, but the regions of the genome in which the reads have aligned.
 
 ## VarBin {#varbin-lm}
 
@@ -45,6 +47,16 @@ Therefore, we smooth the signal using [loess](https://en.wikipedia.org/wiki/Loca
 
 After segmentation, some segments remain with small differences, generating spurious breakpoints that are unlikely to be real copy number events. 
 To remove this effect we perform a Wilcoxon rank-sum test between the observed median across two segments. Segments that do not reach significance are merged.
+
+## How do we infer copy numbers {#infercn-lm}
+
+We previously partitioned the reference genome into bins of variables size and performed the alignment of the reads to the bins, quantifying the number of reads contained in each bin.
+
+We can infer the relative copy number of a sample relative to the average number of reads of the sample.
+
+Therefore, we perform a sample-wise normalization of the bin counts by their mean. This way, a value of 1 corresponds to the average copy number of the sample, whereas higher values reflect amplified regions, and lower values represent genomic losses. The resulting matrix is known as the **ratio matrix** and it's segmented counterpart is known as the **segment ratios mean matrix**.
+
+Importantly, with this normalization, we can't immediately determine the integer copy number of a given segment. However several methods have been developed to infer the ploidy of a cell and its segments using short read sequencing.
 
 ## Segmentation {#segmentation-lm}
 

@@ -204,9 +204,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
 <li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
 <li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
-<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.6</b> Segmentation</a>
+<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>7.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="7.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.7</b> Segmentation</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.6.1</b> CBS</a></li>
+<li class="chapter" data-level="7.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.7.1</b> CBS</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
@@ -306,7 +307,7 @@ For more information check the <a href="parallelization.html#parallelization">pa
 <h3><span class="header-section-number">4.1.1</span> runVarbin()</h3>
 <p>The input for <code>runVarbin()</code> is the path of the folder containing your <em>marked duplicate <code>.bam</code> files</em>.
 The <code>runVarbin()</code> function counts the number of reads in each genomic bin according to the variable binning method - <a href="learn-more.html#varbin-lm">Learn More!</a> <span class="citation">(Navin et al. 2011; Baslan et al. 2012; Gao et al. 2016)</span>.</p>
-<p>To help users obtain <em>marked duplicate <code>.bam</code> files</em> from <em>.fastq</em> files we provide a <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a> pipeline <a href="">here</a>.This pipeline can be adapted as per users’ needs.
+<p>To help users obtain <em>marked duplicate <code>.bam</code> files</em> from <em>.fastq</em> files we provide a <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a> pipeline <a href="https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines">here</a>.This pipeline can be adapted as per users’ needs.
 <strong>NOTE:</strong> Reads must be aligned to the same genome assembly used within CopyKit.</p>
 <p>The <code>runVarbin()</code> function requires an argument specifying the path to the <code>.bam</code> files:
 An optional second argument <code>remove_Y</code> provides a convenient shortcut to exclude chromosome Y from the dataset.</p>
@@ -395,7 +396,7 @@ Currently available methods are:</p>
 <p>A second segmentation option is the Multi-sample Piecewise Constant Fit (multipcf) segmentation from the package <a href="https://www.bioconductor.org/packages/release/bioc/html/copynumber.html">copynumber</a>.
 The multipcf function differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints to all samples.</p>
 <hr />
-<p>The resulting information from segmentation is stored within the CopyKit object into two different assays: <em>ratios</em> and <em>segment_ratios</em>.
+<p>The resulting information from segmentation is stored within the CopyKit object into two different assays: <em>ratios</em> and <em>segment_ratios</em>. <a href="learn-more.html#infercn-lm">Learn More!</a>
 They can be accessed with the helper function <code>ratios()</code> and <code>segment_ratios()</code></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="pre-processing.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
@@ -441,7 +442,6 @@ They can be accessed with the helper function <code>ratios()</code> and <code>se
 ## 4                                    1
 ## 5                                    1
 ## 6                                    1</code></pre>
-<!-- Briefly explain how the ratios are calculated... Add to learn-more -->
 <hr />
 </div>
 </div>

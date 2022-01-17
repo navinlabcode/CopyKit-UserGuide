@@ -39,6 +39,7 @@ principle-lm
 varbin-lm
 gccor-lm
 mergelevels-lm
+infercn-lm
 segmentation-lm
 cbs-lm
 session-info
