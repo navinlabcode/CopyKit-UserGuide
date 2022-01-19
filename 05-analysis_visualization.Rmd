@@ -229,7 +229,7 @@ plotHeatmap(tumor, label = 'subclones')
 
 Genes can be annotated to a heatmap in `plotHeatmap()` with the _genes_ argument.
 The genes argument is a vector of gene HUGO symbols:
-```{r plot_heatmap_subclones_genes_falsee, eval=FALSE, fig.height=8}
+```{r plot_heatmap_subclones_genes, fig.height=8}
 plotHeatmap(tumor, label = 'subclones', genes = c("TP53", "BRAF", "MYC"))
 ```
 
@@ -348,6 +348,25 @@ plotGeneCopy(tumor, genes = c("CDKN2A",
                               "KRAS"),
                       label = 'spatial_info')
 ```
+
+A positional dodge can be added to facilitate the visualization across groups:
+```{r}
+plotGeneCopy(tumor, 
+             genes = c("CDKN2A",
+                              "FGFR1",
+                              "TP53",
+                              "PTEN",
+                              "MYC",
+                              "CDKN1A",
+                              "MDM2",
+                              "AURKA",
+                              "PIK3CA",
+                              "CCND1",
+                              "KRAS"),
+             label = 'subclones',
+             dodege.width = 0.8)
+```
+
 
 A barplot geom is also provided to visualize the integer data as a frequency barplot for each gene:
 ```{r plot_gene_copy_integer}
