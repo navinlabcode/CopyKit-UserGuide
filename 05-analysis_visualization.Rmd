@@ -58,7 +58,7 @@ Additional arguments to control umap parameters can be passed on to`runUmap()` w
 
 The full list of additional arguments that can be passed on to `uwot::umap`  with the '...' argument can be seen in the [uwot manual](https://cran.r-project.org/web/packages/uwot/uwot.pdf) and a guide to their influence on clustering can be found in the [umap webpage](https://umap-learn.readthedocs.io/en/latest/clustering.html)
 
-## plotUmap()
+### plotUmap()
 
 `plotUmap()` can be used to visualize the reduced dimensional embedding. 
 `plotUmap` can be colored by any element of the colData with the argument 'label'.
@@ -165,7 +165,7 @@ The resulting tree is stored within the CopyKit object in the phylo slot:
 tumor <- runPhylo(tumor, metric = 'manhattan')
 ```
 
-## plotPhylo()
+### plotPhylo()
 
 To visualize the resulting phylogenetic trees from `runPhylo()` we can use the `plotPhylo()` function.
 
@@ -189,19 +189,13 @@ Segment ratio means can be scaled to integer values with `calcInteger()`.
 
 CopyKit supports different methods of calculating integer copy number profiles.
 
-To calculate computational ploidies, CopyKit adopts the [scquantum]() package. To use scquantum just set the argument method to *scquantum*.
-
-```{r calc_integer_scquantum, eval = FALSE}
-tumor <- calcInteger(tumor, method = 'scquantum')
-```
+To calculate computational ploidies, a method is in development and should be available soon within copykit.
 
 By setting the argument `method` to *fixed*, a fixed value of ploidy (generally determined using Flow Cytometry) will scale all cells.
 
 ```{r calc_integer_fixed}
-tumor <- calcInteger(tumor, ploidy_value = 4.3)
+tumor <- calcInteger(tumor, method = 'fixed', ploidy_value = 4.3)
 ```
-
-Alternatively, if different ploidies are needed for different cells, a vector containing the ploidies can be passed on to `calcInteger()`, as long as it has an equal length and sample order as `colData()`.
 
 The integer values are stored in the slot `integer` that can be accessed with the function `assay()`.
 
@@ -268,23 +262,19 @@ For every region of the genome, `plotFreq()` will calculate the frequency of gai
 The thresholds are controlled with the arguments `low_threshold` (values below will be counted as genomic losses) and `high_threshold` (values above will be counted as genomic gains).
 
 Ideally thresholds will be set according to the ploidy of the sample. 
-For example, the sample presented throughout this documentation has a ploidy of approximately 4.3, therefore a gain or loss of one copy number for this sample should have a difference in the segment ratio value of 1/4.3 (~0.23). 
-This way, we will set the thresholds accordingly to a difference of plus or minus 0.2 (leaving some room for error), compared to a segment ratio of 1.
 
 The argument `assay` can be provided to pass on the `integer` assay instead of the `segment_ratios` assay (adjust thresholds accordingly).
 
 Two geoms are available `area` or `line`.
 ```{r plot_freq_sample}
-plotFreq(tumor, low_threshold = 0.8, high_threshold = 1.2)
+plotFreq(tumor)
 ```
 
-Group information can be set to any categorical element of the `colData()` and is provided with the argument `label`.
+Group information can be set to any categorical element of the `colData()` and is provided with the argument `group`.
 
 ```{r plot_freq_label, fig.height=6}
-plotFreq(tumor, 
-         low_threshold = 0.8, 
-         high_threshold = 1.2, 
-         label = 'subclones')
+plotFreq(tumor,
+         group = 'subclones')
 ```
 
 ## calcConsensus()
@@ -364,7 +354,7 @@ plotGeneCopy(tumor,
                               "CCND1",
                               "KRAS"),
              label = 'subclones',
-             dodege.width = 0.8)
+             dodge.width = 0.8)
 ```
 
 
@@ -388,7 +378,30 @@ plotGeneCopy(tumor, genes = c("CDKN2A",
 ## plotAlluvial()
 
 To visualize frequencies across elements of the metadata we can use `plotAlluvial()` 
-```{r}
+```{r plot_alluvial}
 plotAlluvial(tumor, label = c("subclones", "spatial_info"))
+```
+
+## runPca()
+
+Principal Component Analysis can be run with `runPca()`
+```{r run_pca}
+tumor <- runPca(tumor)
+```
+
+The results are stored in the `reducedDim(tumor, 'PCA')` slot.
+
+Principal Components can be used as an alternative pre-processing step to the `findClusters()` function by changing `findClusters()` _embedding_ argument to 'PCA'. The number of principal components to be used for clustering can also be set within `findClusters() with the argument ncomponents. At this time better results are achieved by using the default UMAP embedding and it is the recommend pre-processing step. However PCA remains as a viable alternative
+
+### plotScree
+To determine the number of useful principal components a scree plot can be shown with:
+```{r plot_scree}
+plotScree(tumor)
+```
+
+### plotPCA
+To visualize the first 2 principal components you can use `plotPCA()`.
+```{r}
+plotPca(tumor, label = 'spatial_info')
 ```
 

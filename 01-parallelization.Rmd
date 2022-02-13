@@ -7,11 +7,11 @@ Running parallel processes is highly recommended to speed up *CopyKit* calculati
 Make sure to read the BiocParallel [vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf) to choose the best parameters for your machine and OS. 
 
 Use `BiocParallel::register()` function to register the number of workers (threads) desired.
-To visually monitor the progress, you can use the argument *progressbar* to obtain a progress bar. 
+To visually monitor the progress, you can use the argument *progressbar*. 
 
 ```{r registering_fake, eval=FALSE}
 library(BiocParallel)
-register(MulticoreParam(progressbar = T, workers = 100), default = T)
+register(MulticoreParam(progressbar = T, workers = 8), default = T)
 ```
 
 ```{r registering_true, echo=FALSE}

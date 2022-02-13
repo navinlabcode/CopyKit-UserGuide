@@ -119,28 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -163,12 +141,12 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-bam-files"><i class="fa fa-check"></i><b>4.1</b> From BAM files</a>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-single-cell-bam-files"><i class="fa fa-check"></i><b>4.1</b> From Single Cell BAM files</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
-<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin-modules"><i class="fa fa-check"></i><b>4.1.2</b> runVarbin() modules</a></li>
-<li class="chapter" data-level="4.1.3" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.3</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
+<li class="chapter" data-level="4.2" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin-modules"><i class="fa fa-check"></i><b>4.2</b> runVarbin() modules</a></li>
+<li class="chapter" data-level="4.3" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.3</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
 <ul>
@@ -180,22 +158,31 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotmetrics"><i class="fa fa-check"></i><b>6.1</b> plotMetrics()</a></li>
 <li class="chapter" data-level="6.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>6.2</b> plotRatio()</a></li>
-<li class="chapter" data-level="6.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>6.3</b> runUmap()</a></li>
-<li class="chapter" data-level="6.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>6.4</b> plotUmap()</a></li>
-<li class="chapter" data-level="6.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>6.5</b> Clustering</a>
+<li class="chapter" data-level="6.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>6.3</b> runUmap()</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>6.5.1</b> findSugestedK()</a></li>
-<li class="chapter" data-level="6.5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>6.5.2</b> findClusters()</a></li>
+<li class="chapter" data-level="6.3.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>6.3.1</b> plotUmap()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>6.6</b> runPhylo()</a></li>
-<li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.7</b> plotPhylo()</a></li>
-<li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.8</b> calcInteger()</a></li>
-<li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.9</b> plotHeatmap()</a></li>
-<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.10</b> plotFreq()</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.11</b> calcConsensus()</a></li>
-<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.12</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.13</b> plotGeneCopy()</a></li>
-<li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.14</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="6.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>6.4</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>6.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="6.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>6.4.2</b> findClusters()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>6.5</b> runPhylo()</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.5.1</b> plotPhylo()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.6</b> calcInteger()</a></li>
+<li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.7</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.8</b> plotFreq()</a></li>
+<li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.9</b> calcConsensus()</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.10</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.11</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.12</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runpca"><i class="fa fa-check"></i><b>6.13</b> runPca()</a>
+<ul>
+<li class="chapter" data-level="6.13.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotscree"><i class="fa fa-check"></i><b>6.13.1</b> plotScree</a></li>
+<li class="chapter" data-level="6.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>6.13.2</b> plotPCA</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
 <ul>
@@ -243,52 +230,52 @@ div.csl-indent {
 <h2><span class="header-section-number">5.1</span> runMetrics()</h2>
 <p><code>runMetrics()</code> adds basic quality control information to colData.
 It returns sample-wise metrics of overdispersion and breakpoint counts.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="qc-module.html#cb54-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runMetrics</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="qc-module.html#cb31-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runMetrics</span>(tumor)</span></code></pre></div>
 <pre><code>## Calculating overdispersion.</code></pre>
 <pre><code>## Counting breakpoints.</code></pre>
 <pre><code>## Done.</code></pre>
 <p>The resulting information can be viewed with:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="qc-module.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="qc-module.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(tumor)</span></code></pre></div>
 <pre><code>## DataFrame with 1502 rows and 11 columns
-##                                                         sample reads_assigned_bins reads_unmapped
-##                                                    &lt;character&gt;           &lt;integer&gt;      &lt;integer&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001    PMTC6LiverC100DL1S2_..              362665          30250
-## PMTC6LiverC100DL1S6_S484_L002_R1_001    PMTC6LiverC100DL1S6_..              130570          22260
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001  PMTC6LiverC100DL4L5S..              536017          30942
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC100DL6L7S..              467002          28239
-## PMTC6LiverC101DL1S2_S101_L001_R1_001    PMTC6LiverC101DL1S2_..              423654          28756
-## ...                                                        ...                 ...            ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001   PMTC6LiverC99DL4L5S1..              460498          37945
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001  PMTC6LiverC99DL6L7S3..              306486          28090
-## PMTC6LiverC9DL1S1_S9_L001_R1_001        PMTC6LiverC9DL1S1_S9..              274402          38326
-## PMTC6LiverC9DL1S5_S393_L002_R1_001      PMTC6LiverC9DL1S5_S3..              465001          34111
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001   PMTC6LiverC9DL6L7S1_..              336559          38814
-##                                         reads_duplicates reads_multimapped reads_unassigned reads_ambiguous
-##                                                &lt;integer&gt;         &lt;integer&gt;        &lt;integer&gt;       &lt;integer&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001               34883                 0            75555              90
-## PMTC6LiverC100DL1S6_S484_L002_R1_001               12657                 0            28651              27
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001             58222                 0           110352             103
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001            53055                 0            98560              91
-## PMTC6LiverC101DL1S2_S101_L001_R1_001               43008                 0            87786              76
-## ...                                                  ...               ...              ...             ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001              54159                 0            96735              86
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001             36534                 0            64866              56
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                   25527                 0            59107              54
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                 48055                 0            96126             109
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001              37898                 0            71998              60
-##                                         reads_total percentage_duplicates overdispersion breakpoint_count
-##                                           &lt;numeric&gt;             &lt;numeric&gt;      &lt;numeric&gt;        &lt;numeric&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001         503443                 0.069     0.00262992                0
-## PMTC6LiverC100DL1S6_S484_L002_R1_001         194165                 0.065     0.01564945                0
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001       735636                 0.079     0.00302844                0
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001      646947                 0.082     0.00379236                0
-## PMTC6LiverC101DL1S2_S101_L001_R1_001         583280                 0.074     0.00674672                0
-## ...                                             ...                   ...            ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001        649423                 0.083     0.00195059                0
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001       436032                 0.084     0.00362179                0
-## PMTC6LiverC9DL1S1_S9_L001_R1_001             397416                 0.064     0.00406539                0
-## PMTC6LiverC9DL1S5_S393_L002_R1_001           643402                 0.075     0.00276767                0
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001        485329                 0.078     0.00231466                0</code></pre>
+##                                                         sample reads_assigned_bins reads_unmapped reads_duplicates
+##                                                    &lt;character&gt;           &lt;integer&gt;      &lt;integer&gt;        &lt;integer&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001    PMTC6LiverC100DL1S2_..              362665          30250            34883
+## PMTC6LiverC100DL1S6_S484_L002_R1_001    PMTC6LiverC100DL1S6_..              130570          22260            12657
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001  PMTC6LiverC100DL4L5S..              536017          30942            58222
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC100DL6L7S..              467002          28239            53055
+## PMTC6LiverC101DL1S2_S101_L001_R1_001    PMTC6LiverC101DL1S2_..              423654          28756            43008
+## ...                                                        ...                 ...            ...              ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001   PMTC6LiverC99DL4L5S1..              460498          37945            54159
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001  PMTC6LiverC99DL6L7S3..              306486          28090            36534
+## PMTC6LiverC9DL1S1_S9_L001_R1_001        PMTC6LiverC9DL1S1_S9..              274402          38326            25527
+## PMTC6LiverC9DL1S5_S393_L002_R1_001      PMTC6LiverC9DL1S5_S3..              465001          34111            48055
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001   PMTC6LiverC9DL6L7S1_..              336559          38814            37898
+##                                         reads_multimapped reads_unassigned reads_ambiguous reads_total
+##                                                 &lt;integer&gt;        &lt;integer&gt;       &lt;integer&gt;   &lt;numeric&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001                    0            75555              90      503443
+## PMTC6LiverC100DL1S6_S484_L002_R1_001                    0            28651              27      194165
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001                  0           110352             103      735636
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001                 0            98560              91      646947
+## PMTC6LiverC101DL1S2_S101_L001_R1_001                    0            87786              76      583280
+## ...                                                   ...              ...             ...         ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                   0            96735              86      649423
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001                  0            64866              56      436032
+## PMTC6LiverC9DL1S1_S9_L001_R1_001                        0            59107              54      397416
+## PMTC6LiverC9DL1S5_S393_L002_R1_001                      0            96126             109      643402
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                   0            71998              60      485329
+##                                         percentage_duplicates overdispersion breakpoint_count
+##                                                     &lt;numeric&gt;      &lt;numeric&gt;        &lt;numeric&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001                    0.069     0.00262992                0
+## PMTC6LiverC100DL1S6_S484_L002_R1_001                    0.065     0.01564945                0
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001                  0.079     0.00302844                1
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001                 0.082     0.00379236                0
+## PMTC6LiverC101DL1S2_S101_L001_R1_001                    0.074     0.00674672                0
+## ...                                                       ...            ...              ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                   0.083     0.00195059                1
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001                  0.084     0.00362179                3
+## PMTC6LiverC9DL1S1_S9_L001_R1_001                        0.064     0.00406539                0
+## PMTC6LiverC9DL1S5_S393_L002_R1_001                      0.075     0.00276767                0
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                   0.078     0.00231466                2</code></pre>
 </div>
 <div id="findaneuploidcells" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> findAneuploidCells()</h2>
@@ -299,13 +286,13 @@ An expectation-maximization algorithm is used to fit a mixture of gaussian distr
 The distribution containing the simulated dataset is inferred to be the euploid distribution.
 Samples that group with the inferred euploid distribution and present coefficient of variation smaller than 5 standard deviations from the mean euploid distribution are classified as euploid samples.</p>
 <p>The threshold can be changed from the automatic detection to a custom threshold with the argument <code>resolution</code>. For example, by setting a threshold = 0.1, findAneuploidCells will mark as euploid all cells with a coefficient of variation less or equal than 0.1.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="qc-module.html#cb60-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findAneuploidCells</span>(tumor)</span></code></pre></div>
-<pre><code>## number of iterations= 19</code></pre>
-<pre><code>## Copykit detected 612 that are possibly normal cells using a resolution of: 0.054</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="qc-module.html#cb37-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findAneuploidCells</span>(tumor)</span></code></pre></div>
+<pre><code>## number of iterations= 28</code></pre>
+<pre><code>## Copykit detected 607 that are possibly euploid cells using a resolution of: 0.069</code></pre>
 <pre><code>## Added information to colData(CopyKit).</code></pre>
 <p>The results from <code>findAneuploidCells()</code> are stored within the colData in the column <em>is_aneuploid</em>.</p>
 <p>We can visualize the results with <code>plotHeatmap()</code>:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="qc-module.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;is_aneuploid&#39;</span>, <span class="at">row_split =</span> <span class="st">&#39;is_aneuploid&#39;</span>, <span class="at">n_threads =</span> <span class="dv">40</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="qc-module.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;is_aneuploid&#39;</span>, <span class="at">row_split =</span> <span class="st">&#39;is_aneuploid&#39;</span>, <span class="at">n_threads =</span> <span class="dv">40</span>)</span></code></pre></div>
 <pre><code>## Ordering by consensus requires cluster information.</code></pre>
 <pre><code>## Switching to hclust.</code></pre>
 <pre><code>## No distance matrix detected in the scCNA object.</code></pre>
@@ -316,7 +303,7 @@ Samples that group with the inferred euploid distribution and present coefficien
 <pre><code>## Plotting Heatmap.</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/find_normal_heat-1.png" width="672" /></p>
 <p>The object is subsetted in the same way as with any R object, to keep only the aneuploid cells.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="qc-module.html#cb73-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>is_aneuploid <span class="sc">==</span> <span class="cn">TRUE</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="qc-module.html#cb50-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>is_aneuploid <span class="sc">==</span> <span class="cn">TRUE</span>]</span></code></pre></div>
 </div>
 <div id="findoutliers" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> findOutliers()</h2>
@@ -324,16 +311,17 @@ Samples that group with the inferred euploid distribution and present coefficien
 <p>To detect low-quality samples, CopyKit calculates the Pearson correlation matrix of all samples from the segment ratio means.
 Next, we calculate a sample-wise mean of the correlation between a cell and its k-nearest-neighbors (default = 5).
 Cells in which the correlation value is lower than the defined threshold are classified as low-quality cells (default = 0.9).</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="qc-module.html#cb74-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findOutliers</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="qc-module.html#cb51-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findOutliers</span>(tumor)</span></code></pre></div>
 <pre><code>## Calculating correlation matrix.</code></pre>
-<pre><code>## Marked 101 cells as outliers.</code></pre>
+<pre><code>## Marked 102 cells as outliers.</code></pre>
 <pre><code>## Adding information to metadata. Access with colData(scCNA).</code></pre>
 <pre><code>## Done.</code></pre>
-<p>The default correlation cutoff for filtering can be adjusted with the argument ‘resolution.’ For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
+<p>The default correlation cutoff for filtering can be adjusted with the argument ‘resolution.’
+For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
 Higher resolution values will result in stricter filtering criterias.</p>
 <p>Results from <code>findOutliers()</code> are added to colData (column <em>outlier</em>) marking cells that can be removed or kept.</p>
 <p>We can check the results with <code>plotHeatmap()</code>. To make visualization easier, rows can also be split according to elements of colData with the argument <code>row_split</code>.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="qc-module.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;outlier&#39;</span>, <span class="at">row_split =</span> <span class="st">&#39;outlier&#39;</span>, <span class="at">n_threads =</span> <span class="dv">40</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="qc-module.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;outlier&#39;</span>, <span class="at">row_split =</span> <span class="st">&#39;outlier&#39;</span>, <span class="at">n_threads =</span> <span class="dv">40</span>)</span></code></pre></div>
 <pre><code>## Ordering by consensus requires cluster information.</code></pre>
 <pre><code>## Switching to hclust.</code></pre>
 <pre><code>## No distance matrix detected in the scCNA object.</code></pre>
@@ -343,8 +331,8 @@ Higher resolution values will result in stricter filtering criterias.</p>
 <pre><code>## Done.</code></pre>
 <pre><code>## Plotting Heatmap.</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/filter_cells_heat-1.png" width="672" /></p>
-<p>We remove the marked noise cells from the object with:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="qc-module.html#cb88-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>outlier <span class="sc">==</span> <span class="cn">FALSE</span>]</span></code></pre></div>
+<p>We remove the marked low-quality cells from the object with:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="qc-module.html#cb65-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>outlier <span class="sc">==</span> <span class="cn">FALSE</span>]</span></code></pre></div>
 <p>The dataset should be ready to proceed with the analysis.</p>
 
 </div>

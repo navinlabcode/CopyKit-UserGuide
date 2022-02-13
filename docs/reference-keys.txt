@@ -2,7 +2,7 @@ introduction
 parallelization
 quick-start
 pre-processing
-from-bam-files
+from-single-cell-bam-files
 runvarbin
 cbs-dnacopy
 multipcf-copynumber
@@ -33,6 +33,9 @@ calcconsensus
 plotconsensusline
 plotgenecopy
 plotalluvial
+runpca
+plotscree
+plotpca
 learn-more
 copy-number-data-from-short-reads-sequencing
 principle-lm

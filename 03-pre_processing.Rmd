@@ -16,14 +16,18 @@ library(copykit)
 **NOTE:** If the BiocParallel framework was registered, CopyKit functions will, whenever possible, run in parallel. 
 For more information check the [parallelization](#parallelization) section.
 
-## From BAM files
+## From Single Cell BAM files
 
 ### runVarbin()
 
 The input for `runVarbin()` is the path of the folder containing your *marked duplicate `.bam` files*.
-The `runVarbin()` function counts the number of reads in each genomic bin according to the variable binning method - [Learn More!](#varbin-lm) [@RN13; @RN2; @RN4].
 
-To help users obtain *marked duplicate `.bam` files* from *.fastq* files we provide a [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline [here](https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines).This pipeline can be adapted as per users' needs. 
+Here, every single cell must be contained in its **own BAM file**, for Chromium single cell CNA (10X Genomics) users this means that you must split the _possorted.bam_ file according to cell barcode into single cell bam files.
+Also please make sure to set the argument _is_paired_end_ to TRUE during runVarbin if your BAM files originate from PE sequencing (see more instructions below).
+
+The `runVarbin()` function counts the number of reads in each genomic bin according to the variable binning method - [Learn More!](#varbin-lm).
+
+If you are starting from *.fastq* files, we provide a [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline to help users obtain *marked duplicate `.bam` files* [here](https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines). This pipeline can be adapted as per users' needs. It is not a required step. If you have marked bam files from a different source you can skip this step. 
 **NOTE:** Reads must be aligned to the same genome assembly used within CopyKit. 
  
 The `runVarbin()` function requires an argument specifying the path to the `.bam` files:
@@ -39,7 +43,6 @@ tumor <- runVarbin("/mnt/lab/users/dminussi/projects/copy_number_pipeline_hg38/t
                    remove_Y = TRUE)
 ```
 
-
 By default, `runVarbin()` uses the *hg38* genome assembly and a *220kb* bin resolution.
 Both options can be customized with the arguments *genome* or *resolution*. (See ?runVarbin() for more details). 
 
@@ -51,15 +54,14 @@ tumor <- runVarbin("~/path/to/bam/files/",
 ``` 
 
 By default, `runVarbin()` uses the *hg38* genome assembly and a resolution of *220kb*.
-Both options can be customized with the arguments *genome* or *resolution* (see ?runVarbin()). 
-
+Both options can be changed with the arguments *genome* or *resolution* (see ?runVarbin()). 
 
 The resulting object is the CopyKit object.
 ```{r copykit_object}
 tumor
 ```
 
-CopyKit object classes inherit from the [SingleCellExperiment](https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class.
+CopyKit objects inherit from the [SingleCellExperiment](https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class.
 
 Each column represents a single cell and each row represents a bin. 
 
@@ -68,12 +70,14 @@ The read counts for each bin are stored in the bincounts assay, which can be acc
 head(bincounts(tumor)[,1:5])
 ```
 
-One issue with bin counts is they are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.
+Bin counts are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.
 
 The resulting transformation is stored within the *ft* assay, which can be accessed with `assay()`:
 ```{r}
 head(assay(tumor, 'ft')[,1:5])
 ```
+
+Alternatively, log transformation is also available (see ?runVst())
 
 Lastly, we perform segmentation to fit piecewise constant functions to the genome-ordered bin counts. The resulting segment means can be used to infer copy number states across the different genomic regions.
 
@@ -91,7 +95,7 @@ The `runVarbin()` function accepts the argument `alpha` which controls the signi
 #### multipcf {copynumber}
 
 A second segmentation option is the Multi-sample Piecewise Constant Fit (multipcf) segmentation from the package [copynumber](https://www.bioconductor.org/packages/release/bioc/html/copynumber.html).
-The multipcf function differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints to all samples.
+The multipcf function differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints across all samples.
 
 ---
 
@@ -104,19 +108,19 @@ head(segment_ratios(tumor)[,1:5])
 
 ---
 
-### runVarbin() modules
+## runVarbin() modules
 
 The following sections describe the functions wrapped by `runVarbin()`.
 **Important: If you started from runVarbin() you do not need to run the following functions.**
-The details of these functions are provided to facilitate running modules with different conditions without requiring you to re-running `runVarbin()`.
+The details of these functions are provided to facilitate running modules with different conditions without requiring you to re-running all `runVarbin()` modules.
 
 #### runCountReads()
 
 `runCountReads()` counts the reads into bins, smooth bincounts, and perform GC correction of the counts - [Learn More!](#gccor-lm). 
 
 The genome argument defines the genome assembly ("hg38", "hg19"). 
-The resolution argument defines the size of the variable bins ("50kb", "100kb", "175kb", "200kb", "250kb", "500kb", "1Mb", "2.5Mb").
-The argument `remove_Y` provides a convenient shortcut to exclude chromosome Y from the dataset.
+The resolution argument defines the size of the variable bins ("50kb", "110kb", "195kb", "220kb", "280kb", "500kb", "1Mb", "2.8Mb").
+The argument `remove_Y` provides a convenient shortcut to exclude the chromosome Y from the dataset.
 
 #### runVst()
 
@@ -127,23 +131,26 @@ The available transformations are freeman-tukey ('ft') or 'log'.
 
 `runSegmentation()` runs the segmentation algorithm of choice ('CBS' or 'multipcf'), followed by merging consecutive segments whose change does not reach the significance threshold [Learn More!](#mergelevels-lm).
 
-<!-- how is significance defined? Is there an argument that can be passed? --> 
+The argument _alpha_ controls the significance threshold for `CBS` segmentation.
+The argument _gamma_ controls the penalty of the segmentation for `multipcf` segmentation.
+
 
 #### logNorm()
 
-`logNorm()` performs a log transformation of the _segment_ratios_ assay and stores into the _logr_ assay. The _logr_ assay is used downstream by functions such as `runUmap()`.
+`logNorm()` performs a log transformation of the _segment_ratios_ assay and stores into the _logr_ assay. The _logr_ assay is used downstream by functions such as `runUmap()`. 
 
 ---
 
-### From external count data or user-defined scaffolds
+## From external count data or user-defined scaffolds
 
 To use CopyKit's downstream functions with processed datasets, we can create a `CopyKit` object meeting the following requirements:
 
-1. Either a bin count matrix where columns represent cells and rows are bins (to be stored in the `bincounts` assay) or a segment mean ratios matrix where columns represent cells and rows represent segment mean for each bin, an integer matrix of copy number calls can also be used at this step (to be stored in the `segment_ratios` assay). 
+1. Either a bin count matrix where columns represent cells and rows represent bins (to be stored in the `bincounts` assay) or a segment mean ratios matrix where columns represent cells and rows represent segment mean values for each bin. An integer matrix of copy number calls can also be used at this step (to be stored in the `segment_ratios` assay). 
 
 2. A [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html) object with length equal to the number of bins from the cell assay matrix. As long as the length requirement is respected this allows user-defined scaffolds to be used within CopyKit.
 
-To construct the CopyKit object, the following example mock code can be used, if providing bincounts:
+To construct the CopyKit object, the following mock code is presented as an example. 
+If providing bincounts:
 ```{r, eval=FALSE}
 obj <- CopyKit(list(bincounts = cell_bincount_matrix),
                rowRanges = genomic_ranges_scaffold)
@@ -156,7 +163,7 @@ If providing segment mean ratios:
 obj <- CopyKit(list(segment_ratios = cell_bincount_matrix),
                rowRanges = genomic_ranges_scaffold)
 ```
-
+It is useful to call `logNorm()` and set the _logr_ slot for downstream functions.
 The resulting object can then be passed on to the Quality Control and Analysis modules of CopyKit.
 
 Furthermore, it is useful for downstream functions to add the genome assembly used on the dataset.

@@ -62,7 +62,8 @@ Cells in which the correlation value is lower than the defined threshold are cla
 tumor <- findOutliers(tumor)
 ```
 
-The default correlation cutoff for filtering can be adjusted with the argument 'resolution'. For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
+The default correlation cutoff for filtering can be adjusted with the argument 'resolution'.
+For example, setting the resolution = 0.8 will mark all cells with a mean correlation smaller than 0.8 as low-quality cells.
 Higher resolution values will result in stricter filtering criterias. 
 
 Results from `findOutliers()` are added to colData (column _outlier_) marking cells that can be removed or kept.
@@ -73,7 +74,7 @@ We can check the results with `plotHeatmap()`. To make visualization easier, row
 plotHeatmap(tumor, label = 'outlier', row_split = 'outlier', n_threads = 40)
 ```
 
-We remove the marked noise cells from the object with:
+We remove the marked low-quality cells from the object with:
 
 ```{r filter_subset}
 tumor <- tumor[,colData(tumor)$outlier == FALSE]

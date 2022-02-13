@@ -119,28 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -163,12 +141,12 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
 <li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-bam-files"><i class="fa fa-check"></i><b>4.1</b> From BAM files</a>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-single-cell-bam-files"><i class="fa fa-check"></i><b>4.1</b> From Single Cell BAM files</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
-<li class="chapter" data-level="4.1.2" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin-modules"><i class="fa fa-check"></i><b>4.1.2</b> runVarbin() modules</a></li>
-<li class="chapter" data-level="4.1.3" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.1.3</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
+<li class="chapter" data-level="4.2" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin-modules"><i class="fa fa-check"></i><b>4.2</b> runVarbin() modules</a></li>
+<li class="chapter" data-level="4.3" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.3</b> From external count data or user-defined scaffolds</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
 <ul>
@@ -180,22 +158,31 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotmetrics"><i class="fa fa-check"></i><b>6.1</b> plotMetrics()</a></li>
 <li class="chapter" data-level="6.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>6.2</b> plotRatio()</a></li>
-<li class="chapter" data-level="6.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>6.3</b> runUmap()</a></li>
-<li class="chapter" data-level="6.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>6.4</b> plotUmap()</a></li>
-<li class="chapter" data-level="6.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>6.5</b> Clustering</a>
+<li class="chapter" data-level="6.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>6.3</b> runUmap()</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>6.5.1</b> findSugestedK()</a></li>
-<li class="chapter" data-level="6.5.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>6.5.2</b> findClusters()</a></li>
+<li class="chapter" data-level="6.3.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>6.3.1</b> plotUmap()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>6.6</b> runPhylo()</a></li>
-<li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.7</b> plotPhylo()</a></li>
-<li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.8</b> calcInteger()</a></li>
-<li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.9</b> plotHeatmap()</a></li>
-<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.10</b> plotFreq()</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.11</b> calcConsensus()</a></li>
-<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.12</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.13</b> plotGeneCopy()</a></li>
-<li class="chapter" data-level="6.14" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.14</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="6.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>6.4</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>6.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="6.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>6.4.2</b> findClusters()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>6.5</b> runPhylo()</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.5.1</b> plotPhylo()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.6</b> calcInteger()</a></li>
+<li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.7</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.8</b> plotFreq()</a></li>
+<li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.9</b> calcConsensus()</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.10</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.11</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.12</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runpca"><i class="fa fa-check"></i><b>6.13</b> runPca()</a>
+<ul>
+<li class="chapter" data-level="6.13.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotscree"><i class="fa fa-check"></i><b>6.13.1</b> plotScree</a></li>
+<li class="chapter" data-level="6.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>6.13.2</b> plotPCA</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
 <ul>
@@ -241,79 +228,24 @@ div.csl-indent {
 <li>Piece-wise segmentating stabilized bin counts</li>
 </ol>
 <p>We load CopyKit with the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pre-processing.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copykit)</span></code></pre></div>
-<pre><code>## Loading required package: SingleCellExperiment</code></pre>
-<pre><code>## Loading required package: SummarizedExperiment</code></pre>
-<pre><code>## Loading required package: MatrixGenerics</code></pre>
-<pre><code>## Loading required package: matrixStats</code></pre>
-<pre><code>## 
-## Attaching package: &#39;MatrixGenerics&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:matrixStats&#39;:
-## 
-##     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse, colCounts, colCummaxs,
-##     colCummins, colCumprods, colCumsums, colDiffs, colIQRDiffs, colIQRs, colLogSumExps,
-##     colMadDiffs, colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats, colProds,
-##     colQuantiles, colRanges, colRanks, colSdDiffs, colSds, colSums2, colTabulates, colVarDiffs,
-##     colVars, colWeightedMads, colWeightedMeans, colWeightedMedians, colWeightedSds,
-##     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet, rowCollapse, rowCounts,
-##     rowCummaxs, rowCummins, rowCumprods, rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs,
-##     rowLogSumExps, rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins, rowOrderStats,
-##     rowProds, rowQuantiles, rowRanges, rowRanks, rowSdDiffs, rowSds, rowSums2, rowTabulates,
-##     rowVarDiffs, rowVars, rowWeightedMads, rowWeightedMeans, rowWeightedMedians, rowWeightedSds,
-##     rowWeightedVars</code></pre>
-<pre><code>## Loading required package: GenomicRanges</code></pre>
-<pre><code>## Loading required package: stats4</code></pre>
-<pre><code>## Loading required package: BiocGenerics</code></pre>
-<pre><code>## 
-## Attaching package: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call,
-##     duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply, Map,
-##     mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind,
-##     Reduce, rownames, sapply, setdiff, sort, table, tapply, union, unique, unsplit, which.max,
-##     which.min</code></pre>
-<pre><code>## Loading required package: S4Vectors</code></pre>
-<pre><code>## 
-## Attaching package: &#39;S4Vectors&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     expand.grid, I, unname</code></pre>
-<pre><code>## Loading required package: IRanges</code></pre>
-<pre><code>## Loading required package: GenomeInfoDb</code></pre>
-<pre><code>## Loading required package: Biobase</code></pre>
-<pre><code>## Welcome to Bioconductor
-## 
-##     Vignettes contain introductory material; view with &#39;browseVignettes()&#39;. To cite Bioconductor,
-##     see &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Biobase&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:MatrixGenerics&#39;:
-## 
-##     rowMedians</code></pre>
-<pre><code>## The following objects are masked from &#39;package:matrixStats&#39;:
-## 
-##     anyMissing, rowMedians</code></pre>
-<pre><code>## Loading required package: Rsubread</code></pre>
-<pre><code>## Loading required package: DNAcopy</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="pre-processing.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copykit)</span></code></pre></div>
 <p><strong>NOTE:</strong> If the BiocParallel framework was registered, CopyKit functions will, whenever possible, run in parallel.
 For more information check the <a href="parallelization.html#parallelization">parallelization</a> section.</p>
-<div id="from-bam-files" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> From BAM files</h2>
+<div id="from-single-cell-bam-files" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> From Single Cell BAM files</h2>
 <div id="runvarbin" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> runVarbin()</h3>
-<p>The input for <code>runVarbin()</code> is the path of the folder containing your <em>marked duplicate <code>.bam</code> files</em>.
-The <code>runVarbin()</code> function counts the number of reads in each genomic bin according to the variable binning method - <a href="learn-more.html#varbin-lm">Learn More!</a> <span class="citation">(Navin et al. 2011; Baslan et al. 2012; Gao et al. 2016)</span>.</p>
-<p>To help users obtain <em>marked duplicate <code>.bam</code> files</em> from <em>.fastq</em> files we provide a <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a> pipeline <a href="https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines">here</a>.This pipeline can be adapted as per users’ needs.
+<p>The input for <code>runVarbin()</code> is the path of the folder containing your <em>marked duplicate <code>.bam</code> files</em>.</p>
+<p>Here, every single cell must be contained in its <strong>own BAM file</strong>, for Chromium single cell CNA (10X Genomics) users this means that you must split the <em>possorted.bam</em> file according to cell barcode into single cell bam files.
+Also please make sure to set the argument <em>is_paired_end</em> to TRUE during runVarbin if your BAM files originate from PE sequencing (see more instructions below).</p>
+<p>The <code>runVarbin()</code> function counts the number of reads in each genomic bin according to the variable binning method - <a href="learn-more.html#varbin-lm">Learn More!</a>.</p>
+<p>If you are starting from <em>.fastq</em> files, we provide a <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a> pipeline to help users obtain <em>marked duplicate <code>.bam</code> files</em> <a href="https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines">here</a>. This pipeline can be adapted as per users’ needs. It is not a required step. If you have marked bam files from a different source you can skip this step.
 <strong>NOTE:</strong> Reads must be aligned to the same genome assembly used within CopyKit.</p>
 <p>The <code>runVarbin()</code> function requires an argument specifying the path to the <code>.bam</code> files:
 An optional second argument <code>remove_Y</code> provides a convenient shortcut to exclude chromosome Y from the dataset.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="pre-processing.html#cb32-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
-<span id="cb32-2"><a href="pre-processing.html#cb32-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## Counting reads for genome hg38 and resolution: 200kb</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="pre-processing.html#cb9-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
+<span id="cb9-2"><a href="pre-processing.html#cb9-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Counting reads for genome hg38 and resolution: 220kb</code></pre>
 <pre><code>## 34 bam files had less than 10 mean bincounts and were removed.</code></pre>
 <pre><code>## Performing GC correction.</code></pre>
 <pre><code>## Smoothing bin counts.</code></pre>
@@ -323,13 +255,13 @@ An optional second argument <code>remove_Y</code> provides a convenient shortcut
 <p>By default, <code>runVarbin()</code> uses the <em>hg38</em> genome assembly and a <em>220kb</em> bin resolution.
 Both options can be customized with the arguments <em>genome</em> or <em>resolution</em>. (See ?runVarbin() for more details).</p>
 <p>If bam files originate from <strong>paired end sequencing</strong>, make sure to set the argument <em>is_paired_end</em> to true:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="pre-processing.html#cb40-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
-<span id="cb40-2"><a href="pre-processing.html#cb40-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb40-3"><a href="pre-processing.html#cb40-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">is_paired_end =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pre-processing.html#cb17-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;~/path/to/bam/files/&quot;</span>, </span>
+<span id="cb17-2"><a href="pre-processing.html#cb17-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">remove_Y =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-3"><a href="pre-processing.html#cb17-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">is_paired_end =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>By default, <code>runVarbin()</code> uses the <em>hg38</em> genome assembly and a resolution of <em>220kb</em>.
-Both options can be customized with the arguments <em>genome</em> or <em>resolution</em> (see ?runVarbin()).</p>
+Both options can be changed with the arguments <em>genome</em> or <em>resolution</em> (see ?runVarbin()).</p>
 <p>The resulting object is the CopyKit object.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="pre-processing.html#cb41-1" aria-hidden="true" tabindex="-1"></a>tumor</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pre-processing.html#cb18-1" aria-hidden="true" tabindex="-1"></a>tumor</span></code></pre></div>
 <pre><code>## class: CopyKit 
 ## dim: 11268 1502 
 ## metadata(3): genome resolution vst
@@ -345,43 +277,37 @@ Both options can be customized with the arguments <em>genome</em> or <em>resolut
 ## rowRanges has: 11268 ranges
 ## Phylo: Phylogenetic tree with 0 tips and  nodes
 ## consensus dim: 0 0</code></pre>
-<p>CopyKit object classes inherit from the <a href="https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html">SingleCellExperiment</a> class.</p>
+<p>CopyKit objects inherit from the <a href="https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html">SingleCellExperiment</a> class.</p>
 <p>Each column represents a single cell and each row represents a bin.</p>
 <p>The read counts for each bin are stored in the bincounts assay, which can be accessed with <code>bincounts()</code>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="pre-processing.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bincounts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="pre-processing.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bincounts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
-##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL… PMTC6LiverC100DL… PMTC6LiverC100DL… PMTC6LiverC101D…
-##                                  &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;
-## 1                                 37.1             10.3               44.5              44.2             38.6
-## 2                                 28.8             12.8               53.1              52.0             31.4
-## 3                                 34.8              9.03              50.4              47.3             31.9
-## 4                                 24.3             14.2               34.9              35.5             36.9
-## 5                                 30.8              9.18              55.8              37.1             29.2
-## 6                                 29.3              5.88              43.0              43.1             38.3</code></pre>
-<p>One issue with bin counts is they are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.</p>
+##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S… PMTC6LiverC100DL4L… PMTC6LiverC100DL6… PMTC6LiverC101DL1…
+##                                  &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
+## 1                                 37.1               10.3                 44.5               44.2               38.6
+## 2                                 28.8               12.8                 53.1               52.0               31.4
+## 3                                 34.8                9.03                50.4               47.3               31.9
+## 4                                 24.3               14.2                 34.9               35.5               36.9
+## 5                                 30.8                9.18                55.8               37.1               29.2
+## 6                                 29.3                5.88                43.0               43.1               38.3</code></pre>
+<p>Bin counts are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.</p>
 <p>The resulting transformation is stored within the <em>ft</em> assay, which can be accessed with <code>assay()</code>:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pre-processing.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
-## 1                            12.258603                             6.558716
-## 2                            10.832889                             7.300770
-## 3                            11.880779                             6.172013
-## 4                             9.951377                             7.674830
-## 5                            11.181771                             6.220463
-## 6                            10.921155                             5.047847
-##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
-## 1                               13.42067                                13.36691
-## 2                               14.63815                                14.48431
-## 3                               14.27288                                13.82443
-## 4                               11.89424                                12.00304
-## 5                               15.01185                                12.26513
-## 6                               13.19827                                13.20130
-##   PMTC6LiverC101DL1S2_S101_L001_R1_001
-## 1                             12.50574
-## 2                             11.30275
-## 3                             11.37859
-## 4                             12.23737
-## 5                             10.90282
-## 6                             12.46409</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pre-processing.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 PMTC6LiverC100DL4L5S1_S868_L003_R1_001
+## 1                            12.258603                             6.558716                               13.42067
+## 2                            10.832889                             7.300770                               14.63815
+## 3                            11.880779                             6.172013                               14.27288
+## 4                             9.951377                             7.674830                               11.89424
+## 5                            11.181771                             6.220463                               15.01185
+## 6                            10.921155                             5.047847                               13.19827
+##   PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                                13.36691                             12.50574
+## 2                                14.48431                             11.30275
+## 3                                13.82443                             11.37859
+## 4                                12.00304                             12.23737
+## 5                                12.26513                             10.90282
+## 6                                13.20130                             12.46409</code></pre>
+<p>Alternatively, log transformation is also available (see ?runVst())</p>
 <p>Lastly, we perform segmentation to fit piecewise constant functions to the genome-ordered bin counts. The resulting segment means can be used to infer copy number states across the different genomic regions.</p>
 <hr />
 <p>The segmentation method is chosen with the argument <code>method</code> to <code>runVarbin()</code>.
@@ -394,105 +320,94 @@ Currently available methods are:</p>
 <div id="multipcf-copynumber" class="section level4" number="4.1.1.2">
 <h4><span class="header-section-number">4.1.1.2</span> multipcf {copynumber}</h4>
 <p>A second segmentation option is the Multi-sample Piecewise Constant Fit (multipcf) segmentation from the package <a href="https://www.bioconductor.org/packages/release/bioc/html/copynumber.html">copynumber</a>.
-The multipcf function differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints to all samples.</p>
+The multipcf function differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints across all samples.</p>
 <hr />
 <p>The resulting information from segmentation is stored within the CopyKit object into two different assays: <em>ratios</em> and <em>segment_ratios</em>. <a href="learn-more.html#infercn-lm">Learn More!</a>
 They can be accessed with the helper function <code>ratios()</code> and <code>segment_ratios()</code></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="pre-processing.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
-## 1                                 1.11                                 0.94
-## 2                                 0.92                                 1.11
-## 3                                 1.06                                 0.85
-## 4                                 0.81                                 1.20
-## 5                                 0.97                                 0.86
-## 6                                 0.93                                 0.61
-##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
-## 1                                   0.96                                    1.05
-## 2                                   1.09                                    1.18
-## 3                                   1.05                                    1.10
-## 4                                   0.80                                    0.90
-## 5                                   1.13                                    0.93
-## 6                                   0.94                                    1.03
-##   PMTC6LiverC101DL1S2_S101_L001_R1_001
-## 1                                 1.03
-## 2                                 0.88
-## 3                                 0.89
-## 4                                 1.00
-## 5                                 0.84
-## 6                                 1.02</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="pre-processing.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
-## 1                                    1                                    1
-## 2                                    1                                    1
-## 3                                    1                                    1
-## 4                                    1                                    1
-## 5                                    1                                    1
-## 6                                    1                                    1
-##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
-## 1                                      1                                    1.02
-## 2                                      1                                    1.02
-## 3                                      1                                    1.02
-## 4                                      1                                    1.02
-## 5                                      1                                    1.02
-## 6                                      1                                    1.02
-##   PMTC6LiverC101DL1S2_S101_L001_R1_001
-## 1                                    1
-## 2                                    1
-## 3                                    1
-## 4                                    1
-## 5                                    1
-## 6                                    1</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pre-processing.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 PMTC6LiverC100DL4L5S1_S868_L003_R1_001
+## 1                                 1.15                                 0.90                                   0.94
+## 2                                 0.89                                 1.13                                   1.12
+## 3                                 1.08                                 0.80                                   1.06
+## 4                                 0.75                                 1.25                                   0.74
+## 5                                 0.95                                 0.81                                   1.18
+## 6                                 0.91                                 0.52                                   0.91
+##   PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                                    1.06                                 1.03
+## 2                                    1.25                                 0.84
+## 3                                    1.14                                 0.85
+## 4                                    0.86                                 0.99
+## 5                                    0.89                                 0.78
+## 6                                    1.04                                 1.03</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="pre-processing.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 PMTC6LiverC100DL4L5S1_S868_L003_R1_001
+## 1                                    1                                 0.99                                      1
+## 2                                    1                                 0.99                                      1
+## 3                                    1                                 0.99                                      1
+## 4                                    1                                 0.99                                      1
+## 5                                    1                                 0.99                                      1
+## 6                                    1                                 0.99                                      1
+##   PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                                    1.03                                    1
+## 2                                    1.03                                    1
+## 3                                    1.03                                    1
+## 4                                    1.03                                    1
+## 5                                    1.03                                    1
+## 6                                    1.03                                    1</code></pre>
 <hr />
 </div>
 </div>
-<div id="runvarbin-modules" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> runVarbin() modules</h3>
+</div>
+<div id="runvarbin-modules" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> runVarbin() modules</h2>
 <p>The following sections describe the functions wrapped by <code>runVarbin()</code>.
 <strong>Important: If you started from runVarbin() you do not need to run the following functions.</strong>
-The details of these functions are provided to facilitate running modules with different conditions without requiring you to re-running <code>runVarbin()</code>.</p>
-<div id="runcountreads" class="section level4" number="4.1.2.1">
-<h4><span class="header-section-number">4.1.2.1</span> runCountReads()</h4>
+The details of these functions are provided to facilitate running modules with different conditions without requiring you to re-running all <code>runVarbin()</code> modules.</p>
+<div id="runcountreads" class="section level4" number="4.2.0.1">
+<h4><span class="header-section-number">4.2.0.1</span> runCountReads()</h4>
 <p><code>runCountReads()</code> counts the reads into bins, smooth bincounts, and perform GC correction of the counts - <a href="learn-more.html#gccor-lm">Learn More!</a>.</p>
 <p>The genome argument defines the genome assembly (“hg38,” “hg19”).
-The resolution argument defines the size of the variable bins (“50kb,” “100kb,” “175kb,” “200kb,” “250kb,” “500kb,” “1Mb,” “2.5Mb”).
-The argument <code>remove_Y</code> provides a convenient shortcut to exclude chromosome Y from the dataset.</p>
+The resolution argument defines the size of the variable bins (“50kb,” “110kb,” “195kb,” “220kb,” “280kb,” “500kb,” “1Mb,” “2.8Mb”).
+The argument <code>remove_Y</code> provides a convenient shortcut to exclude the chromosome Y from the dataset.</p>
 </div>
-<div id="runvst" class="section level4" number="4.1.2.2">
-<h4><span class="header-section-number">4.1.2.2</span> runVst()</h4>
+<div id="runvst" class="section level4" number="4.2.0.2">
+<h4><span class="header-section-number">4.2.0.2</span> runVst()</h4>
 <p><code>runVst()</code> performs variance stabilization transformation of the bin counts
 The available transformations are freeman-tukey (‘ft’) or ‘log.’</p>
 </div>
-<div id="runsegmentation" class="section level4" number="4.1.2.3">
-<h4><span class="header-section-number">4.1.2.3</span> runSegmentation()</h4>
+<div id="runsegmentation" class="section level4" number="4.2.0.3">
+<h4><span class="header-section-number">4.2.0.3</span> runSegmentation()</h4>
 <p><code>runSegmentation()</code> runs the segmentation algorithm of choice (‘CBS’ or ‘multipcf’), followed by merging consecutive segments whose change does not reach the significance threshold <a href="learn-more.html#mergelevels-lm">Learn More!</a>.</p>
-<!-- how is significance defined? Is there an argument that can be passed? -->
+<p>The argument <em>alpha</em> controls the significance threshold for <code>CBS</code> segmentation.
+The argument <em>gamma</em> controls the penalty of the segmentation for <code>multipcf</code> segmentation.</p>
 </div>
-<div id="lognorm" class="section level4" number="4.1.2.4">
-<h4><span class="header-section-number">4.1.2.4</span> logNorm()</h4>
+<div id="lognorm" class="section level4" number="4.2.0.4">
+<h4><span class="header-section-number">4.2.0.4</span> logNorm()</h4>
 <p><code>logNorm()</code> performs a log transformation of the <em>segment_ratios</em> assay and stores into the <em>logr</em> assay. The <em>logr</em> assay is used downstream by functions such as <code>runUmap()</code>.</p>
 <hr />
 </div>
 </div>
-<div id="from-external-count-data-or-user-defined-scaffolds" class="section level3" number="4.1.3">
-<h3><span class="header-section-number">4.1.3</span> From external count data or user-defined scaffolds</h3>
+<div id="from-external-count-data-or-user-defined-scaffolds" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> From external count data or user-defined scaffolds</h2>
 <p>To use CopyKit’s downstream functions with processed datasets, we can create a <code>CopyKit</code> object meeting the following requirements:</p>
 <ol style="list-style-type: decimal">
-<li><p>Either a bin count matrix where columns represent cells and rows are bins (to be stored in the <code>bincounts</code> assay) or a segment mean ratios matrix where columns represent cells and rows represent segment mean for each bin, an integer matrix of copy number calls can also be used at this step (to be stored in the <code>segment_ratios</code> assay).</p></li>
+<li><p>Either a bin count matrix where columns represent cells and rows represent bins (to be stored in the <code>bincounts</code> assay) or a segment mean ratios matrix where columns represent cells and rows represent segment mean values for each bin. An integer matrix of copy number calls can also be used at this step (to be stored in the <code>segment_ratios</code> assay).</p></li>
 <li><p>A <a href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">GenomicRanges</a> object with length equal to the number of bins from the cell assay matrix. As long as the length requirement is respected this allows user-defined scaffolds to be used within CopyKit.</p></li>
 </ol>
-<p>To construct the CopyKit object, the following example mock code can be used, if providing bincounts:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="pre-processing.html#cb51-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">bincounts =</span> cell_bincount_matrix),</span>
-<span id="cb51-2"><a href="pre-processing.html#cb51-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
+<p>To construct the CopyKit object, the following mock code is presented as an example.
+If providing bincounts:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="pre-processing.html#cb28-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">bincounts =</span> cell_bincount_matrix),</span>
+<span id="cb28-2"><a href="pre-processing.html#cb28-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
 <p>If providing bincounts, the functions <code>runVst()</code>, <code>runSegmentation()</code>, and <code>logNorm()</code> can be used to continue with the analysis. To obtain variance stabilized counts, and segment ratio means.</p>
 <p>If providing segment mean ratios:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="pre-processing.html#cb52-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">segment_ratios =</span> cell_bincount_matrix),</span>
-<span id="cb52-2"><a href="pre-processing.html#cb52-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
-<p>The resulting object can then be passed on to the Quality Control and Analysis modules of CopyKit.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="pre-processing.html#cb29-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CopyKit</span>(<span class="fu">list</span>(<span class="at">segment_ratios =</span> cell_bincount_matrix),</span>
+<span id="cb29-2"><a href="pre-processing.html#cb29-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rowRanges =</span> genomic_ranges_scaffold)</span></code></pre></div>
+<p>It is useful to call <code>logNorm()</code> and set the <em>logr</em> slot for downstream functions.
+The resulting object can then be passed on to the Quality Control and Analysis modules of CopyKit.</p>
 <p>Furthermore, it is useful for downstream functions to add the genome assembly used on the dataset.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="pre-processing.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(obj)<span class="sc">$</span>genome <span class="ot">&lt;-</span> <span class="st">&quot;hg38&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="pre-processing.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(obj)<span class="sc">$</span>genome <span class="ot">&lt;-</span> <span class="st">&quot;hg38&quot;</span></span></code></pre></div>
 <p><strong>NOTE:</strong> If no bincount matrix is provided, functions that require a matrix of bincounts, such as <code>runMetrics()</code> can’t be used with this object.</p>
 
-</div>
 </div>
 </div>
             </section>

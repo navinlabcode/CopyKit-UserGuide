@@ -17,7 +17,12 @@ description: "This is a user guide for the package CopyKit: A toolkit for single
 </center>
 
 
-*CopyKit* provides a suite of tools for pre-processing, quality control, analysis, and visualization of single cell whole genome DNA sequencing datasets.
+The goal of CopyKit is to help you analyze single cell DNA sequencing datasets for copy number. For that, CopyKit presents four modules:
+
+    - Pre-processing
+    - Quality Control
+    - Data Analysis
+    - Visualization
 
 The following chapters will cover each module in detail.
 
