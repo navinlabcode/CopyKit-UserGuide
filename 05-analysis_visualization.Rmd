@@ -400,7 +400,7 @@ plotScree(tumor)
 ```
 
 ### plotPCA
-To visualize the first 2 principal components you can use `plotPCA()`.
+To visualize the first 2 principal components you can use `plotPca()`.
 ```{r}
 plotPca(tumor, label = 'spatial_info')
 ```

@@ -1,0 +1,52 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Merging CopyKit Objects
+
+CopyKit objects can be merged into one object with the `cbind()` function.
+
+Example:
+```{r}
+ck1 <- mock_bincounts(
+  ncells = 30,
+  ncells_diploid = 0,
+  position_gain = 4900:5493,
+  position_del = 6523:7056,
+  genome = "hg38",
+  resolution = "220kb"
+)
+
+
+# adding an identifier to colData
+colData(ck1)$info <- 'object1'
+```
+
+```{r}
+ck2 <- mock_bincounts(
+  ncells = 30,
+  ncells_diploid = 0,
+  position_gain = c(1:906, 4900:5493),
+  position_del = 6523:7056,
+  genome = "hg38",
+  resolution = "220kb"
+)
+
+# adding an identifier to colData
+colData(ck2)$info <- 'object2'
+```
+
+```{r}
+# merging objects
+merged_copykit <- cbind(ck1, ck2)
+```
+
+```{r}
+# plottting
+plotHeatmap(merged_copykit, label = 'info')
+```
+
+
+
+
