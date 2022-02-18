@@ -9,8 +9,9 @@ CopyKit objects can be merged into one object with the `cbind()` function.
 
 Example:
 ```{r}
+# gain of chromosome 7 and deletion of chromosome 10
 ck1 <- mock_bincounts(
-  ncells = 30,
+  ncells = 50,
   ncells_diploid = 0,
   position_gain = 4900:5493,
   position_del = 6523:7056,
@@ -24,8 +25,10 @@ colData(ck1)$info <- 'object1'
 ```
 
 ```{r}
+# gain of chromosome 7 and deletion of chromosome 10
+# additional gain of chromosome 1
 ck2 <- mock_bincounts(
-  ncells = 30,
+  ncells = 50,
   ncells_diploid = 0,
   position_gain = c(1:906, 4900:5493),
   position_del = 6523:7056,
@@ -42,9 +45,20 @@ colData(ck2)$info <- 'object2'
 merged_copykit <- cbind(ck1, ck2)
 ```
 
+
+Following merge a standard CopyKit analysis can be applied
+
+
 ```{r}
-# plottting
-plotHeatmap(merged_copykit, label = 'info')
+# UMAP and clustering
+merged_copykit <- runUmap(merged_copykit)
+merged_copykit <- findSuggestedK(merged_copykit)
+merged_copykit <- findClusters(merged_copykit)
+
+plotUmap(merged_copykit, label = 'subclones')
+
+# plotting
+plotHeatmap(merged_copykit, label = 'info', order_cells = 'hclust')
 ```
 
 

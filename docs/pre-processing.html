@@ -184,20 +184,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>6.13.2</b> plotPCA</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
+<li class="chapter" data-level="7" data-path="merging-copykit-objects.html"><a href="merging-copykit-objects.html"><i class="fa fa-check"></i><b>7</b> Merging CopyKit Objects</a></li>
+<li class="chapter" data-level="8" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>8</b> Learn more</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>7.1</b> Copy Number data from short reads sequencing</a></li>
-<li class="chapter" data-level="7.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>7.2</b> Principle</a></li>
-<li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
-<li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
-<li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
-<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>7.6</b> How do we infer copy numbers</a></li>
-<li class="chapter" data-level="7.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.7</b> Segmentation</a>
+<li class="chapter" data-level="8.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>8.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="8.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>8.2</b> Principle</a></li>
+<li class="chapter" data-level="8.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>8.3</b> VarBin</a></li>
+<li class="chapter" data-level="8.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>8.4</b> GC correction</a></li>
+<li class="chapter" data-level="8.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>8.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="8.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>8.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="8.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>8.7</b> Segmentation</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.7.1</b> CBS</a></li>
+<li class="chapter" data-level="8.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>8.7.1</b> CBS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -282,31 +283,38 @@ Both options can be changed with the arguments <em>genome</em> or <em>resolution
 <p>The read counts for each bin are stored in the bincounts assay, which can be accessed with <code>bincounts()</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="pre-processing.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">bincounts</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
-##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S… PMTC6LiverC100DL4L… PMTC6LiverC100DL6… PMTC6LiverC101DL1…
-##                                  &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
-## 1                                 37.1               10.3                 44.5               44.2               38.6
-## 2                                 28.8               12.8                 53.1               52.0               31.4
-## 3                                 34.8                9.03                50.4               47.3               31.9
-## 4                                 24.3               14.2                 34.9               35.5               36.9
-## 5                                 30.8                9.18                55.8               37.1               29.2
-## 6                                 29.3                5.88                43.0               43.1               38.3</code></pre>
+##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL… PMTC6LiverC100DL… PMTC6LiverC100D… PMTC6LiverC101D…
+##                                  &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1                                 37.1             10.3               44.5             44.2             38.6
+## 2                                 28.8             12.8               53.1             52.0             31.4
+## 3                                 34.8              9.03              50.4             47.3             31.9
+## 4                                 24.3             14.2               34.9             35.5             36.9
+## 5                                 30.8              9.18              55.8             37.1             29.2
+## 6                                 29.3              5.88              43.0             43.1             38.3</code></pre>
 <p>Bin counts are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.</p>
 <p>The resulting transformation is stored within the <em>ft</em> assay, which can be accessed with <code>assay()</code>:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pre-processing.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(tumor, <span class="st">&#39;ft&#39;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 PMTC6LiverC100DL4L5S1_S868_L003_R1_001
-## 1                            12.258603                             6.558716                               13.42067
-## 2                            10.832889                             7.300770                               14.63815
-## 3                            11.880779                             6.172013                               14.27288
-## 4                             9.951377                             7.674830                               11.89424
-## 5                            11.181771                             6.220463                               15.01185
-## 6                            10.921155                             5.047847                               13.19827
-##   PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC101DL1S2_S101_L001_R1_001
-## 1                                13.36691                             12.50574
-## 2                                14.48431                             11.30275
-## 3                                13.82443                             11.37859
-## 4                                12.00304                             12.23737
-## 5                                12.26513                             10.90282
-## 6                                13.20130                             12.46409</code></pre>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                            12.258603                             6.558716
+## 2                            10.832889                             7.300770
+## 3                            11.880779                             6.172013
+## 4                             9.951377                             7.674830
+## 5                            11.181771                             6.220463
+## 6                            10.921155                             5.047847
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                               13.42067                                13.36691
+## 2                               14.63815                                14.48431
+## 3                               14.27288                                13.82443
+## 4                               11.89424                                12.00304
+## 5                               15.01185                                12.26513
+## 6                               13.19827                                13.20130
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                             12.50574
+## 2                             11.30275
+## 3                             11.37859
+## 4                             12.23737
+## 5                             10.90282
+## 6                             12.46409</code></pre>
 <p>Alternatively, log transformation is also available (see ?runVst())</p>
 <p>Lastly, we perform segmentation to fit piecewise constant functions to the genome-ordered bin counts. The resulting segment means can be used to infer copy number states across the different genomic regions.</p>
 <hr />
@@ -325,35 +333,49 @@ The multipcf function differs from CBS by performing a joint segmentation of the
 <p>The resulting information from segmentation is stored within the CopyKit object into two different assays: <em>ratios</em> and <em>segment_ratios</em>. <a href="learn-more.html#infercn-lm">Learn More!</a>
 They can be accessed with the helper function <code>ratios()</code> and <code>segment_ratios()</code></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pre-processing.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 PMTC6LiverC100DL4L5S1_S868_L003_R1_001
-## 1                                 1.15                                 0.90                                   0.94
-## 2                                 0.89                                 1.13                                   1.12
-## 3                                 1.08                                 0.80                                   1.06
-## 4                                 0.75                                 1.25                                   0.74
-## 5                                 0.95                                 0.81                                   1.18
-## 6                                 0.91                                 0.52                                   0.91
-##   PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC101DL1S2_S101_L001_R1_001
-## 1                                    1.06                                 1.03
-## 2                                    1.25                                 0.84
-## 3                                    1.14                                 0.85
-## 4                                    0.86                                 0.99
-## 5                                    0.89                                 0.78
-## 6                                    1.04                                 1.03</code></pre>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                                 1.15                                 0.90
+## 2                                 0.89                                 1.13
+## 3                                 1.08                                 0.80
+## 4                                 0.75                                 1.25
+## 5                                 0.95                                 0.81
+## 6                                 0.91                                 0.52
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                                   0.94                                    1.06
+## 2                                   1.12                                    1.25
+## 3                                   1.06                                    1.14
+## 4                                   0.74                                    0.86
+## 5                                   1.18                                    0.89
+## 6                                   0.91                                    1.04
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                                 1.03
+## 2                                 0.84
+## 3                                 0.85
+## 4                                 0.99
+## 5                                 0.78
+## 6                                 1.03</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="pre-processing.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">segment_ratios</span>(tumor)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001 PMTC6LiverC100DL4L5S1_S868_L003_R1_001
-## 1                                    1                                 0.99                                      1
-## 2                                    1                                 0.99                                      1
-## 3                                    1                                 0.99                                      1
-## 4                                    1                                 0.99                                      1
-## 5                                    1                                 0.99                                      1
-## 6                                    1                                 0.99                                      1
-##   PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC101DL1S2_S101_L001_R1_001
-## 1                                    1.03                                    1
-## 2                                    1.03                                    1
-## 3                                    1.03                                    1
-## 4                                    1.03                                    1
-## 5                                    1.03                                    1
-## 6                                    1.03                                    1</code></pre>
+<pre><code>##   PMTC6LiverC100DL1S2_S100_L001_R1_001 PMTC6LiverC100DL1S6_S484_L002_R1_001
+## 1                                    1                                 0.99
+## 2                                    1                                 0.99
+## 3                                    1                                 0.99
+## 4                                    1                                 0.99
+## 5                                    1                                 0.99
+## 6                                    1                                 0.99
+##   PMTC6LiverC100DL4L5S1_S868_L003_R1_001 PMTC6LiverC100DL6L7S3_S1252_L004_R1_001
+## 1                                      1                                    1.03
+## 2                                      1                                    1.03
+## 3                                      1                                    1.03
+## 4                                      1                                    1.03
+## 5                                      1                                    1.03
+## 6                                      1                                    1.03
+##   PMTC6LiverC101DL1S2_S101_L001_R1_001
+## 1                                    1
+## 2                                    1
+## 3                                    1
+## 4                                    1
+## 5                                    1
+## 6                                    1</code></pre>
 <hr />
 </div>
 </div>

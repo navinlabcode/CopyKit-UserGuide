@@ -184,20 +184,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>6.13.2</b> plotPCA</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>7</b> Learn more</a>
+<li class="chapter" data-level="7" data-path="merging-copykit-objects.html"><a href="merging-copykit-objects.html"><i class="fa fa-check"></i><b>7</b> Merging CopyKit Objects</a></li>
+<li class="chapter" data-level="8" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>8</b> Learn more</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>7.1</b> Copy Number data from short reads sequencing</a></li>
-<li class="chapter" data-level="7.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>7.2</b> Principle</a></li>
-<li class="chapter" data-level="7.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>7.3</b> VarBin</a></li>
-<li class="chapter" data-level="7.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>7.4</b> GC correction</a></li>
-<li class="chapter" data-level="7.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>7.5</b> Merge Levels</a></li>
-<li class="chapter" data-level="7.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>7.6</b> How do we infer copy numbers</a></li>
-<li class="chapter" data-level="7.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>7.7</b> Segmentation</a>
+<li class="chapter" data-level="8.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>8.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="8.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>8.2</b> Principle</a></li>
+<li class="chapter" data-level="8.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>8.3</b> VarBin</a></li>
+<li class="chapter" data-level="8.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>8.4</b> GC correction</a></li>
+<li class="chapter" data-level="8.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>8.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="8.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>8.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="8.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>8.7</b> Segmentation</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>7.7.1</b> CBS</a></li>
+<li class="chapter" data-level="8.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>8.7.1</b> CBS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>8</b> Session Info</a></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -237,45 +238,45 @@ It returns sample-wise metrics of overdispersion and breakpoint counts.</p>
 <p>The resulting information can be viewed with:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="qc-module.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(tumor)</span></code></pre></div>
 <pre><code>## DataFrame with 1502 rows and 11 columns
-##                                                         sample reads_assigned_bins reads_unmapped reads_duplicates
-##                                                    &lt;character&gt;           &lt;integer&gt;      &lt;integer&gt;        &lt;integer&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001    PMTC6LiverC100DL1S2_..              362665          30250            34883
-## PMTC6LiverC100DL1S6_S484_L002_R1_001    PMTC6LiverC100DL1S6_..              130570          22260            12657
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001  PMTC6LiverC100DL4L5S..              536017          30942            58222
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC100DL6L7S..              467002          28239            53055
-## PMTC6LiverC101DL1S2_S101_L001_R1_001    PMTC6LiverC101DL1S2_..              423654          28756            43008
-## ...                                                        ...                 ...            ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001   PMTC6LiverC99DL4L5S1..              460498          37945            54159
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001  PMTC6LiverC99DL6L7S3..              306486          28090            36534
-## PMTC6LiverC9DL1S1_S9_L001_R1_001        PMTC6LiverC9DL1S1_S9..              274402          38326            25527
-## PMTC6LiverC9DL1S5_S393_L002_R1_001      PMTC6LiverC9DL1S5_S3..              465001          34111            48055
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001   PMTC6LiverC9DL6L7S1_..              336559          38814            37898
-##                                         reads_multimapped reads_unassigned reads_ambiguous reads_total
-##                                                 &lt;integer&gt;        &lt;integer&gt;       &lt;integer&gt;   &lt;numeric&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001                    0            75555              90      503443
-## PMTC6LiverC100DL1S6_S484_L002_R1_001                    0            28651              27      194165
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001                  0           110352             103      735636
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001                 0            98560              91      646947
-## PMTC6LiverC101DL1S2_S101_L001_R1_001                    0            87786              76      583280
-## ...                                                   ...              ...             ...         ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                   0            96735              86      649423
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001                  0            64866              56      436032
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                        0            59107              54      397416
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                      0            96126             109      643402
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                   0            71998              60      485329
-##                                         percentage_duplicates overdispersion breakpoint_count
-##                                                     &lt;numeric&gt;      &lt;numeric&gt;        &lt;numeric&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001                    0.069     0.00262992                0
-## PMTC6LiverC100DL1S6_S484_L002_R1_001                    0.065     0.01564945                0
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001                  0.079     0.00302844                1
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001                 0.082     0.00379236                0
-## PMTC6LiverC101DL1S2_S101_L001_R1_001                    0.074     0.00674672                0
-## ...                                                       ...            ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                   0.083     0.00195059                1
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001                  0.084     0.00362179                3
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                        0.064     0.00406539                0
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                      0.075     0.00276767                0
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                   0.078     0.00231466                2</code></pre>
+##                                                         sample reads_assigned_bins reads_unmapped
+##                                                    &lt;character&gt;           &lt;integer&gt;      &lt;integer&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001    PMTC6LiverC100DL1S2_..              362665          30250
+## PMTC6LiverC100DL1S6_S484_L002_R1_001    PMTC6LiverC100DL1S6_..              130570          22260
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001  PMTC6LiverC100DL4L5S..              536017          30942
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001 PMTC6LiverC100DL6L7S..              467002          28239
+## PMTC6LiverC101DL1S2_S101_L001_R1_001    PMTC6LiverC101DL1S2_..              423654          28756
+## ...                                                        ...                 ...            ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001   PMTC6LiverC99DL4L5S1..              460498          37945
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001  PMTC6LiverC99DL6L7S3..              306486          28090
+## PMTC6LiverC9DL1S1_S9_L001_R1_001        PMTC6LiverC9DL1S1_S9..              274402          38326
+## PMTC6LiverC9DL1S5_S393_L002_R1_001      PMTC6LiverC9DL1S5_S3..              465001          34111
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001   PMTC6LiverC9DL6L7S1_..              336559          38814
+##                                         reads_duplicates reads_multimapped reads_unassigned reads_ambiguous
+##                                                &lt;integer&gt;         &lt;integer&gt;        &lt;integer&gt;       &lt;integer&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001               34883                 0            75555              90
+## PMTC6LiverC100DL1S6_S484_L002_R1_001               12657                 0            28651              27
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001             58222                 0           110352             103
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001            53055                 0            98560              91
+## PMTC6LiverC101DL1S2_S101_L001_R1_001               43008                 0            87786              76
+## ...                                                  ...               ...              ...             ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001              54159                 0            96735              86
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001             36534                 0            64866              56
+## PMTC6LiverC9DL1S1_S9_L001_R1_001                   25527                 0            59107              54
+## PMTC6LiverC9DL1S5_S393_L002_R1_001                 48055                 0            96126             109
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001              37898                 0            71998              60
+##                                         reads_total percentage_duplicates overdispersion breakpoint_count
+##                                           &lt;numeric&gt;             &lt;numeric&gt;      &lt;numeric&gt;        &lt;numeric&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001         503443                 0.069     0.00262992                0
+## PMTC6LiverC100DL1S6_S484_L002_R1_001         194165                 0.065     0.01564945                0
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001       735636                 0.079     0.00302844                1
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001      646947                 0.082     0.00379236                0
+## PMTC6LiverC101DL1S2_S101_L001_R1_001         583280                 0.074     0.00674672                0
+## ...                                             ...                   ...            ...              ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001        649423                 0.083     0.00195059                1
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001       436032                 0.084     0.00362179                3
+## PMTC6LiverC9DL1S1_S9_L001_R1_001             397416                 0.064     0.00406539                0
+## PMTC6LiverC9DL1S5_S393_L002_R1_001           643402                 0.075     0.00276767                0
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001        485329                 0.078     0.00231466                2</code></pre>
 </div>
 <div id="findaneuploidcells" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> findAneuploidCells()</h2>
@@ -288,7 +289,7 @@ Samples that group with the inferred euploid distribution and present coefficien
 <p>The threshold can be changed from the automatic detection to a custom threshold with the argument <code>resolution</code>. For example, by setting a threshold = 0.1, findAneuploidCells will mark as euploid all cells with a coefficient of variation less or equal than 0.1.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="qc-module.html#cb37-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findAneuploidCells</span>(tumor)</span></code></pre></div>
 <pre><code>## number of iterations= 28</code></pre>
-<pre><code>## Copykit detected 607 that are possibly euploid cells using a resolution of: 0.069</code></pre>
+<pre><code>## Copykit detected 607 that are possibly diploid cells using a resolution of: 0.069</code></pre>
 <pre><code>## Added information to colData(CopyKit).</code></pre>
 <p>The results from <code>findAneuploidCells()</code> are stored within the colData in the column <em>is_aneuploid</em>.</p>
 <p>We can visualize the results with <code>plotHeatmap()</code>:</p>

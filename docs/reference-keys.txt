@@ -36,6 +36,7 @@ plotalluvial
 runpca
 plotscree
 plotpca
+merging-copykit-objects
 learn-more
 copy-number-data-from-short-reads-sequencing
 principle-lm
