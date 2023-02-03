@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 FAQ | CopyKit User Guide</title>
+  <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 FAQ | CopyKit User Guide" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 FAQ | CopyKit User Guide" />
+  
+  <meta name="twitter:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
+  
+
+<meta name="author" content="Darlan Conterno Minussi" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="session-info.html"/>
+<link rel="next" href="learn-more.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="images/copykit_hexsticker_v2.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="parallelization.html"><a href="parallelization.html"><i class="fa fa-check"></i><b>2</b> Parallelization</a></li>
+<li class="chapter" data-level="3" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>3</b> Quick-Start</a></li>
+<li class="chapter" data-level="4" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>4</b> Pre-processing</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pre-processing.html"><a href="pre-processing.html#from-single-cell-bam-files"><i class="fa fa-check"></i><b>4.1</b> From Single Cell BAM files</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin"><i class="fa fa-check"></i><b>4.1.1</b> runVarbin()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="pre-processing.html"><a href="pre-processing.html#runvarbin-modules"><i class="fa fa-check"></i><b>4.2</b> runVarbin() modules</a></li>
+<li class="chapter" data-level="4.3" data-path="pre-processing.html"><a href="pre-processing.html#from-external-count-data-or-user-defined-scaffolds"><i class="fa fa-check"></i><b>4.3</b> From external count data or user-defined scaffolds</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="qc-module.html"><a href="qc-module.html"><i class="fa fa-check"></i><b>5</b> QC module</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="qc-module.html"><a href="qc-module.html#runmetrics"><i class="fa fa-check"></i><b>5.1</b> runMetrics()</a></li>
+<li class="chapter" data-level="5.2" data-path="qc-module.html"><a href="qc-module.html#findaneuploidcells"><i class="fa fa-check"></i><b>5.2</b> findAneuploidCells()</a></li>
+<li class="chapter" data-level="5.3" data-path="qc-module.html"><a href="qc-module.html#findoutliers"><i class="fa fa-check"></i><b>5.3</b> findOutliers()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="knn-smoothing.html"><a href="knn-smoothing.html"><i class="fa fa-check"></i><b>6</b> kNN smoothing</a></li>
+<li class="chapter" data-level="7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>7</b> Analysis and Visualization module</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotmetrics"><i class="fa fa-check"></i><b>7.1</b> plotMetrics()</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>7.2</b> plotRatio()</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>7.3</b> runUmap()</a></li>
+<li class="chapter" data-level="7.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>7.4</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>7.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="7.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>7.4.2</b> findClusters()</a></li>
+<li class="chapter" data-level="7.4.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>7.4.3</b> plotUmap()</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>7.5</b> runPhylo()</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>7.5.1</b> plotPhylo()</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>7.6</b> calcInteger()</a></li>
+<li class="chapter" data-level="7.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>7.7</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="7.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>7.8</b> plotFreq()</a></li>
+<li class="chapter" data-level="7.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>7.9</b> calcConsensus()</a></li>
+<li class="chapter" data-level="7.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>7.10</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="7.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>7.11</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="7.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>7.12</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="7.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runpca"><i class="fa fa-check"></i><b>7.13</b> runPca()</a>
+<ul>
+<li class="chapter" data-level="7.13.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotscree"><i class="fa fa-check"></i><b>7.13.1</b> plotScree</a></li>
+<li class="chapter" data-level="7.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>7.13.2</b> plotPCA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="merging-copykit-objects.html"><a href="merging-copykit-objects.html"><i class="fa fa-check"></i><b>8</b> Merging CopyKit Objects</a></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
+<li class="chapter" data-level="10" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>10</b> FAQ</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="faq.html"><a href="faq.html#error-unable-to-load-package-after-installation."><i class="fa fa-check"></i><b>10.1</b> Error unable to load package after installation.</a></li>
+<li class="chapter" data-level="10.2" data-path="faq.html"><a href="faq.html#copykit-is-very-slow-despite-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> CopyKit is very slow despite parallel processing</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>11</b> Learn more</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>11.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="11.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>11.2</b> Principle</a></li>
+<li class="chapter" data-level="11.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>11.3</b> VarBin</a></li>
+<li class="chapter" data-level="11.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>11.4</b> GC correction</a></li>
+<li class="chapter" data-level="11.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>11.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="11.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>11.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="11.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>11.7</b> Segmentation</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>11.7.1</b> CBS</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CopyKit User Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="faq" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> FAQ<a href="faq.html#faq" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="error-unable-to-load-package-after-installation." class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Error unable to load package after installation.<a href="faq.html#error-unable-to-load-package-after-installation." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This error is generally related to the ComplexHeatmap dependency, used by heatmap functions in CopyKit and it has been reported in MacOS devices. The following are instructions to install Cairo.</p>
+<p>You might need to install the following:</p>
+<pre><code>Xquartz - https://www.xquartz.org/
+
+In R: install.packages(&quot;Cairo&quot;, dependencies=TRUE)</code></pre>
+<p>For additional information check <a href="https://github.com/jokergoo/ComplexHeatmap/issues/685">this github thread</a></p>
+</div>
+<div id="copykit-is-very-slow-despite-parallel-processing" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> CopyKit is very slow despite parallel processing<a href="faq.html#copykit-is-very-slow-despite-parallel-processing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This issue has been generally associated with running and registering CopyKit parallel functions within Rmarkdown files (.Rmd) or R notebook files. We recommend running CopyKit functions within R scripts (.R)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="session-info.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="learn-more.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CopyKit-UserGuide.pdf", "CopyKit-UserGuide.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

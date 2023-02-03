@@ -1,0 +1,14 @@
+# kNN smoothing
+
+scDNA-Seq experiments are often sparsely sequenced and present inherent noise from low-coverage datasets. To mitigate this, CopyKit is capable of smoothing profiles based on the k-nearest neighbors of each single cell.
+
+This way, CopyKit aggregates the genomic bin counts based on a cell k-nearest neighbors, followed by re-segmentation of copy number profiles.
+
+In order to ensure optimal performane it is essential to carefully consider the number of neighbors (k) used in the smoothing process. We recommend to use conservative k values, which are below the number of cells that compose the smallest subclone, and to visually inspect and compare smoothed single cells to the original profiles
+
+```{r knn_smoothing}
+tumor <- knnSmooth(tumor)
+```
+
+This step is recommended after the filtering process. Though we have noticed that smoothing can also rescue cells with low-depth quality. If done so, additional inspection is recommended due to the possibility of increased noise.
+

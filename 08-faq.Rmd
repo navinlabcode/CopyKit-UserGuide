@@ -1,0 +1,19 @@
+# FAQ
+
+## Error unable to load package after installation.
+
+This error is generally related to the ComplexHeatmap dependency, used by heatmap functions in CopyKit and it has been reported in MacOS devices. The following are instructions to install Cairo.
+
+You might need to install the following:
+
+```
+Xquartz - https://www.xquartz.org/
+
+In R: install.packages("Cairo", dependencies=TRUE)
+```
+
+For additional information check [this github thread](https://github.com/jokergoo/ComplexHeatmap/issues/685)
+
+## CopyKit is very slow despite parallel processing
+
+This issue has been generally associated with running and registering CopyKit parallel functions within Rmarkdown files (.Rmd) or R notebook files. We recommend running CopyKit functions within R scripts (.R)
