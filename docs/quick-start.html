@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Quick-Start | CopyKit User Guide</title>
   <meta name="description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Quick-Start | CopyKit User Guide" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is a user guide for the package CopyKit: A toolkit for single-cell CNA analysis." />
   
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="parallelization.html"/>
 <link rel="next" href="pre-processing.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,8 +48,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -154,51 +153,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="qc-module.html"><a href="qc-module.html#findaneuploidcells"><i class="fa fa-check"></i><b>5.2</b> findAneuploidCells()</a></li>
 <li class="chapter" data-level="5.3" data-path="qc-module.html"><a href="qc-module.html#findoutliers"><i class="fa fa-check"></i><b>5.3</b> findOutliers()</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>6</b> Analysis and Visualization module</a>
+<li class="chapter" data-level="6" data-path="knn-smoothing.html"><a href="knn-smoothing.html"><i class="fa fa-check"></i><b>6</b> kNN smoothing</a></li>
+<li class="chapter" data-level="7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html"><i class="fa fa-check"></i><b>7</b> Analysis and Visualization module</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotmetrics"><i class="fa fa-check"></i><b>6.1</b> plotMetrics()</a></li>
-<li class="chapter" data-level="6.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>6.2</b> plotRatio()</a></li>
-<li class="chapter" data-level="6.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>6.3</b> runUmap()</a>
+<li class="chapter" data-level="7.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotmetrics"><i class="fa fa-check"></i><b>7.1</b> plotMetrics()</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotratio"><i class="fa fa-check"></i><b>7.2</b> plotRatio()</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runumap"><i class="fa fa-check"></i><b>7.3</b> runUmap()</a></li>
+<li class="chapter" data-level="7.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>7.4</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>6.3.1</b> plotUmap()</a></li>
+<li class="chapter" data-level="7.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>7.4.1</b> findSugestedK()</a></li>
+<li class="chapter" data-level="7.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>7.4.2</b> findClusters()</a></li>
+<li class="chapter" data-level="7.4.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>7.4.3</b> plotUmap()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#clustering"><i class="fa fa-check"></i><b>6.4</b> Clustering</a>
+<li class="chapter" data-level="7.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>7.5</b> runPhylo()</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findsugestedk"><i class="fa fa-check"></i><b>6.4.1</b> findSugestedK()</a></li>
-<li class="chapter" data-level="6.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>6.4.2</b> findClusters()</a></li>
+<li class="chapter" data-level="7.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>7.5.1</b> plotPhylo()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>6.5</b> runPhylo()</a>
+<li class="chapter" data-level="7.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>7.6</b> calcInteger()</a></li>
+<li class="chapter" data-level="7.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>7.7</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="7.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>7.8</b> plotFreq()</a></li>
+<li class="chapter" data-level="7.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>7.9</b> calcConsensus()</a></li>
+<li class="chapter" data-level="7.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>7.10</b> plotConsensusLine()</a></li>
+<li class="chapter" data-level="7.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>7.11</b> plotGeneCopy()</a></li>
+<li class="chapter" data-level="7.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>7.12</b> plotAlluvial()</a></li>
+<li class="chapter" data-level="7.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runpca"><i class="fa fa-check"></i><b>7.13</b> runPca()</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>6.5.1</b> plotPhylo()</a></li>
-</ul></li>
-<li class="chapter" data-level="6.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>6.6</b> calcInteger()</a></li>
-<li class="chapter" data-level="6.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>6.7</b> plotHeatmap()</a></li>
-<li class="chapter" data-level="6.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>6.8</b> plotFreq()</a></li>
-<li class="chapter" data-level="6.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>6.9</b> calcConsensus()</a></li>
-<li class="chapter" data-level="6.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>6.10</b> plotConsensusLine()</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotgenecopy"><i class="fa fa-check"></i><b>6.11</b> plotGeneCopy()</a></li>
-<li class="chapter" data-level="6.12" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotalluvial"><i class="fa fa-check"></i><b>6.12</b> plotAlluvial()</a></li>
-<li class="chapter" data-level="6.13" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runpca"><i class="fa fa-check"></i><b>6.13</b> runPca()</a>
-<ul>
-<li class="chapter" data-level="6.13.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotscree"><i class="fa fa-check"></i><b>6.13.1</b> plotScree</a></li>
-<li class="chapter" data-level="6.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>6.13.2</b> plotPCA</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="merging-copykit-objects.html"><a href="merging-copykit-objects.html"><i class="fa fa-check"></i><b>7</b> Merging CopyKit Objects</a></li>
-<li class="chapter" data-level="8" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>8</b> Learn more</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>8.1</b> Copy Number data from short reads sequencing</a></li>
-<li class="chapter" data-level="8.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>8.2</b> Principle</a></li>
-<li class="chapter" data-level="8.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>8.3</b> VarBin</a></li>
-<li class="chapter" data-level="8.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>8.4</b> GC correction</a></li>
-<li class="chapter" data-level="8.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>8.5</b> Merge Levels</a></li>
-<li class="chapter" data-level="8.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>8.6</b> How do we infer copy numbers</a></li>
-<li class="chapter" data-level="8.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>8.7</b> Segmentation</a>
-<ul>
-<li class="chapter" data-level="8.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>8.7.1</b> CBS</a></li>
+<li class="chapter" data-level="7.13.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotscree"><i class="fa fa-check"></i><b>7.13.1</b> plotScree</a></li>
+<li class="chapter" data-level="7.13.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotpca"><i class="fa fa-check"></i><b>7.13.2</b> plotPCA</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="merging-copykit-objects.html"><a href="merging-copykit-objects.html"><i class="fa fa-check"></i><b>8</b> Merging CopyKit Objects</a></li>
 <li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
+<li class="chapter" data-level="10" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>10</b> FAQ</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="faq.html"><a href="faq.html#error-unable-to-load-package-after-installation."><i class="fa fa-check"></i><b>10.1</b> Error unable to load package after installation.</a></li>
+<li class="chapter" data-level="10.2" data-path="faq.html"><a href="faq.html#copykit-is-very-slow-despite-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> CopyKit is very slow despite parallel processing</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="learn-more.html"><a href="learn-more.html"><i class="fa fa-check"></i><b>11</b> Learn more</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="learn-more.html"><a href="learn-more.html#copy-number-data-from-short-reads-sequencing"><i class="fa fa-check"></i><b>11.1</b> Copy Number data from short reads sequencing</a></li>
+<li class="chapter" data-level="11.2" data-path="learn-more.html"><a href="learn-more.html#principle-lm"><i class="fa fa-check"></i><b>11.2</b> Principle</a></li>
+<li class="chapter" data-level="11.3" data-path="learn-more.html"><a href="learn-more.html#varbin-lm"><i class="fa fa-check"></i><b>11.3</b> VarBin</a></li>
+<li class="chapter" data-level="11.4" data-path="learn-more.html"><a href="learn-more.html#gccor-lm"><i class="fa fa-check"></i><b>11.4</b> GC correction</a></li>
+<li class="chapter" data-level="11.5" data-path="learn-more.html"><a href="learn-more.html#mergelevels-lm"><i class="fa fa-check"></i><b>11.5</b> Merge Levels</a></li>
+<li class="chapter" data-level="11.6" data-path="learn-more.html"><a href="learn-more.html#infercn-lm"><i class="fa fa-check"></i><b>11.6</b> How do we infer copy numbers</a></li>
+<li class="chapter" data-level="11.7" data-path="learn-more.html"><a href="learn-more.html#segmentation-lm"><i class="fa fa-check"></i><b>11.7</b> Segmentation</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="learn-more.html"><a href="learn-more.html#cbs-lm"><i class="fa fa-check"></i><b>11.7.1</b> CBS</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -219,50 +222,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="quick-start" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Quick-Start</h1>
+<div id="quick-start" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Quick-Start<a href="quick-start.html#quick-start" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This section provides a basic <em>CopyKit</em> workflow.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="quick-start.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
-<span id="cb7-2"><a href="quick-start.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copykit)</span>
-<span id="cb7-3"><a href="quick-start.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="quick-start.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pre-processing module</span></span>
-<span id="cb7-5"><a href="quick-start.html#cb7-5" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;/path/to/marked/bam/files/&quot;</span>,</span>
-<span id="cb7-6"><a href="quick-start.html#cb7-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-7"><a href="quick-start.html#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="quick-start.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark euploid cells if they exist</span></span>
-<span id="cb7-9"><a href="quick-start.html#cb7-9" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findAneuploidCells</span>(tumor)</span>
-<span id="cb7-10"><a href="quick-start.html#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="quick-start.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark low-quality cells for filtering</span></span>
-<span id="cb7-12"><a href="quick-start.html#cb7-12" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findOutliers</span>(tumor)</span>
-<span id="cb7-13"><a href="quick-start.html#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="quick-start.html#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize cells labeled by filter and aneuploid status</span></span>
-<span id="cb7-15"><a href="quick-start.html#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&#39;outlier&#39;</span>, <span class="st">&#39;is_aneuploid&#39;</span>), <span class="at">row_split =</span> <span class="st">&#39;outlier&#39;</span>)</span>
-<span id="cb7-16"><a href="quick-start.html#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="quick-start.html#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove cells marked as low-quality and/or aneuploid from the copykit object</span></span>
-<span id="cb7-18"><a href="quick-start.html#cb7-18" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,SummarizedExperiment<span class="sc">::</span><span class="fu">colData</span>(tumor)<span class="sc">$</span>outlier <span class="sc">==</span> <span class="cn">FALSE</span>]</span>
-<span id="cb7-19"><a href="quick-start.html#cb7-19" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,SummarizedExperiment<span class="sc">::</span><span class="fu">colData</span>(tumor)<span class="sc">$</span>is_aneuploid <span class="sc">==</span> <span class="cn">TRUE</span>]</span>
-<span id="cb7-20"><a href="quick-start.html#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="quick-start.html#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a umap embedding </span></span>
-<span id="cb7-22"><a href="quick-start.html#cb7-22" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runUmap</span>(tumor)</span>
-<span id="cb7-23"><a href="quick-start.html#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="quick-start.html#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for the K value that maximizes jaccard similarity for clustering of subclones </span></span>
-<span id="cb7-25"><a href="quick-start.html#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results</span></span>
-<span id="cb7-26"><a href="quick-start.html#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># This step is optional. A fixed K value can be provided later to findClusters()</span></span>
-<span id="cb7-27"><a href="quick-start.html#cb7-27" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findSuggestedK</span>(tumor)</span>
-<span id="cb7-28"><a href="quick-start.html#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSuggestedK</span>(tumor)</span>
-<span id="cb7-29"><a href="quick-start.html#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="quick-start.html#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Find clusters of similar copy number profiles and plot the results</span></span>
-<span id="cb7-31"><a href="quick-start.html#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># If no k_subclones value is provided, automatically detect it from findSuggestedK()</span></span>
-<span id="cb7-32"><a href="quick-start.html#cb7-32" aria-hidden="true" tabindex="-1"></a>tumor  <span class="ot">&lt;-</span> <span class="fu">findClusters</span>(tumor)</span>
-<span id="cb7-33"><a href="quick-start.html#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span>
-<span id="cb7-34"><a href="quick-start.html#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="quick-start.html#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate consensus profiles for each subclone, </span></span>
-<span id="cb7-36"><a href="quick-start.html#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># and order cells by cluster for visualization with plotHeatmap</span></span>
-<span id="cb7-37"><a href="quick-start.html#cb7-37" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span>
-<span id="cb7-38"><a href="quick-start.html#cb7-38" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runConsensusPhylo</span>(tumor)</span>
-<span id="cb7-39"><a href="quick-start.html#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="quick-start.html#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a copy number heatmap with clustering annotation</span></span>
-<span id="cb7-41"><a href="quick-start.html#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="quick-start.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb6-2"><a href="quick-start.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copykit)</span>
+<span id="cb6-3"><a href="quick-start.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="quick-start.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pre-processing module</span></span>
+<span id="cb6-5"><a href="quick-start.html#cb6-5" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runVarbin</span>(<span class="st">&quot;/path/to/marked/bam/files/&quot;</span>,</span>
+<span id="cb6-6"><a href="quick-start.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">remove_Y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-7"><a href="quick-start.html#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="quick-start.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark euploid cells if they exist</span></span>
+<span id="cb6-9"><a href="quick-start.html#cb6-9" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findAneuploidCells</span>(tumor)</span>
+<span id="cb6-10"><a href="quick-start.html#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="quick-start.html#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark low-quality cells for filtering</span></span>
+<span id="cb6-12"><a href="quick-start.html#cb6-12" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findOutliers</span>(tumor)</span>
+<span id="cb6-13"><a href="quick-start.html#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="quick-start.html#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize cells labeled by filter and aneuploid status</span></span>
+<span id="cb6-15"><a href="quick-start.html#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&#39;outlier&#39;</span>, <span class="st">&#39;is_aneuploid&#39;</span>), <span class="at">row_split =</span> <span class="st">&#39;outlier&#39;</span>)</span>
+<span id="cb6-16"><a href="quick-start.html#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="quick-start.html#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove cells marked as low-quality and/or aneuploid from the copykit object</span></span>
+<span id="cb6-18"><a href="quick-start.html#cb6-18" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,SummarizedExperiment<span class="sc">::</span><span class="fu">colData</span>(tumor)<span class="sc">$</span>outlier <span class="sc">==</span> <span class="cn">FALSE</span>]</span>
+<span id="cb6-19"><a href="quick-start.html#cb6-19" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,SummarizedExperiment<span class="sc">::</span><span class="fu">colData</span>(tumor)<span class="sc">$</span>is_aneuploid <span class="sc">==</span> <span class="cn">TRUE</span>]</span>
+<span id="cb6-20"><a href="quick-start.html#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="quick-start.html#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># kNN smooth profiles</span></span>
+<span id="cb6-22"><a href="quick-start.html#cb6-22" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">knnSmooth</span>(tumor)</span>
+<span id="cb6-23"><a href="quick-start.html#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="quick-start.html#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a umap embedding </span></span>
+<span id="cb6-25"><a href="quick-start.html#cb6-25" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runUmap</span>(tumor)</span>
+<span id="cb6-26"><a href="quick-start.html#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="quick-start.html#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for the K value that maximizes jaccard similarity for clustering of subclones </span></span>
+<span id="cb6-28"><a href="quick-start.html#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results</span></span>
+<span id="cb6-29"><a href="quick-start.html#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># This step is optional. A fixed K value can be provided later to findClusters()</span></span>
+<span id="cb6-30"><a href="quick-start.html#cb6-30" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">findSuggestedK</span>(tumor)</span>
+<span id="cb6-31"><a href="quick-start.html#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSuggestedK</span>(tumor)</span>
+<span id="cb6-32"><a href="quick-start.html#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="quick-start.html#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Find clusters of similar copy number profiles and plot the results</span></span>
+<span id="cb6-34"><a href="quick-start.html#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># If no k_subclones value is provided, automatically detect it from findSuggestedK()</span></span>
+<span id="cb6-35"><a href="quick-start.html#cb6-35" aria-hidden="true" tabindex="-1"></a>tumor  <span class="ot">&lt;-</span> <span class="fu">findClusters</span>(tumor)</span>
+<span id="cb6-36"><a href="quick-start.html#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span>
+<span id="cb6-37"><a href="quick-start.html#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="quick-start.html#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate consensus profiles for each subclone, </span></span>
+<span id="cb6-39"><a href="quick-start.html#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># and order cells by cluster for visualization with plotHeatmap</span></span>
+<span id="cb6-40"><a href="quick-start.html#cb6-40" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span>
+<span id="cb6-41"><a href="quick-start.html#cb6-41" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runConsensusPhylo</span>(tumor)</span>
+<span id="cb6-42"><a href="quick-start.html#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="quick-start.html#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a copy number heatmap with clustering annotation</span></span>
+<span id="cb6-44"><a href="quick-start.html#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
 <p>The following sections explain all functions in detail.</p>
 
 </div>

@@ -4,8 +4,6 @@ quick-start
 pre-processing
 from-single-cell-bam-files
 runvarbin
-cbs-dnacopy
-multipcf-copynumber
 runvarbin-modules
 runcountreads
 runvst
@@ -16,14 +14,15 @@ qc-module
 runmetrics
 findaneuploidcells
 findoutliers
+knn-smoothing
 analysis-and-visualization-module
 plotmetrics
 plotratio
 runumap
-plotumap
 clustering
 findsugestedk
 findclusters
+plotumap
 runphylo
 plotphylo
 calcinteger
@@ -37,6 +36,10 @@ runpca
 plotscree
 plotpca
 merging-copykit-objects
+session-info
+faq
+error-unable-to-load-package-after-installation.
+copykit-is-very-slow-despite-parallel-processing
 learn-more
 copy-number-data-from-short-reads-sequencing
 principle-lm
@@ -46,4 +49,3 @@ mergelevels-lm
 infercn-lm
 segmentation-lm
 cbs-lm
-session-info

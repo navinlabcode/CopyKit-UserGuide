@@ -16,11 +16,11 @@ register(MulticoreParam(progressbar = T, workers = 8), default = T)
 
 ```{r registering_true, echo=FALSE}
 library(BiocParallel)
-register(MulticoreParam(progressbar = F), default = T)
+register(MulticoreParam(progressbar = F, workers = 30), default = T)
 ```
 
 Confirm parameters:
-```{r default}
+```{r default, eval=FALSE}
 BiocParallel::bpparam()
 ```
 

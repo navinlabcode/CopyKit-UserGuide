@@ -23,6 +23,9 @@ plotHeatmap(tumor, label = c('outlier', 'is_aneuploid'), row_split = 'outlier')
 tumor <- tumor[,SummarizedExperiment::colData(tumor)$outlier == FALSE]
 tumor <- tumor[,SummarizedExperiment::colData(tumor)$is_aneuploid == TRUE]
 
+# kNN smooth profiles
+tumor <- knnSmooth(tumor)
+
 # Create a umap embedding 
 tumor <- runUmap(tumor)
 

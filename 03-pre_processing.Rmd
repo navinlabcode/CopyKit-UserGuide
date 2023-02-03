@@ -20,18 +20,21 @@ For more information check the [parallelization](#parallelization) section.
 
 ### runVarbin()
 
-The input for `runVarbin()` is the path of the folder containing your *marked duplicate `.bam` files*.
+The runVarbin() function takes in the file path of the folder where your *marked duplicate BAM files are located*. 
 
-Here, every single cell must be contained in its **own BAM file**, for Chromium single cell CNA (10X Genomics) users this means that you must split the _possorted.bam_ file according to cell barcode into single cell bam files.
-Also please make sure to set the argument _is_paired_end_ to TRUE during runVarbin if your BAM files originate from PE sequencing (see more instructions below).
+Each cell must be its own BAM file. For Chromium single cell CNA users (10X Genomics), this means splitting the possorted.bam file by cell barcode into individual BAM files. 
 
-The `runVarbin()` function counts the number of reads in each genomic bin according to the variable binning method - [Learn More!](#varbin-lm).
+If files are originated from *paired-end* sequencing, please ensure that the argument "is_paired_end" is set to TRUE during `runVarbin().
 
-If you are starting from *.fastq* files, we provide a [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline to help users obtain *marked duplicate `.bam` files* [here](https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines). This pipeline can be adapted as per users' needs. It is not a required step. If you have marked bam files from a different source you can skip this step. 
-**NOTE:** Reads must be aligned to the same genome assembly used within CopyKit. 
- 
-The `runVarbin()` function requires an argument specifying the path to the `.bam` files:
-An optional second argument `remove_Y` provides a convenient shortcut to exclude chromosome Y from the dataset.
+Once run, `runVarbin()` uses the variable binning method to count the number of reads in each genomic bin. - [Learn More!](#varbin-lm).
+
+A [snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline is provided [here](https://github.com/navinlabcode/copykit/tree/master/snakemake_pipelines) to convert FASTQ files to marked BAM files, but it is not a required step. If you already have marked BAM files from another source, you can skip this step. Note that the reads must be aligned to the same genome assembly as used in CopyKit.
+
+The input for `runVarbin()` is the path of the folder containing your *marked duplicate `.bam` files*. An optional second argument `remove_Y` provides a convenient shortcut to exclude chromosome Y from the dataset.
+
+```
+To learn about all arguments that runVarbin() accepts use ?runVarbin
+```
 
 ```{r run_varbin, eval=FALSE}
 tumor <- runVarbin("~/path/to/bam/files/", 
@@ -43,18 +46,13 @@ tumor <- runVarbin("/mnt/lab/users/dminussi/projects/copy_number_pipeline_hg38/t
                    remove_Y = TRUE)
 ```
 
-By default, `runVarbin()` uses the *hg38* genome assembly and a *220kb* bin resolution.
-Both options can be customized with the arguments *genome* or *resolution*. (See ?runVarbin() for more details). 
+The `runVarbin()` function uses the hg38 genome assembly and a 220kb bin resolution by default, but these can be adjusted using the `"genome"` or `"resolution"` arguments. If your BAM files come from paired-end sequencing, be sure to set the `"is_paired_end"` argument to TRUE. (See the function documentation for more information: ?runVarbin)
 
-If bam files originate from **paired end sequencing**, make sure to set the argument *is_paired_end* to true:
 ```{r run_varbin_pe, eval=FALSE}
 tumor <- runVarbin("~/path/to/bam/files/", 
                    remove_Y = TRUE,
                    is_paired_end = TRUE)
-``` 
-
-By default, `runVarbin()` uses the *hg38* genome assembly and a resolution of *220kb*.
-Both options can be changed with the arguments *genome* or *resolution* (see ?runVarbin()). 
+```
 
 The resulting object is the CopyKit object.
 ```{r copykit_object}
@@ -63,44 +61,25 @@ tumor
 
 CopyKit objects inherit from the [SingleCellExperiment](https://bioconductor.org/packages/devel/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class.
 
-Each column represents a single cell and each row represents a bin. 
-
-The read counts for each bin are stored in the bincounts assay, which can be accessed with `bincounts()`.
+Each column corresponds to a single cell and each row corresponds to a bin. The bincounts assay, which can be accessed using the `bincounts()` function, stores the read counts for each bin.
 ```{r}
 head(bincounts(tumor)[,1:5])
 ```
 
-Bin counts are a mixture of Negative Binomial distributions with increased variance at higher counts. To address this issue, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation.
+To address overdispersion, CopyKit performs a variance stabilization transformation (VST) of the count matrix using the Freeman-Tukey transformation. Alternatively, log transformation is also available (see the function documentation for more information ?runVst())
 
 The resulting transformation is stored within the *ft* assay, which can be accessed with `assay()`:
 ```{r}
 head(assay(tumor, 'ft')[,1:5])
 ```
 
-Alternatively, log transformation is also available (see ?runVst())
+We use segmentation to divide the genome-ordered bin counts into piecewise constant segments, and the means of these segments can be used to infer copy number states across the genomic regions.
 
-Lastly, we perform segmentation to fit piecewise constant functions to the genome-ordered bin counts. The resulting segment means can be used to infer copy number states across the different genomic regions.
+The runVarbin() function allows for the selection of different segmentation methods using the `method` argument, which can be set to either `CBS` or `multipcf`. By default, the function uses the Circular Binary Segmentation (CBS) - [Learn More!](#cbs-lm) - method from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package. An additional argument, `alpha`, controls the significance levels required to accept change-points. 
 
----
+The second segmentation option is the Multi-sample Piecewise Constant Fit (multipcf) segmentation from the [copynumber](https://www.bioconductor.org/packages/release/bioc/html/copynumber.html) package, which performs a joint segmentation of the samples and identifies common breakpoints across all samples.
 
-The segmentation method is chosen with the argument `method` to `runVarbin()`.
-Currently available methods are:
-
-#### CBS {DNACopy}
-
-By default, CopyKit uses Circular Binary Segmentation (CBS) - [Learn More!](#cbs-lm) - from the [DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html) package to perform segmentation of each chromosome arm. 
-
-The `runVarbin()` function accepts the argument `alpha` which controls the significance levels required to accept change-points.
-
-#### multipcf {copynumber}
-
-A second segmentation option is the Multi-sample Piecewise Constant Fit (multipcf) segmentation from the package [copynumber](https://www.bioconductor.org/packages/release/bioc/html/copynumber.html).
-The multipcf function differs from CBS by performing a joint segmentation of the samples, resulting in common breakpoints across all samples.
-
----
-
-The resulting information from segmentation is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*. [Learn More!](#infercn-lm)
-They can be accessed with the helper function `ratios()` and `segment_ratios()`
+The resulting segmentation is stored within the CopyKit object into two different assays: *ratios* and *segment_ratios*. [Learn More!](#infercn-lm) which can be accessed with the  functions `ratios()` and `segment_ratios()`
 ```{r r_sr_accessors}
 head(ratios(tumor)[,1:5])
 head(segment_ratios(tumor)[,1:5])
@@ -110,29 +89,25 @@ head(segment_ratios(tumor)[,1:5])
 
 ## runVarbin() modules
 
-The following sections describe the functions wrapped by `runVarbin()`.
-**Important: If you started from runVarbin() you do not need to run the following functions.**
-The details of these functions are provided to facilitate running modules with different conditions without requiring you to re-running all `runVarbin()` modules.
+The `runVarbin()` module includes the following functions, which are detailed below.
+**It is important to note that if you have already started from runVarbin(), you do not need to run these functions again.**
+The details of these functions is to enable you to run the modules under different conditions without requiring you to re-run all `runVarbin()` module.
 
 #### runCountReads()
 
-`runCountReads()` counts the reads into bins, smooth bincounts, and perform GC correction of the counts - [Learn More!](#gccor-lm). 
+The `runCountReads()` function counts the reads into bins, and performs GC correction of the counts - [Learn More!](#gccor-lm). 
 
-The genome argument defines the genome assembly ("hg38", "hg19"). 
-The resolution argument defines the size of the variable bins ("50kb", "110kb", "195kb", "220kb", "280kb", "500kb", "1Mb", "2.8Mb").
-The argument `remove_Y` provides a convenient shortcut to exclude the chromosome Y from the dataset.
+The genome argument defines the genome assembly ("hg38", "hg19") and the resolution argument specifies the size of the variable bins ("55kb", "110kb", "195kb", "220kb", "280kb", "500kb", "1Mb", "2.8Mb").
+The `remove_Y` argument provides a convenient shortcut to exclude the chromosome Y from the dataset.
 
 #### runVst()
 
-`runVst()` performs variance stabilization transformation of the bin counts 
-The available transformations are freeman-tukey ('ft') or 'log'.
+The `runVst()` function performs variance stabilization transformation on the bin counts, using either the freeman-tukey ('ft') or 'log' transformation.
 
 #### runSegmentation()
 
-`runSegmentation()` runs the segmentation algorithm of choice ('CBS' or 'multipcf'), followed by merging consecutive segments whose change does not reach the significance threshold [Learn More!](#mergelevels-lm).
-
-The argument _alpha_ controls the significance threshold for `CBS` segmentation.
-The argument _gamma_ controls the penalty of the segmentation for `multipcf` segmentation.
+The `runSegmentation()` function runs either the 'CBS' or 'multipcf' segmentation, and then merges consecutive segments that don't reach the significance threshold [Learn More!](#mergelevels-lm).
+The argument _alpha_ controls the significance threshold for `CBS` segmentation, whil th _gamma_ argument controls the penalty for the `multipcf` segmentation.
 
 
 #### logNorm()
