@@ -125,67 +125,49 @@ The resulting `ploidy_score` scores can be used for further quality control of t
 tumor <- tumor[,colData(tumor)$ploidy_score < 0.2]
 ```
 
-
 Setting the method argument to 'fixed' scales all cells to a fixed value of ploidy (generally determined by flow cytometry), which is passed to CopyKit using the ploidy_value argument: 
 
 ```{r calc_integer_fixed, eval = FALSE}
 tumor <- calcInteger(tumor, method = 'fixed', ploidy_value = 4.3)
 ```
 
-f the integer assay exists, plotRatio() will plot it as a secondary axis.
+If the integer assay exists, plotRatio() will plot it as a secondary axis.
 ```{r plot_ratio_integer, warning=FALSE}
 plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 ```
 
 ## plotHeatmap()
 
+Copy number profiles can be visualized with a heatmap using the plotHeatmap() function. The elements of `colData()` can be annotated on the heatmap with the argument `label`. To order subclones, a consensus phylogeny can be calculated with `calcConsensus()` and `runConsensusPhylo()`, if the argument `order_cells` is not provided, the order of the cells in the heatmap will follow the order of the cells within the CopyKit object. In the plotHeatmap() function, gene annotations can be added with the genes argument. 
+
 To visualize copy number profiles with a heatmap we can use `plotHeatmap()`. 
 
 The heatmap can be annotated with elements of colData.
 
 To order subclones, one option is to calculate a consensus phylogeny, explained in later sections:
-```{r}
+```{r plot_heatmap_sub, fig.height=8}
 tumor <- calcConsensus(tumor)
 tumor <- runConsensusPhylo(tumor)
+plotHeatmap(
+  tumor,
+  label = 'subclones',
+  genes = c("TP53", "BRAF", "MYC"),
+  order_cells = 'consensus_tree'
+)
 ```
 
-To plot the heatmap.
-```{r plot_heatmap_subclones, fig.height=8}
-plotHeatmap(tumor, label = 'subclones', order_cells = 'consensus_tree')
-```
-
-Genes can be annotated to a heatmap in `plotHeatmap()` with the _genes_ argument.
-The genes argument is a vector of gene HUGO symbols:
-```{r plot_heatmap_subclones_genes, fig.height=8}
-plotHeatmap(tumor, label = 'subclones', genes = c("TP53", "BRAF", "MYC"), order_cells = 'consensus_tree')
-```
-
-To plot integer copy number heatmaps pass the argument `assay = 'integer'`, importantly the integer matrix must be in the `'integer'`slot.
+Integer copy number heatmaps can be plotted by passing assay = 'integer', with the integer matrix in the 'integer' slot. New information can be added to colData() and used in plotting functions. For example, spatial information encoded in the sample name can be extracted and added as a column to the metadata, and used to annotate the heatmap.
 ```{r plot_ht_int, fig.height=8}
-plotHeatmap(tumor, assay = 'integer', order_cells = 'consensus_tree')
-```
-
-New information can be added to `colData()` and used in conjunction with the plotting functions. 
-
-The example dataset has macro-spatial information. 
-The information is encoded in the sample name by the letter L followed by a number. 
-
-We can extract that information and add it as an extra column to the metadata:
-
-```{r add_spatial_info}
+# adding spatial information
 colData(tumor)$spatial_info <- stringr::str_extract(colData(tumor)$sample, "L[0-9]")
+
+# plotting the integer heatmap with the spatial and subclonal information
+plotHeatmap(tumor, assay = 'integer', label = c("spatial_info", "subclones"), order_cells = 'consensus_tree')
 ```
 
-Once the information has been added, we can use it to color the umap by their spatial information:
-
+The spatial information can now also be used to color the elements of the UMAP:
 ```{r umap_spatial}
 plotUmap(tumor, label = 'spatial_info')
-```
-
-It is also possible to annotate the heatmap with that information:
-The 'label' argument for `plotHeatmap()` can add as many annotations as specified by the user as long as they are elements in `colData()` of the CopyKit object.
-```{r heat_spatial, fig.height=8}
-plotHeatmap(tumor, label = c("spatial_info", "subclones"), order_cells = 'consensus_tree')
 ```
 
 ## runPhylo() & plotPhylo()
@@ -199,23 +181,15 @@ tumor <- runPhylo(tumor, metric = 'manhattan')
 plotPhylo(tumor, label = 'subclones')
 ```
 
-
 ## plotFreq()
 
-Computing the frequencies of genomic gain or losses across the genome can be useful to visualize differences between groups. This can be done with `plotFreq()`. 
-For every region of the genome, `plotFreq()` will calculate the frequency of gain or losses according to a threshold across all samples.
-The thresholds are controlled with the arguments `low_threshold` (values below will be counted as genomic losses) and `high_threshold` (values above will be counted as genomic gains).
+The `plotFreq()` function can be used to visualize genomic gains or losses across the genome. This function calculates the frequency of gain or losses in each region of the genome based on a threshold applied to all samples. The `low_threshold` argument (below which values are counted as genomic losses) and `high_threshold` argument (above which values are counted as genomic gains) control the thresholds. It is recommended to set the thresholds based on the ploidy of the sample. To use the integer assay instead of the default segment_ratios assay, pass the `assay` argument. The visual representation of the frequencies can be shown as either an `area` or a `line` geom
 
-Ideally thresholds will be set according to the ploidy of the sample. 
-
-The argument `assay` can be provided to pass on the `integer` assay instead of the `segment_ratios` assay (adjust thresholds accordingly).
-
-Two geoms are available `area` or `line`.
 ```{r plot_freq_sample}
 plotFreq(tumor)
 ```
 
-Group information can be set to any categorical element of the `colData()` and is provided with the argument `group`.
+Elements of `colData()` can be used to split the plot across different groups.
 
 ```{r plot_freq_label, fig.height=6}
 plotFreq(tumor,
