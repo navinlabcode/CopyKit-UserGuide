@@ -92,7 +92,7 @@ To run `findClusters()`, pass the CopyKit object as its input. If `findSuggested
 tumor <- findClusters(tumor)
 ```
 
-If hdbscan is used for clustering, singleetons [outliers](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) may bee idenetifieed and added to subgroup `c0`.  Copykit will notify you of any cells classified as c0 after running findClusters(). To remove outliers, subset the CopyKit object with:
+If hdbscan is used for clustering, singletons [outliers](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) may be idetified and added to subgroup `c0`.  Copykit will notify you of any cells classified as c0 after running findClusters(). To remove outliers, subset the CopyKit object with:
 
 ```{r filter_outliers}
 tumor <- tumor[,colData(tumor)$subclones != 'c0']
@@ -100,64 +100,39 @@ tumor <- tumor[,colData(tumor)$subclones != 'c0']
 
 ### plotUmap()
 
-`plotUmap()` can be used to visualize the reduced dimensional embedding. 
-`plotUmap` can be colored by any element of the colData with the argument 'label'.
+The `plotUmap()` function can be used to visualize the reduced dimensional embedding. Points can be colored by any element of the `colData` with the argument 'label'.
 
 ```{r}
 plotUmap(tumor)
 ```
 
-Cells can be colored with the argument 'label' by any element of `colData()`:
-
 ```{r plot_umap_subclones}
 plotUmap(tumor, label = 'subclones')
 ```
 
-## runPhylo()
+## scquantum & calcInteger()
 
-To run a phylogenetic analysis of cells' copy number profiles, use the function `runPhylo()`. 
-Available methods are [Neighbor Joining](https://pubmed.ncbi.nlm.nih.gov/3447015/) and [Balanced Minimum evolution](https://pubmed.ncbi.nlm.nih.gov/8412650/).
+The scquantum package is integrated into CopyKit to infer absolute copy numbers. It can be used either within CopyKit or as a [standalone package](https://github.com/navinlabcode/scquantum) available on GitHub. Other methods for inferring absolute copy numbers are metadata and fixed. After running calcInteger(), CopyKit scales the segment ratios to integer values, which are stored in the integer slot and can be accessed using the assay() function.
 
-The resulting tree is stored within the CopyKit object in the phylo slot:
-```{r run_phylo}
-tumor <- runPhylo(tumor, metric = 'manhattan')
+To infer absolute ploidy values using scquantum, specify `scquantum` as the method argument in `calcInteger()`. The estimated computational ploidy is stored in `colData()` along with confidence_ratio, which compares the obtained score with the theoretical estimate, and ploidy_score, a transformation of confidence_ratio with values closer to 0 indicating better ploidy inference calls.
+
+```{r calc_integerscquantum}
+tumor <- calcInteger(tumor, method = 'scquantum')
 ```
 
-### plotPhylo()
-
-To visualize the resulting phylogenetic trees from `runPhylo()` we can use the `plotPhylo()` function.
-
-```{r plot_phylo, fig.height=8}
-plotPhylo(tumor)
+The resulting `ploidy_score` scores can be used for further quality control of the single cell dataset.
+```{r}
+tumor <- tumor[,colData(tumor)$ploidy_score < 0.2]
 ```
 
-`plotPhylo()` can use any element of the colData to color the leaves of the tree.
 
-```{r plot_phylo_label, fig.height=8}
-plotPhylo(tumor, label = 'subclones')
-```
+Setting the method argument to 'fixed' scales all cells to a fixed value of ploidy (generally determined by flow cytometry), which is passed to CopyKit using the ploidy_value argument: 
 
-## calcInteger()
-
-The true underlying copy number states for a given region of the genome are given in integer states. 
-We can use the segment ratio means to make an inference of the copy number state for a given genomic region.
-Keep in mind that those are inferences and, as such, are subjected to errors of different sources, like erroneous inference or rounding errors.
-
-Segment ratio means can be scaled to integer values with `calcInteger()`. 
-
-CopyKit supports different methods of calculating integer copy number profiles.
-
-To calculate computational ploidies, a method is in development and should be available soon within copykit.
-
-By setting the argument `method` to *fixed*, a fixed value of ploidy (generally determined using Flow Cytometry) will scale all cells.
-
-```{r calc_integer_fixed}
+```{r calc_integer_fixed, eval = FALSE}
 tumor <- calcInteger(tumor, method = 'fixed', ploidy_value = 4.3)
 ```
 
-The integer values are stored in the slot `integer` that can be accessed with the function `assay()`.
-
-If the assay _integer_ exists, `plotRatio()` will use it to plot the integer copy number values as a secondary axis.
+f the integer assay exists, plotRatio() will plot it as a secondary axis.
 ```{r plot_ratio_integer, warning=FALSE}
 plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
 ```
@@ -212,6 +187,18 @@ The 'label' argument for `plotHeatmap()` can add as many annotations as specifie
 ```{r heat_spatial, fig.height=8}
 plotHeatmap(tumor, label = c("spatial_info", "subclones"), order_cells = 'consensus_tree')
 ```
+
+## runPhylo() & plotPhylo()
+
+The `runPhylo()` function can be used to perform phylogenetic analysis of cells' copy number profiles. The available methods are [Neighbor Joining](https://pubmed.ncbi.nlm.nih.gov/3447015/) and [Balanced Minimum evolution](https://pubmed.ncbi.nlm.nih.gov/8412650/).The resulting tree is stored in the phylo slot within the CopyKit object. 
+
+The `plotPhylo()` function can be used to visualize the trees generated by `runPhylo()`. The leaves of the tree can be colored based on any element of the colData by using the argument `label`.
+
+```{r run_phylo}
+tumor <- runPhylo(tumor, metric = 'manhattan')
+plotPhylo(tumor, label = 'subclones')
+```
+
 
 ## plotFreq()
 
