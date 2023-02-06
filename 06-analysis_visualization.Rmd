@@ -116,8 +116,8 @@ The scquantum package is integrated into CopyKit to infer absolute copy numbers.
 
 To infer absolute ploidy values using scquantum, specify `scquantum` as the method argument in `calcInteger()`. The estimated computational ploidy is stored in `colData()` along with confidence_ratio, which compares the obtained score with the theoretical estimate, and ploidy_score, a transformation of confidence_ratio with values closer to 0 indicating better ploidy inference calls.
 
-```{r calc_integerscquantum}
-tumor <- calcInteger(tumor, method = 'scquantum')
+```{r calc_integerscquantum, warning=FALSE}
+tumor <- calcInteger(tumor, method = 'scquantum', assay = 'smoothed_bincounts')
 ```
 
 The resulting `ploidy_score` scores can be used for further quality control of the single cell dataset.

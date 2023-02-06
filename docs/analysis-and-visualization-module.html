@@ -165,12 +165,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>7.4.2</b> findClusters()</a></li>
 <li class="chapter" data-level="7.4.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>7.4.3</b> plotUmap()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>7.5</b> runPhylo()</a>
-<ul>
-<li class="chapter" data-level="7.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>7.5.1</b> plotPhylo()</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>7.6</b> calcInteger()</a></li>
-<li class="chapter" data-level="7.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>7.7</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="7.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#scquantum-calcinteger"><i class="fa fa-check"></i><b>7.5</b> scquantum &amp; calcInteger()</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>7.6</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="7.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo-plotphylo"><i class="fa fa-check"></i><b>7.7</b> runPhylo() &amp; plotPhylo()</a></li>
 <li class="chapter" data-level="7.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>7.8</b> plotFreq()</a></li>
 <li class="chapter" data-level="7.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>7.9</b> calcConsensus()</a></li>
 <li class="chapter" data-level="7.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>7.10</b> plotConsensusLine()</a></li>
@@ -300,131 +297,103 @@ different clustering algorithms such as:</p>
 <pre><code>## Finding clusters, using method: hdbscan</code></pre>
 <pre><code>## Found 4 subclones.</code></pre>
 <pre><code>## Done.</code></pre>
-<p>If hdbscan is used for clustering, singleetons <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html">outliers</a> may bee idenetifieed and added to subgroup <code>c0</code>. Copykit will notify you of any cells classified as c0 after running findClusters(). To remove outliers, subset the CopyKit object with:</p>
+<p>If hdbscan is used for clustering, singletons <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html">outliers</a> may be idetified and added to subgroup <code>c0</code>. Copykit will notify you of any cells classified as c0 after running findClusters(). To remove outliers, subset the CopyKit object with:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="analysis-and-visualization-module.html#cb87-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>subclones <span class="sc">!=</span> <span class="st">&#39;c0&#39;</span>]</span></code></pre></div>
 </div>
 <div id="plotumap" class="section level3 hasAnchor" number="7.4.3">
 <h3><span class="header-section-number">7.4.3</span> plotUmap()<a href="analysis-and-visualization-module.html#plotumap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>plotUmap()</code> can be used to visualize the reduced dimensional embedding.
-<code>plotUmap</code> can be colored by any element of the colData with the argument ‘label’.</p>
+<p>The <code>plotUmap()</code> function can be used to visualize the reduced dimensional embedding. Points can be colored by any element of the <code>colData</code> with the argument ‘label’.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="analysis-and-visualization-module.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor)</span></code></pre></div>
 <pre><code>## Plotting Umap.</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>Cells can be colored with the argument ‘label’ by any element of <code>colData()</code>:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="analysis-and-visualization-module.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
 <pre><code>## Plotting Umap.</code></pre>
 <pre><code>## Coloring by: subclones.</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_umap_subclones-1.png" width="672" /></p>
 </div>
 </div>
-<div id="runphylo" class="section level2 hasAnchor" number="7.5">
-<h2><span class="header-section-number">7.5</span> runPhylo()<a href="analysis-and-visualization-module.html#runphylo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To run a phylogenetic analysis of cells’ copy number profiles, use the function <code>runPhylo()</code>.
-Available methods are <a href="https://pubmed.ncbi.nlm.nih.gov/3447015/">Neighbor Joining</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/8412650/">Balanced Minimum evolution</a>.</p>
-<p>The resulting tree is stored within the CopyKit object in the phylo slot:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="analysis-and-visualization-module.html#cb93-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runPhylo</span>(tumor, <span class="at">metric =</span> <span class="st">&#39;manhattan&#39;</span>)</span></code></pre></div>
+<div id="scquantum-calcinteger" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> scquantum &amp; calcInteger()<a href="analysis-and-visualization-module.html#scquantum-calcinteger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The scquantum package is integrated into CopyKit to infer absolute copy numbers. It can be used either within CopyKit or as a <a href="https://github.com/navinlabcode/scquantum">standalone package</a> available on GitHub. Other methods for inferring absolute copy numbers are metadata and fixed. After running calcInteger(), CopyKit scales the segment ratios to integer values, which are stored in the integer slot and can be accessed using the assay() function.</p>
+<p>To infer absolute ploidy values using scquantum, specify <code>scquantum</code> as the method argument in <code>calcInteger()</code>. The estimated computational ploidy is stored in <code>colData()</code> along with confidence_ratio, which compares the obtained score with the theoretical estimate, and ploidy_score, a transformation of confidence_ratio with values closer to 0 indicating better ploidy inference calls.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="analysis-and-visualization-module.html#cb93-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcInteger</span>(tumor, <span class="at">method =</span> <span class="st">&#39;scquantum&#39;</span>, <span class="at">assay =</span> <span class="st">&#39;smoothed_bincounts&#39;</span>)</span></code></pre></div>
+<p>The resulting <code>ploidy_score</code> scores can be used for further quality control of the single cell dataset.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="analysis-and-visualization-module.html#cb94-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> tumor[,<span class="fu">colData</span>(tumor)<span class="sc">$</span>ploidy_score <span class="sc">&lt;</span> <span class="fl">0.2</span>]</span></code></pre></div>
+<p>Setting the method argument to ‘fixed’ scales all cells to a fixed value of ploidy (generally determined by flow cytometry), which is passed to CopyKit using the ploidy_value argument:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="analysis-and-visualization-module.html#cb95-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcInteger</span>(tumor, <span class="at">method =</span> <span class="st">&#39;fixed&#39;</span>, <span class="at">ploidy_value =</span> <span class="fl">4.3</span>)</span></code></pre></div>
+<p>If the integer assay exists, plotRatio() will plot it as a secondary axis.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="analysis-and-visualization-module.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRatio</span>(tumor, <span class="st">&quot;PMTC6LiverC117AL4L5S1_S885_L003_R1_001&quot;</span>)</span></code></pre></div>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_ratio_integer-1.png" width="672" /></p>
+</div>
+<div id="plotheatmap" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> plotHeatmap()<a href="analysis-and-visualization-module.html#plotheatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Copy number profiles can be visualized with a heatmap using the plotHeatmap() function. The elements of <code>colData()</code> can be annotated on the heatmap with the argument <code>label</code>. To order subclones, a consensus phylogeny can be calculated with <code>calcConsensus()</code> and <code>runConsensusPhylo()</code>, if the argument <code>order_cells</code> is not provided, the order of the cells in the heatmap will follow the order of the cells within the CopyKit object. In the plotHeatmap() function, gene annotations can be added with the genes argument.</p>
+<p>To visualize copy number profiles with a heatmap we can use <code>plotHeatmap()</code>.</p>
+<p>The heatmap can be annotated with elements of colData.</p>
+<p>To order subclones, one option is to calculate a consensus phylogeny, explained in later sections:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="analysis-and-visualization-module.html#cb97-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span>
+<span id="cb97-2"><a href="analysis-and-visualization-module.html#cb97-2" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runConsensusPhylo</span>(tumor)</span>
+<span id="cb97-3"><a href="analysis-and-visualization-module.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(</span>
+<span id="cb97-4"><a href="analysis-and-visualization-module.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  tumor,</span>
+<span id="cb97-5"><a href="analysis-and-visualization-module.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>,</span>
+<span id="cb97-6"><a href="analysis-and-visualization-module.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;TP53&quot;</span>, <span class="st">&quot;BRAF&quot;</span>, <span class="st">&quot;MYC&quot;</span>),</span>
+<span id="cb97-7"><a href="analysis-and-visualization-module.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_cells =</span> <span class="st">&#39;consensus_tree&#39;</span></span>
+<span id="cb97-8"><a href="analysis-and-visualization-module.html#cb97-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Ordering cells by:consensus_tree</code></pre>
+<pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_heatmap_sub-1.png" width="672" /></p>
+<p>Integer copy number heatmaps can be plotted by passing assay = ‘integer’, with the integer matrix in the ‘integer’ slot. New information can be added to colData() and used in plotting functions. For example, spatial information encoded in the sample name can be extracted and added as a column to the metadata, and used to annotate the heatmap.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="analysis-and-visualization-module.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adding spatial information</span></span>
+<span id="cb100-2"><a href="analysis-and-visualization-module.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(tumor)<span class="sc">$</span>spatial_info <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_extract</span>(<span class="fu">colData</span>(tumor)<span class="sc">$</span>sample, <span class="st">&quot;L[0-9]&quot;</span>)</span>
+<span id="cb100-3"><a href="analysis-and-visualization-module.html#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="analysis-and-visualization-module.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting the integer heatmap with the spatial and subclonal information</span></span>
+<span id="cb100-5"><a href="analysis-and-visualization-module.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;spatial_info&quot;</span>, <span class="st">&quot;subclones&quot;</span>), <span class="at">order_cells =</span> <span class="st">&#39;consensus_tree&#39;</span>)</span></code></pre></div>
+<pre><code>## Ordering cells by:consensus_tree</code></pre>
+<pre><code>## Plotting Heatmap.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/plot_ht_int-1.png" width="672" /></p>
+<p>The spatial information can now also be used to color the elements of the UMAP:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="analysis-and-visualization-module.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<pre><code>## Plotting Umap.</code></pre>
+<pre><code>## Coloring by: spatial_info.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/umap_spatial-1.png" width="672" /></p>
+</div>
+<div id="runphylo-plotphylo" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> runPhylo() &amp; plotPhylo()<a href="analysis-and-visualization-module.html#runphylo-plotphylo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>runPhylo()</code> function can be used to perform phylogenetic analysis of cells’ copy number profiles. The available methods are <a href="https://pubmed.ncbi.nlm.nih.gov/3447015/">Neighbor Joining</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/8412650/">Balanced Minimum evolution</a>.The resulting tree is stored in the phylo slot within the CopyKit object.</p>
+<p>The <code>plotPhylo()</code> function can be used to visualize the trees generated by <code>runPhylo()</code>. The leaves of the tree can be colored based on any element of the colData by using the argument <code>label</code>.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="analysis-and-visualization-module.html#cb106-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runPhylo</span>(tumor, <span class="at">metric =</span> <span class="st">&#39;manhattan&#39;</span>)</span></code></pre></div>
 <pre><code>## Using ratio data...</code></pre>
 <pre><code>## Calculating distance matrix</code></pre>
 <pre><code>## Creating neighbor-joining tree.</code></pre>
 <pre><code>## Access slot with copykit::phylo(scCNA).</code></pre>
 <pre><code>## Done.</code></pre>
-<div id="plotphylo" class="section level3 hasAnchor" number="7.5.1">
-<h3><span class="header-section-number">7.5.1</span> plotPhylo()<a href="analysis-and-visualization-module.html#plotphylo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To visualize the resulting phylogenetic trees from <code>runPhylo()</code> we can use the <code>plotPhylo()</code> function.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="analysis-and-visualization-module.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPhylo</span>(tumor)</span></code></pre></div>
-<pre><code>## Warning: The tree contained negative edge lengths. If you want to ignore the edges, you
-## can set &#39;options(ignore.negative.edge=TRUE)&#39;, then re-run ggtree.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/plot_phylo-1.png" width="672" /></p>
-<p><code>plotPhylo()</code> can use any element of the colData to color the leaves of the tree.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="analysis-and-visualization-module.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPhylo</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: The tree contained negative edge lengths. If you want to ignore the edges, you
-## can set &#39;options(ignore.negative.edge=TRUE)&#39;, then re-run ggtree.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/plot_phylo_label-1.png" width="672" /></p>
-</div>
-</div>
-<div id="calcinteger" class="section level2 hasAnchor" number="7.6">
-<h2><span class="header-section-number">7.6</span> calcInteger()<a href="analysis-and-visualization-module.html#calcinteger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The true underlying copy number states for a given region of the genome are given in integer states.
-We can use the segment ratio means to make an inference of the copy number state for a given genomic region.
-Keep in mind that those are inferences and, as such, are subjected to errors of different sources, like erroneous inference or rounding errors.</p>
-<p>Segment ratio means can be scaled to integer values with <code>calcInteger()</code>.</p>
-<p>CopyKit supports different methods of calculating integer copy number profiles.</p>
-<p>To calculate computational ploidies, a method is in development and should be available soon within copykit.</p>
-<p>By setting the argument <code>method</code> to <em>fixed</em>, a fixed value of ploidy (generally determined using Flow Cytometry) will scale all cells.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="analysis-and-visualization-module.html#cb103-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcInteger</span>(tumor, <span class="at">method =</span> <span class="st">&#39;fixed&#39;</span>, <span class="at">ploidy_value =</span> <span class="fl">4.3</span>)</span></code></pre></div>
-<pre><code>## Scaling ratio values by ploidy value 4.3</code></pre>
-<p>The integer values are stored in the slot <code>integer</code> that can be accessed with the function <code>assay()</code>.</p>
-<p>If the assay <em>integer</em> exists, <code>plotRatio()</code> will use it to plot the integer copy number values as a secondary axis.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="analysis-and-visualization-module.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRatio</span>(tumor, <span class="st">&quot;PMTC6LiverC117AL4L5S1_S885_L003_R1_001&quot;</span>)</span></code></pre></div>
-<p><img src="CopyKit-UserGuide_files/figure-html/plot_ratio_integer-1.png" width="672" /></p>
-</div>
-<div id="plotheatmap" class="section level2 hasAnchor" number="7.7">
-<h2><span class="header-section-number">7.7</span> plotHeatmap()<a href="analysis-and-visualization-module.html#plotheatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To visualize copy number profiles with a heatmap we can use <code>plotHeatmap()</code>.</p>
-<p>The heatmap can be annotated with elements of colData.</p>
-<p>To order subclones, one option is to calculate a consensus phylogeny, explained in later sections:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="analysis-and-visualization-module.html#cb106-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span>
-<span id="cb106-2"><a href="analysis-and-visualization-module.html#cb106-2" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runConsensusPhylo</span>(tumor)</span></code></pre></div>
-<p>To plot the heatmap.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="analysis-and-visualization-module.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">order_cells =</span> <span class="st">&#39;consensus_tree&#39;</span>)</span></code></pre></div>
-<pre><code>## Ordering cells by:consensus_tree</code></pre>
-<pre><code>## Plotting Heatmap.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/plot_heatmap_subclones-1.png" width="672" /></p>
-<p>Genes can be annotated to a heatmap in <code>plotHeatmap()</code> with the <em>genes</em> argument.
-The genes argument is a vector of gene HUGO symbols:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="analysis-and-visualization-module.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;TP53&quot;</span>, <span class="st">&quot;BRAF&quot;</span>, <span class="st">&quot;MYC&quot;</span>), <span class="at">order_cells =</span> <span class="st">&#39;consensus_tree&#39;</span>)</span></code></pre></div>
-<pre><code>## Ordering cells by:consensus_tree</code></pre>
-<pre><code>## Plotting Heatmap.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/plot_heatmap_subclones_genes-1.png" width="672" /></p>
-<p>To plot integer copy number heatmaps pass the argument <code>assay = 'integer'</code>, importantly the integer matrix must be in the <code>'integer'</code>slot.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="analysis-and-visualization-module.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>, <span class="at">order_cells =</span> <span class="st">&#39;consensus_tree&#39;</span>)</span></code></pre></div>
-<pre><code>## Ordering cells by:consensus_tree</code></pre>
-<pre><code>## Plotting Heatmap.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/plot_ht_int-1.png" width="672" /></p>
-<p>New information can be added to <code>colData()</code> and used in conjunction with the plotting functions.</p>
-<p>The example dataset has macro-spatial information.
-The information is encoded in the sample name by the letter L followed by a number.</p>
-<p>We can extract that information and add it as an extra column to the metadata:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="analysis-and-visualization-module.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(tumor)<span class="sc">$</span>spatial_info <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_extract</span>(<span class="fu">colData</span>(tumor)<span class="sc">$</span>sample, <span class="st">&quot;L[0-9]&quot;</span>)</span></code></pre></div>
-<p>Once the information has been added, we can use it to color the umap by their spatial information:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analysis-and-visualization-module.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotUmap</span>(tumor, <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
-<pre><code>## Plotting Umap.</code></pre>
-<pre><code>## Coloring by: spatial_info.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/umap_spatial-1.png" width="672" /></p>
-<p>It is also possible to annotate the heatmap with that information:
-The ‘label’ argument for <code>plotHeatmap()</code> can add as many annotations as specified by the user as long as they are elements in <code>colData()</code> of the CopyKit object.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="analysis-and-visualization-module.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;spatial_info&quot;</span>, <span class="st">&quot;subclones&quot;</span>), <span class="at">order_cells =</span> <span class="st">&#39;consensus_tree&#39;</span>)</span></code></pre></div>
-<pre><code>## Ordering cells by:consensus_tree</code></pre>
-<pre><code>## Plotting Heatmap.</code></pre>
-<p><img src="CopyKit-UserGuide_files/figure-html/heat_spatial-1.png" width="672" /></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="analysis-and-visualization-module.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPhylo</span>(tumor, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning: The tree contained negative edge lengths. If you want to ignore the edges, you can set
+## &#39;options(ignore.negative.edge=TRUE)&#39;, then re-run ggtree.</code></pre>
+<p><img src="CopyKit-UserGuide_files/figure-html/run_phylo-1.png" width="672" /></p>
 </div>
 <div id="plotfreq" class="section level2 hasAnchor" number="7.8">
 <h2><span class="header-section-number">7.8</span> plotFreq()<a href="analysis-and-visualization-module.html#plotfreq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Computing the frequencies of genomic gain or losses across the genome can be useful to visualize differences between groups. This can be done with <code>plotFreq()</code>.
-For every region of the genome, <code>plotFreq()</code> will calculate the frequency of gain or losses according to a threshold across all samples.
-The thresholds are controlled with the arguments <code>low_threshold</code> (values below will be counted as genomic losses) and <code>high_threshold</code> (values above will be counted as genomic gains).</p>
-<p>Ideally thresholds will be set according to the ploidy of the sample.</p>
-<p>The argument <code>assay</code> can be provided to pass on the <code>integer</code> assay instead of the <code>segment_ratios</code> assay (adjust thresholds accordingly).</p>
-<p>Two geoms are available <code>area</code> or <code>line</code>.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="analysis-and-visualization-module.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFreq</span>(tumor)</span></code></pre></div>
+<p>The <code>plotFreq()</code> function can be used to visualize genomic gains or losses across the genome. This function calculates the frequency of gain or losses in each region of the genome based on a threshold applied to all samples. The <code>low_threshold</code> argument (below which values are counted as genomic losses) and <code>high_threshold</code> argument (above which values are counted as genomic gains) control the thresholds. It is recommended to set the thresholds based on the ploidy of the sample. To use the integer assay instead of the default segment_ratios assay, pass the <code>assay</code> argument. The visual representation of the frequencies can be shown as either an <code>area</code> or a <code>line</code> geom</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="analysis-and-visualization-module.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFreq</span>(tumor)</span></code></pre></div>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_freq_sample-1.png" width="672" /></p>
-<p>Group information can be set to any categorical element of the <code>colData()</code> and is provided with the argument <code>group</code>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="analysis-and-visualization-module.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFreq</span>(tumor,</span>
-<span id="cb124-2"><a href="analysis-and-visualization-module.html#cb124-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">group =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<p>Elements of <code>colData()</code> can be used to split the plot across different groups.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analysis-and-visualization-module.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFreq</span>(tumor,</span>
+<span id="cb115-2"><a href="analysis-and-visualization-module.html#cb115-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">group =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_freq_label-1.png" width="672" /></p>
 </div>
 <div id="calcconsensus" class="section level2 hasAnchor" number="7.9">
 <h2><span class="header-section-number">7.9</span> calcConsensus()<a href="analysis-and-visualization-module.html#calcconsensus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Consensus sequences can help visualize the different segments across subclones. To calculate consensus matrices we can use <code>calcConsensus()</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="analysis-and-visualization-module.html#cb125-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="analysis-and-visualization-module.html#cb116-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor)</span></code></pre></div>
 <p><code>plotHeatmap()</code> can plot a consensus heatmap:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="analysis-and-visualization-module.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">consensus =</span> <span class="cn">TRUE</span>, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analysis-and-visualization-module.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">consensus =</span> <span class="cn">TRUE</span>, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>)</span></code></pre></div>
 <pre><code>## order_cells argument is NULL. Samples are ordered according to
 ##               colnames(CopyKit)</code></pre>
 <pre><code>## Plotting Heatmap.</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_heat_consensus-1.png" width="672" /></p>
 <p><code>plotHeatmap()</code> can annotate the consensus heatmap with information from the metadata as long as label is the same as the information used to build the consensus matrix:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="analysis-and-visualization-module.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">consensus =</span> <span class="cn">TRUE</span>, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">group =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="analysis-and-visualization-module.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmap</span>(tumor, <span class="at">consensus =</span> <span class="cn">TRUE</span>, <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">group =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
 <pre><code>## order_cells argument is NULL. Samples are ordered according to
 ##               colnames(CopyKit)</code></pre>
 <pre><code>## Plotting Heatmap.</code></pre>
@@ -432,12 +401,12 @@ The thresholds are controlled with the arguments <code>low_threshold</code> (val
 <p>By default <code>calcConsensus()</code> uses the subclones information to calculate a consensus for each subclone.
 Any element of the <code>colData()</code> can be used to calculate the consensus.</p>
 <p><strong>Note:</strong> Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the <code>assay(tumor, 'integer')</code> slot. Check <code>calcInteger()</code> for more info.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="analysis-and-visualization-module.html#cb132-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor, <span class="at">consensus_by =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="analysis-and-visualization-module.html#cb123-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">calcConsensus</span>(tumor, <span class="at">consensus_by =</span> <span class="st">&#39;subclones&#39;</span>, <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
 </div>
 <div id="plotconsensusline" class="section level2 hasAnchor" number="7.10">
 <h2><span class="header-section-number">7.10</span> plotConsensusLine()<a href="analysis-and-visualization-module.html#plotconsensusline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To compare the differences among subclones, <code>plotConsensusLine()</code> opens an interactive app where the consensus sequences are plotted as lines.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="analysis-and-visualization-module.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotConsensusLine</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="analysis-and-visualization-module.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotConsensusLine</span>(tumor)</span></code></pre></div>
 <center>
 <div class="figure">
 <img src="images/plot_consensus_shiny.png" alt="" />
@@ -449,63 +418,63 @@ Any element of the <code>colData()</code> can be used to calculate the consensus
 <h2><span class="header-section-number">7.11</span> plotGeneCopy()<a href="analysis-and-visualization-module.html#plotgenecopy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To check copy number states across of genes we can use <code>plotGeneCopy()</code>. Two different geoms: “swarm” (default) or “violin” can be applied.</p>
 <p>As with other plotting functions, points can be colored with the argument ‘label’.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="analysis-and-visualization-module.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeneCopy</span>(tumor, <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
-<span id="cb134-2"><a href="analysis-and-visualization-module.html#cb134-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
-<span id="cb134-3"><a href="analysis-and-visualization-module.html#cb134-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
-<span id="cb134-4"><a href="analysis-and-visualization-module.html#cb134-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
-<span id="cb134-5"><a href="analysis-and-visualization-module.html#cb134-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
-<span id="cb134-6"><a href="analysis-and-visualization-module.html#cb134-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
-<span id="cb134-7"><a href="analysis-and-visualization-module.html#cb134-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
-<span id="cb134-8"><a href="analysis-and-visualization-module.html#cb134-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
-<span id="cb134-9"><a href="analysis-and-visualization-module.html#cb134-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
-<span id="cb134-10"><a href="analysis-and-visualization-module.html#cb134-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
-<span id="cb134-11"><a href="analysis-and-visualization-module.html#cb134-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
-<span id="cb134-12"><a href="analysis-and-visualization-module.html#cb134-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="analysis-and-visualization-module.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeneCopy</span>(tumor, <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
+<span id="cb125-2"><a href="analysis-and-visualization-module.html#cb125-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
+<span id="cb125-3"><a href="analysis-and-visualization-module.html#cb125-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
+<span id="cb125-4"><a href="analysis-and-visualization-module.html#cb125-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
+<span id="cb125-5"><a href="analysis-and-visualization-module.html#cb125-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
+<span id="cb125-6"><a href="analysis-and-visualization-module.html#cb125-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
+<span id="cb125-7"><a href="analysis-and-visualization-module.html#cb125-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
+<span id="cb125-8"><a href="analysis-and-visualization-module.html#cb125-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
+<span id="cb125-9"><a href="analysis-and-visualization-module.html#cb125-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
+<span id="cb125-10"><a href="analysis-and-visualization-module.html#cb125-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
+<span id="cb125-11"><a href="analysis-and-visualization-module.html#cb125-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
+<span id="cb125-12"><a href="analysis-and-visualization-module.html#cb125-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
 <pre><code>## Coloring by: spatial_info</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>A positional dodge can be added to facilitate the visualization across groups:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="analysis-and-visualization-module.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeneCopy</span>(tumor, </span>
-<span id="cb136-2"><a href="analysis-and-visualization-module.html#cb136-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
-<span id="cb136-3"><a href="analysis-and-visualization-module.html#cb136-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
-<span id="cb136-4"><a href="analysis-and-visualization-module.html#cb136-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
-<span id="cb136-5"><a href="analysis-and-visualization-module.html#cb136-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
-<span id="cb136-6"><a href="analysis-and-visualization-module.html#cb136-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
-<span id="cb136-7"><a href="analysis-and-visualization-module.html#cb136-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
-<span id="cb136-8"><a href="analysis-and-visualization-module.html#cb136-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
-<span id="cb136-9"><a href="analysis-and-visualization-module.html#cb136-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
-<span id="cb136-10"><a href="analysis-and-visualization-module.html#cb136-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
-<span id="cb136-11"><a href="analysis-and-visualization-module.html#cb136-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
-<span id="cb136-12"><a href="analysis-and-visualization-module.html#cb136-12" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
-<span id="cb136-13"><a href="analysis-and-visualization-module.html#cb136-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>,</span>
-<span id="cb136-14"><a href="analysis-and-visualization-module.html#cb136-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">dodge.width =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="analysis-and-visualization-module.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeneCopy</span>(tumor, </span>
+<span id="cb127-2"><a href="analysis-and-visualization-module.html#cb127-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
+<span id="cb127-3"><a href="analysis-and-visualization-module.html#cb127-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
+<span id="cb127-4"><a href="analysis-and-visualization-module.html#cb127-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
+<span id="cb127-5"><a href="analysis-and-visualization-module.html#cb127-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
+<span id="cb127-6"><a href="analysis-and-visualization-module.html#cb127-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
+<span id="cb127-7"><a href="analysis-and-visualization-module.html#cb127-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
+<span id="cb127-8"><a href="analysis-and-visualization-module.html#cb127-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
+<span id="cb127-9"><a href="analysis-and-visualization-module.html#cb127-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
+<span id="cb127-10"><a href="analysis-and-visualization-module.html#cb127-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
+<span id="cb127-11"><a href="analysis-and-visualization-module.html#cb127-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
+<span id="cb127-12"><a href="analysis-and-visualization-module.html#cb127-12" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
+<span id="cb127-13"><a href="analysis-and-visualization-module.html#cb127-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">label =</span> <span class="st">&#39;subclones&#39;</span>,</span>
+<span id="cb127-14"><a href="analysis-and-visualization-module.html#cb127-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">dodge.width =</span> <span class="fl">0.8</span>)</span></code></pre></div>
 <pre><code>## Coloring by: subclones</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>A barplot geom is also provided to visualize the integer data as a frequency barplot for each gene:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="analysis-and-visualization-module.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeneCopy</span>(tumor, <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
-<span id="cb138-2"><a href="analysis-and-visualization-module.html#cb138-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
-<span id="cb138-3"><a href="analysis-and-visualization-module.html#cb138-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
-<span id="cb138-4"><a href="analysis-and-visualization-module.html#cb138-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
-<span id="cb138-5"><a href="analysis-and-visualization-module.html#cb138-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
-<span id="cb138-6"><a href="analysis-and-visualization-module.html#cb138-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
-<span id="cb138-7"><a href="analysis-and-visualization-module.html#cb138-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
-<span id="cb138-8"><a href="analysis-and-visualization-module.html#cb138-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
-<span id="cb138-9"><a href="analysis-and-visualization-module.html#cb138-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
-<span id="cb138-10"><a href="analysis-and-visualization-module.html#cb138-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
-<span id="cb138-11"><a href="analysis-and-visualization-module.html#cb138-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
-<span id="cb138-12"><a href="analysis-and-visualization-module.html#cb138-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="st">&#39;barplot&#39;</span>,</span>
-<span id="cb138-13"><a href="analysis-and-visualization-module.html#cb138-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="analysis-and-visualization-module.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeneCopy</span>(tumor, <span class="at">genes =</span> <span class="fu">c</span>(<span class="st">&quot;CDKN2A&quot;</span>,</span>
+<span id="cb129-2"><a href="analysis-and-visualization-module.html#cb129-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;FGFR1&quot;</span>,</span>
+<span id="cb129-3"><a href="analysis-and-visualization-module.html#cb129-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;TP53&quot;</span>,</span>
+<span id="cb129-4"><a href="analysis-and-visualization-module.html#cb129-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PTEN&quot;</span>,</span>
+<span id="cb129-5"><a href="analysis-and-visualization-module.html#cb129-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MYC&quot;</span>,</span>
+<span id="cb129-6"><a href="analysis-and-visualization-module.html#cb129-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CDKN1A&quot;</span>,</span>
+<span id="cb129-7"><a href="analysis-and-visualization-module.html#cb129-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;MDM2&quot;</span>,</span>
+<span id="cb129-8"><a href="analysis-and-visualization-module.html#cb129-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;AURKA&quot;</span>,</span>
+<span id="cb129-9"><a href="analysis-and-visualization-module.html#cb129-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;PIK3CA&quot;</span>,</span>
+<span id="cb129-10"><a href="analysis-and-visualization-module.html#cb129-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;CCND1&quot;</span>,</span>
+<span id="cb129-11"><a href="analysis-and-visualization-module.html#cb129-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;KRAS&quot;</span>),</span>
+<span id="cb129-12"><a href="analysis-and-visualization-module.html#cb129-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="st">&#39;barplot&#39;</span>,</span>
+<span id="cb129-13"><a href="analysis-and-visualization-module.html#cb129-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">assay =</span> <span class="st">&#39;integer&#39;</span>)</span></code></pre></div>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_gene_copy_integer-1.png" width="672" /></p>
 </div>
 <div id="plotalluvial" class="section level2 hasAnchor" number="7.12">
 <h2><span class="header-section-number">7.12</span> plotAlluvial()<a href="analysis-and-visualization-module.html#plotalluvial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To visualize frequencies across elements of the metadata we can use <code>plotAlluvial()</code></p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="analysis-and-visualization-module.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotAlluvial</span>(tumor, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;subclones&quot;</span>, <span class="st">&quot;spatial_info&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="analysis-and-visualization-module.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotAlluvial</span>(tumor, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;subclones&quot;</span>, <span class="st">&quot;spatial_info&quot;</span>))</span></code></pre></div>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_alluvial-1.png" width="672" /></p>
 </div>
 <div id="runpca" class="section level2 hasAnchor" number="7.13">
 <h2><span class="header-section-number">7.13</span> runPca()<a href="analysis-and-visualization-module.html#runpca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Principal Component Analysis can be run with <code>runPca()</code></p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="analysis-and-visualization-module.html#cb140-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runPca</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="analysis-and-visualization-module.html#cb131-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">runPca</span>(tumor)</span></code></pre></div>
 <pre><code>## Using assay: logr</code></pre>
 <pre><code>## Embedding data with PCA.</code></pre>
 <pre><code>## Access reduced dimensions slot with: SingleCellExperiment::reducedDim(scCNA, &#39;pca&#39;).</code></pre>
@@ -515,13 +484,13 @@ Any element of the <code>colData()</code> can be used to calculate the consensus
 <div id="plotscree" class="section level3 hasAnchor" number="7.13.1">
 <h3><span class="header-section-number">7.13.1</span> plotScree<a href="analysis-and-visualization-module.html#plotscree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To determine the number of useful principal components a scree plot can be shown with:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="analysis-and-visualization-module.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotScree</span>(tumor)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="analysis-and-visualization-module.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotScree</span>(tumor)</span></code></pre></div>
 <p><img src="CopyKit-UserGuide_files/figure-html/plot_scree-1.png" width="672" /></p>
 </div>
 <div id="plotpca" class="section level3 hasAnchor" number="7.13.2">
 <h3><span class="header-section-number">7.13.2</span> plotPCA<a href="analysis-and-visualization-module.html#plotpca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To visualize the first 2 principal components you can use <code>plotPca()</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="analysis-and-visualization-module.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPca</span>(tumor, <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="analysis-and-visualization-module.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPca</span>(tumor, <span class="at">label =</span> <span class="st">&#39;spatial_info&#39;</span>)</span></code></pre></div>
 <pre><code>## Plotting PCA.</code></pre>
 <pre><code>## Coloring by: spatial_info.</code></pre>
 <p><img src="CopyKit-UserGuide_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>

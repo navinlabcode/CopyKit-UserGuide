@@ -165,12 +165,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.2" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#findclusters"><i class="fa fa-check"></i><b>7.4.2</b> findClusters()</a></li>
 <li class="chapter" data-level="7.4.3" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotumap"><i class="fa fa-check"></i><b>7.4.3</b> plotUmap()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo"><i class="fa fa-check"></i><b>7.5</b> runPhylo()</a>
-<ul>
-<li class="chapter" data-level="7.5.1" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotphylo"><i class="fa fa-check"></i><b>7.5.1</b> plotPhylo()</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcinteger"><i class="fa fa-check"></i><b>7.6</b> calcInteger()</a></li>
-<li class="chapter" data-level="7.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>7.7</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="7.5" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#scquantum-calcinteger"><i class="fa fa-check"></i><b>7.5</b> scquantum &amp; calcInteger()</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotheatmap"><i class="fa fa-check"></i><b>7.6</b> plotHeatmap()</a></li>
+<li class="chapter" data-level="7.7" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#runphylo-plotphylo"><i class="fa fa-check"></i><b>7.7</b> runPhylo() &amp; plotPhylo()</a></li>
 <li class="chapter" data-level="7.8" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotfreq"><i class="fa fa-check"></i><b>7.8</b> plotFreq()</a></li>
 <li class="chapter" data-level="7.9" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#calcconsensus"><i class="fa fa-check"></i><b>7.9</b> calcConsensus()</a></li>
 <li class="chapter" data-level="7.10" data-path="analysis-and-visualization-module.html"><a href="analysis-and-visualization-module.html#plotconsensusline"><i class="fa fa-check"></i><b>7.10</b> plotConsensusLine()</a></li>
@@ -254,45 +251,32 @@ It returns sample-wise metrics of overdispersion and breakpoint counts.</p>
 ## PMTC6LiverC9DL1S1_S9_L001_R1_001        PMTC6LiverC9DL1S1_S9..              274402
 ## PMTC6LiverC9DL1S5_S393_L002_R1_001      PMTC6LiverC9DL1S5_S3..              465001
 ## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001   PMTC6LiverC9DL6L7S1_..              336559
-##                                         reads_unmapped reads_duplicates
-##                                              &lt;integer&gt;        &lt;integer&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001             30250            34883
-## PMTC6LiverC100DL1S6_S484_L002_R1_001             22260            12657
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001           30942            58222
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001          28239            53055
-## PMTC6LiverC101DL1S2_S101_L001_R1_001             28756            43008
-## ...                                                ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001            37945            54159
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001           28090            36534
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                 38326            25527
-## PMTC6LiverC9DL1S5_S393_L002_R1_001               34111            48055
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001            38814            37898
-##                                         reads_multimapped reads_unassigned
-##                                                 &lt;integer&gt;        &lt;integer&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001                    0            75555
-## PMTC6LiverC100DL1S6_S484_L002_R1_001                    0            28651
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001                  0           110352
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001                 0            98560
-## PMTC6LiverC101DL1S2_S101_L001_R1_001                    0            87786
-## ...                                                   ...              ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                   0            96735
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001                  0            64866
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                        0            59107
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                      0            96126
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                   0            71998
-##                                         reads_ambiguous reads_total
-##                                               &lt;integer&gt;   &lt;numeric&gt;
-## PMTC6LiverC100DL1S2_S100_L001_R1_001                 90      503443
-## PMTC6LiverC100DL1S6_S484_L002_R1_001                 27      194165
-## PMTC6LiverC100DL4L5S1_S868_L003_R1_001              103      735636
-## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001              91      646947
-## PMTC6LiverC101DL1S2_S101_L001_R1_001                 76      583280
-## ...                                                 ...         ...
-## PMTC6LiverC99DL4L5S1_S867_L003_R1_001                86      649423
-## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001               56      436032
-## PMTC6LiverC9DL1S1_S9_L001_R1_001                     54      397416
-## PMTC6LiverC9DL1S5_S393_L002_R1_001                  109      643402
-## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001                60      485329
+##                                         reads_unmapped reads_duplicates reads_multimapped
+##                                              &lt;integer&gt;        &lt;integer&gt;         &lt;integer&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001             30250            34883                 0
+## PMTC6LiverC100DL1S6_S484_L002_R1_001             22260            12657                 0
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001           30942            58222                 0
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001          28239            53055                 0
+## PMTC6LiverC101DL1S2_S101_L001_R1_001             28756            43008                 0
+## ...                                                ...              ...               ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001            37945            54159                 0
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001           28090            36534                 0
+## PMTC6LiverC9DL1S1_S9_L001_R1_001                 38326            25527                 0
+## PMTC6LiverC9DL1S5_S393_L002_R1_001               34111            48055                 0
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001            38814            37898                 0
+##                                         reads_unassigned reads_ambiguous reads_total
+##                                                &lt;integer&gt;       &lt;integer&gt;   &lt;numeric&gt;
+## PMTC6LiverC100DL1S2_S100_L001_R1_001               75555              90      503443
+## PMTC6LiverC100DL1S6_S484_L002_R1_001               28651              27      194165
+## PMTC6LiverC100DL4L5S1_S868_L003_R1_001            110352             103      735636
+## PMTC6LiverC100DL6L7S3_S1252_L004_R1_001            98560              91      646947
+## PMTC6LiverC101DL1S2_S101_L001_R1_001               87786              76      583280
+## ...                                                  ...             ...         ...
+## PMTC6LiverC99DL4L5S1_S867_L003_R1_001              96735              86      649423
+## PMTC6LiverC99DL6L7S3_S1251_L004_R1_001             64866              56      436032
+## PMTC6LiverC9DL1S1_S9_L001_R1_001                   59107              54      397416
+## PMTC6LiverC9DL1S5_S393_L002_R1_001                 96126             109      643402
+## PMTC6LiverC9DL6L7S1_S1161_L004_R1_001              71998              60      485329
 ##                                         percentage_duplicates overdispersion
 ##                                                     &lt;numeric&gt;      &lt;numeric&gt;
 ## PMTC6LiverC100DL1S2_S100_L001_R1_001                    0.069     0.00262992

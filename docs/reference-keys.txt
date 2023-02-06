@@ -23,10 +23,9 @@ clustering
 findsugestedk
 findclusters
 plotumap
-runphylo
-plotphylo
-calcinteger
+scquantum-calcinteger
 plotheatmap
+runphylo-plotphylo
 plotfreq
 calcconsensus
 plotconsensusline
