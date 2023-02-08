@@ -4,7 +4,7 @@ The analysis and visualization module from CopyKit work in synergy to help you a
 
 ## plotMetrics()
 
-The `plotMetrics()` function can plot any information store in `colData()`, which is passedto the `metric` argument. If a `label` argument is supplied, the points will be colored based on that information.
+The `plotMetrics()` function can plot any information store in `colData()`, which is passed to the `metric` argument. If a `label` argument is supplied, the points will be colored based on that information.
 ```{r}
 plotMetrics(tumor, metric = c("overdispersion", 
                               "breakpoint_count",
@@ -17,7 +17,7 @@ plotMetrics(tumor, metric = c("overdispersion",
 
 ## plotRatio()
 
-Visualizing the seegmeentation to eensure it follows the ratios as expected is crucial to a copy number analysis.
+Visualizing the segmentation to ensure it follows the ratios as expected is crucial to a copy number analysis.
 This helps to verify the accuracy of the segmentation an assess the quality of the data visually.
 
 The `plotRatio()` function is a useful tool for this, offering two different modes. When the input is the CopyKit object, an interactive app will open, allowing you to choose which cell to visualize from the drop-down option menu.
@@ -45,6 +45,35 @@ tumor <- runUmap(tumor)
 ```
 
 You can pass additional arguments to control UMAP parameters using the `'...'` argument. The full list of additional arguments that can be passed on to `uwot::umap`  with the '...' argument can be found in the [uwot manual](https://cran.r-project.org/web/packages/uwot/uwot.pdf) and information on their influence on clustering can be seen in the [UMAP webpage](https://umap-learn.readthedocs.io/en/latest/clustering.html)
+
+
+## scquantum & calcInteger()
+
+The scquantum package is integrated into CopyKit to infer absolute copy numbers. It can be used either within CopyKit or as a [standalone package](https://github.com/navinlabcode/scquantum) available on GitHub. Other methods for inferring absolute copy numbers are metadata and fixed. After running calcInteger(), CopyKit scales the segment ratios to integer values, which are stored in the integer slot and can be accessed using the assay() function.
+
+To infer absolute ploidy values using scquantum, specify `scquantum` as the method argument in `calcInteger()`. The estimated computational ploidy is stored in `colData()` along with confidence_ratio, which compares the obtained score with the theoretical estimate, and ploidy_score, a transformation of confidence_ratio with values closer to 0 indicating better ploidy inference calls. We will use the smoothed bincounts from the `knnSmooth()` step to perform the inference.
+
+```{r calc_integerscquantum, warning=FALSE}
+tumor <- calcInteger(tumor, method = 'scquantum', assay = 'smoothed_bincounts')
+```
+
+The resulting `ploidy_score` scores can be used for further quality control of the single cell dataset.
+```{r}
+plotMetrics(tumor, metric = 'ploidy', label = 'ploidy_score')
+tumor <- tumor[,colData(tumor)$ploidy_score < 0.2]
+```
+
+Setting the method argument to 'fixed' scales all cells to a fixed value of ploidy (generally determined by flow cytometry), which is passed to CopyKit using the ploidy_value argument: 
+
+```{r calc_integer_fixed, eval = FALSE}
+# NOT RUN
+tumor <- calcInteger(tumor, method = 'fixed', ploidy_value = 4.3)
+```
+
+If the integer assay exists, plotRatio() will plot it as a secondary axis.
+```{r plot_ratio_integer, warning=FALSE}
+plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
+```
 
 ## Clustering
 
@@ -110,31 +139,21 @@ plotUmap(tumor)
 plotUmap(tumor, label = 'subclones')
 ```
 
-## scquantum & calcInteger()
+## runPca()
 
-The scquantum package is integrated into CopyKit to infer absolute copy numbers. It can be used either within CopyKit or as a [standalone package](https://github.com/navinlabcode/scquantum) available on GitHub. Other methods for inferring absolute copy numbers are metadata and fixed. After running calcInteger(), CopyKit scales the segment ratios to integer values, which are stored in the integer slot and can be accessed using the assay() function.
-
-To infer absolute ploidy values using scquantum, specify `scquantum` as the method argument in `calcInteger()`. The estimated computational ploidy is stored in `colData()` along with confidence_ratio, which compares the obtained score with the theoretical estimate, and ploidy_score, a transformation of confidence_ratio with values closer to 0 indicating better ploidy inference calls.
-
-```{r calc_integerscquantum, warning=FALSE}
-tumor <- calcInteger(tumor, method = 'scquantum', assay = 'smoothed_bincounts')
+The `runPca()` function runs a Principal Component Analysis:
+```{r run_pca}
+tumor <- runPca(tumor)
 ```
 
-The resulting `ploidy_score` scores can be used for further quality control of the single cell dataset.
+The results are stored in the `reducedDim(tumor, 'PCA')` slot.
+
+Principal Components can be used as an alternative pre-processing step to the `findClusters()` function by changing the `findClusters()` `embedding` argument to 'PCA' and setting the number of components with `ncomponents`. However, it's recommended to use the default UMAP embedding for better results. Visualize the number of useful components with plotScree() and the PCA plot with plotPca()
+
 ```{r}
-tumor <- tumor[,colData(tumor)$ploidy_score < 0.2]
+plotPca(tumor, label = 'subclones')
 ```
 
-Setting the method argument to 'fixed' scales all cells to a fixed value of ploidy (generally determined by flow cytometry), which is passed to CopyKit using the ploidy_value argument: 
-
-```{r calc_integer_fixed, eval = FALSE}
-tumor <- calcInteger(tumor, method = 'fixed', ploidy_value = 4.3)
-```
-
-If the integer assay exists, plotRatio() will plot it as a secondary axis.
-```{r plot_ratio_integer, warning=FALSE}
-plotRatio(tumor, "PMTC6LiverC117AL4L5S1_S885_L003_R1_001")
-```
 
 ## plotHeatmap()
 
@@ -146,8 +165,12 @@ The heatmap can be annotated with elements of colData.
 
 To order subclones, one option is to calculate a consensus phylogeny, explained in later sections:
 ```{r plot_heatmap_sub, fig.height=8}
+# First we calculate a consensus from the subclones
+# and a consensus phylogeny
 tumor <- calcConsensus(tumor)
 tumor <- runConsensusPhylo(tumor)
+# We pass 'consensus_tree' to plotHeatmap
+# to order the cells by the stored consensus phylogeny
 plotHeatmap(
   tumor,
   label = 'subclones',
@@ -181,53 +204,36 @@ tumor <- runPhylo(tumor, metric = 'manhattan')
 plotPhylo(tumor, label = 'subclones')
 ```
 
-## plotFreq()
-
-The `plotFreq()` function can be used to visualize genomic gains or losses across the genome. This function calculates the frequency of gain or losses in each region of the genome based on a threshold applied to all samples. The `low_threshold` argument (below which values are counted as genomic losses) and `high_threshold` argument (above which values are counted as genomic gains) control the thresholds. It is recommended to set the thresholds based on the ploidy of the sample. To use the integer assay instead of the default segment_ratios assay, pass the `assay` argument. The visual representation of the frequencies can be shown as either an `area` or a `line` geom
-
-```{r plot_freq_sample}
-plotFreq(tumor)
-```
-
-Elements of `colData()` can be used to split the plot across different groups.
-
-```{r plot_freq_label, fig.height=6}
-plotFreq(tumor,
-         group = 'subclones')
-```
-
 ## calcConsensus()
 
-Consensus sequences can help visualize the different segments across subclones. To calculate consensus matrices we can use `calcConsensus()`.
+The `calcConsensus()` function generates a consensus matrix that can help show the distinct segments among subclones. The function uses subclone information by default, but any `colData()` element can be used for the calculation. 
+
+The `plotHeatmap()` function can be used to plot a consensus heatmap and add metadata information if the label is the same as the one used to build the consensus matrix. The `group` argument can be passed to add additional annotation from `colData()` in the format of a frequency barplot.
+
 ```{r calc_consensus}
 tumor <- calcConsensus(tumor)
+# We use the plotHeatmap function to plot the
+# consensus matrix by passing the argument `consensus`.
+plotHeatmap(tumor,
+            consensus = TRUE,
+            label = 'subclones',
+            group = 'spatial_info')
 ```
 
-`plotHeatmap()` can plot a consensus heatmap:
-```{r plot_heat_consensus}
-plotHeatmap(tumor, consensus = TRUE, label = 'subclones')
-```
+To calculate consensus from the integer assay, set the `calcConsensus()` argument `assay` to _'integer'_ and plot it with `plotHeatmap()`
 
-`plotHeatmap()` can annotate the consensus heatmap with information from the metadata as long as label is the same as the information used to build the consensus matrix:
-```{r plot_heat_freq_bar}
-plotHeatmap(tumor, consensus = TRUE, label = 'subclones', group = 'spatial_info')
-```
-
-By default `calcConsensus()` uses the subclones information to calculate a consensus for each subclone.
-Any element of the `colData()` can be used to calculate the consensus.
-
-**Note:** Consensus matrices can be calculated from the integer assay. Importantly, the integer matrix must be in the `assay(tumor, 'integer')` slot. Check `calcInteger()` for more info.
-```{r eval = FALSE}
+```{r consensus_integer}
 tumor <- calcConsensus(tumor, consensus_by = 'subclones', assay = 'integer')
+plotHeatmap(tumor,
+            consensus = TRUE,
+            assay = 'integer',
+            label = 'subclones',
+            group = 'spatial_info')
 ```
 
 ## plotConsensusLine()
 
 To compare the differences among subclones, `plotConsensusLine()` opens an interactive app where the consensus sequences are plotted as lines.
-
-```{r calc_consensus_again, echo = FALSE}
-tumor <- calcConsensus(tumor)
-```
 
 ```{r plot_cons_line, eval=FALSE}
 plotConsensusLine(tumor)
@@ -239,26 +245,8 @@ plotConsensusLine(tumor)
 
 ## plotGeneCopy()
 
-To check copy number states across of genes we can use `plotGeneCopy()`. Two different geoms: “swarm” (default) or “violin” can be applied. 
+The `plotGeneCopy()` function can be used to view copy number states for genes. Two different geoms are available: "swarm" (default) or "violin". Points can be colored using the 'label' argument. To visualize across groups, a positional dodge can be added. Example:
 
-As with other plotting functions, points can be colored with the argument 'label'.
-
-```{r}
-plotGeneCopy(tumor, genes = c("CDKN2A",
-                              "FGFR1",
-                              "TP53",
-                              "PTEN",
-                              "MYC",
-                              "CDKN1A",
-                              "MDM2",
-                              "AURKA",
-                              "PIK3CA",
-                              "CCND1",
-                              "KRAS"),
-                      label = 'spatial_info')
-```
-
-A positional dodge can be added to facilitate the visualization across groups:
 ```{r}
 plotGeneCopy(tumor, 
              genes = c("CDKN2A",
@@ -276,8 +264,7 @@ plotGeneCopy(tumor,
              dodge.width = 0.8)
 ```
 
-
-A barplot geom is also provided to visualize the integer data as a frequency barplot for each gene:
+A barplot geom can be used to visualize the integer data as a frequency barplot for each gene:
 ```{r plot_gene_copy_integer}
 plotGeneCopy(tumor, genes = c("CDKN2A",
                               "FGFR1",
@@ -294,33 +281,27 @@ plotGeneCopy(tumor, genes = c("CDKN2A",
              assay = 'integer')
 ```
 
+
+## plotFreq()
+
+The `plotFreq()` function can be used to visualize genomic gains or losses across the genome. This function calculates the frequency of gain or losses in each region of the genome based on a threshold applied to all samples. The `low_threshold` argument (below which values are counted as genomic losses) and `high_threshold` argument (above which values are counted as genomic gains) control the thresholds. It is recommended to set the thresholds based on the ploidy of the sample. To use the integer assay instead of the default segment_ratios assay, pass the `assay` argument. The visual representation of the frequencies can be shown as either an `area` or a `line` geom
+
+```{r plot_freq_sample}
+plotFreq(tumor)
+```
+
+Elements of `colData()` can be used to split the plot across different groups.
+
+```{r plot_freq_label, fig.height=6}
+plotFreq(tumor,
+         group = 'subclones')
+```
+
+
 ## plotAlluvial()
 
 To visualize frequencies across elements of the metadata we can use `plotAlluvial()` 
 ```{r plot_alluvial}
 plotAlluvial(tumor, label = c("subclones", "spatial_info"))
-```
-
-## runPca()
-
-Principal Component Analysis can be run with `runPca()`
-```{r run_pca}
-tumor <- runPca(tumor)
-```
-
-The results are stored in the `reducedDim(tumor, 'PCA')` slot.
-
-Principal Components can be used as an alternative pre-processing step to the `findClusters()` function by changing `findClusters()` _embedding_ argument to 'PCA'. The number of principal components to be used for clustering can also be set within `findClusters() with the argument ncomponents. At this time better results are achieved by using the default UMAP embedding and it is the recommend pre-processing step. However PCA remains as a viable alternative
-
-### plotScree
-To determine the number of useful principal components a scree plot can be shown with:
-```{r plot_scree}
-plotScree(tumor)
-```
-
-### plotPCA
-To visualize the first 2 principal components you can use `plotPca()`.
-```{r}
-plotPca(tumor, label = 'spatial_info')
 ```
 
